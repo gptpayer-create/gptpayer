@@ -1,0 +1,2399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SuperTools — 100+ Free Online File Tools</title>
+
+<meta name="description" content="120+ free online file tools. Convert, compress, merge PDF, resize images, convert video & audio. No signup, no watermarks, 100% free forever.">
+<meta name="keywords" content="free pdf tools, image converter, video converter, audio converter, compress pdf, merge pdf, jpg to pdf, pdf to word, online file tools, supertools">
+<meta name="author" content="gptpayer.online">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#00c853">
+<link rel="canonical" href="https://gptpayer.online/">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="SuperTools — 120+ Free Online File Tools">
+<meta property="og:description" content="World's most powerful free file toolkit. PDF, Image, Video, Audio tools. No signup, no watermarks, no limits. 100% free forever.">
+<meta property="og:url" content="https://gptpayer.online/">
+<meta property="og:site_name" content="SuperTools by gptpayer.online">
+<meta property="og:image" content="https://gptpayer.online/favicon-512.png">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SuperTools — 120+ Free Online File Tools">
+<meta name="twitter:description" content="Convert, compress, merge PDF, images, video & audio. Free, no signup, no watermarks.">
+
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
+<link rel="apple-touch-icon" sizes="512x512" href="favicon-512.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+  if (typeof pdfjsLib !== 'undefined') {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  }
+</script>
+<style>
+  :root {
+    --bg:      #050f08;
+    --bg2:     #0a1a0e;
+    --bg3:     #112018;
+    --accent:  #00c853;
+    --accent2: #00e676;
+    --accent3: #69f0ae;
+    --accent4: #b9f6ca;
+    --accent5: #1de9b6;
+    --text:    #e8f5e9;
+    --muted:   #5a8c6a;
+    --border:  rgba(0,200,83,0.1);
+    --card:    rgba(0,200,83,0.04);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(0,200,83,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(0,230,118,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 90% 10%, rgba(105,240,174,0.07) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* FLOATING PANEL BUTTONS (arras.io style) */
+  .panel-btns {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .panel-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 11px 6px 9px;
+    background: var(--accent);
+    color: #050f08;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    border: none;
+    cursor: pointer;
+    transition: background 0.18s, padding-left 0.18s;
+    white-space: nowrap;
+    text-align: left;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 3px;
+    box-shadow: 2px 2px 10px rgba(0,200,83,0.2);
+  }
+
+  .panel-btn:hover {
+    background: var(--accent2);
+    padding-left: 14px;
+  }
+
+  .panel-btn .pb-icon {
+    font-size: 0.72rem;
+    flex-shrink: 0;
+  }
+
+  /* PANEL MODAL OVERLAY */
+  .panel-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(6px);
+    z-index: 600;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .panel-overlay.open { display: flex; }
+
+  .panel-modal {
+    background: var(--bg2);
+    border: 1px solid rgba(0,200,83,0.2);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 560px;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalIn .25s cubic-bezier(.4,0,.2,1);
+  }
+
+  .panel-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 1.6rem 1rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--bg2);
+    z-index: 1;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .panel-modal-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .panel-modal-close {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    cursor: pointer;
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    transition: all .2s;
+  }
+  .panel-modal-close:hover { color: var(--accent); background: rgba(0,200,83,0.08); }
+
+  .panel-modal-body { padding: 1.4rem 1.6rem 1.8rem; }
+
+  /* BULLETIN BOARD */
+  .bulletin-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .bulletin-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .bulletin-avatar {
+    width: 36px; height: 36px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.6rem;
+    flex-shrink: 0;
+    color: #050f08;
+    font-weight: 900;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.04em;
+  }
+
+  .bulletin-content { flex: 1; min-width: 0; }
+
+  .bulletin-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+  }
+
+  .bulletin-author {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .bulletin-time {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+
+  .bulletin-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 100px;
+  }
+  .tag-info { background: rgba(0,200,83,0.12); color: var(--accent); border: 1px solid rgba(0,200,83,0.25); }
+  .tag-new  { background: rgba(105,240,174,0.12); color: var(--accent3); border: 1px solid rgba(105,240,174,0.25); }
+  .tag-hot  { background: rgba(0,230,118,0.12); color: var(--accent2); border: 1px solid rgba(0,230,118,0.25); }
+
+  .bulletin-text {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* UPDATE LOG */
+  .update-version-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #050f08;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 800;
+    padding: 8px 18px;
+    border-radius: 10px;
+    margin-bottom: 1.2rem;
+  }
+
+  .update-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.05em;
+  }
+
+  .update-section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--accent3);
+    margin: 1.2rem 0 0.6rem;
+  }
+
+  .update-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .update-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .update-list li::before {
+    content: '▸';
+    color: var(--accent);
+    font-size: 0.75rem;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* HEADER */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(5,15,8,0.88);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 clamp(1rem, 4vw, 3rem);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.03em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .logo-icon {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    color: #050f08;
+    font-weight: 900;
+  }
+
+  .logo span { color: var(--accent); }
+
+  nav {
+    display: flex;
+    gap: 8px;
+  }
+
+  nav a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: all .2s;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav a:hover {
+    color: var(--accent2);
+    border-color: var(--border);
+    background: var(--card);
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem);
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent3);
+    background: rgba(105,240,174,0.08);
+    border: 1px solid rgba(105,240,174,0.2);
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp .6s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.9rem, 7vw, 5rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.2rem;
+    animation: fadeUp .6s .1s ease both;
+  }
+
+  .hero h1 .hl1 { color: var(--accent); }
+  .hero h1 .hl2 { color: var(--accent2); }
+  .hero h1 .hl3 { color: var(--accent3); }
+
+  .hero p {
+    font-size: clamp(0.88rem, 2vw, 1.2rem);
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    animation: fadeUp .6s .2s ease both;
+  }
+
+  .search-wrap {
+    position: relative;
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    animation: fadeUp .6s .3s ease both;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px 24px 16px 52px;
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+  }
+
+  .search-wrap input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(0,200,83,0.15);
+  }
+
+  .search-wrap input::placeholder { color: var(--muted); }
+
+  .search-icon {
+    position: absolute;
+    left: 18px; top: 50%; transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 1.1rem;
+    pointer-events: none;
+  }
+
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    flex-wrap: wrap;
+    animation: fadeUp .6s .4s ease both;
+    margin-bottom: 1rem;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* TABS */
+  .tabs-wrap {
+    position: relative;
+    z-index: 1;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+    margin-bottom: 3rem;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .tabs-wrap::-webkit-scrollbar { display: none; }
+
+  .tabs {
+    display: flex;
+    gap: 8px;
+    min-width: max-content;
+    justify-content: center;
+    padding-bottom: 4px;
+  }
+
+  .tab {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .2s;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .tab:hover { color: var(--text); border-color: rgba(0,200,83,0.2); }
+
+  .tab.active {
+    color: #050f08;
+    border-color: transparent;
+    background: linear-gradient(135deg, var(--tab-c1, var(--accent)), var(--tab-c2, var(--accent2)));
+    box-shadow: 0 4px 20px var(--tab-glow, rgba(0,200,83,0.35));
+    font-weight: 700;
+  }
+
+  .tab-icon { font-size: 1rem; }
+
+  /* GRID */
+  .grid-section {
+    position: relative;
+    z-index: 1;
+    padding: 0 clamp(1rem, 4vw, 3rem) 5rem;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .category-header:first-child { margin-top: 0; }
+
+  .cat-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  .category-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .cat-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 2px 8px;
+    border-radius: 100px;
+  }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+
+  .tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px;
+    cursor: default;
+    transition: all .25s cubic-bezier(.4,0,.2,1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .tool-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    opacity: 0;
+    transition: opacity .25s;
+    border-radius: inherit;
+  }
+
+  .tool-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0,200,83,0.25);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,200,83,0.08);
+  }
+
+  .tool-card:hover::before { opacity: 0.06; }
+
+  .tool-icon-wrap {
+    position: relative;
+    z-index: 1;
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+
+  .tool-info { position: relative; z-index: 1; }
+
+  .tool-name {
+    font-weight: 600;
+    font-size: 0.88rem;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .tool-desc {
+    font-size: 0.75rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .tool-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 100px;
+    z-index: 1;
+  }
+
+  .badge-new { background: rgba(105,240,174,0.12); color: var(--accent3); border: 1px solid rgba(105,240,174,0.25); }
+  .badge-hot { background: rgba(0,200,83,0.15); color: var(--accent); border: 1px solid rgba(0,200,83,0.3); }
+  .badge-pro { background: rgba(0,230,118,0.12); color: var(--accent2); border: 1px solid rgba(0,230,118,0.25); }
+
+  /* MODAL - info only */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--bg2);
+    border: 1px solid rgba(0,200,83,0.15);
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 520px;
+    width: 100%;
+    position: relative;
+    animation: modalIn .3s cubic-bezier(.4,0,.2,1);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 14px; right: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    cursor: pointer;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    transition: all .2s;
+  }
+
+  .modal-close:hover { color: var(--accent); background: rgba(0,200,83,0.08); }
+
+  .modal-icon {
+    width: 56px; height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .modal h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: .5rem;
+  }
+
+  .modal p {
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .drop-zone {
+    border: 2px dashed var(--border);
+    border-radius: 14px;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s;
+    margin-bottom: 1.2rem;
+  }
+
+  .drop-zone:hover {
+    border-color: var(--accent);
+    background: rgba(0,200,83,0.05);
+  }
+
+  .drop-zone-icon { font-size: 2rem; margin-bottom: .8rem; }
+
+  .drop-zone-text {
+    font-size: .9rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .drop-zone-text strong { color: var(--text); }
+
+  .modal-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #050f08;
+    box-shadow: 0 4px 20px rgba(0,200,83,0.3);
+  }
+
+  .modal-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,200,83,0.4); }
+  .modal-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+  .file-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    background: var(--bg3);
+    border-radius: 10px;
+    margin-bottom: 6px;
+    border: 1px solid var(--border);
+    animation: fadeUp .2s ease;
+  }
+  .file-item-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .file-item-info { flex: 1; min-width: 0; }
+  .file-item-name { font-size: 0.82rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .file-item-size { font-size: 0.72rem; color: var(--muted); }
+  .file-item-status { font-size: 0.75rem; font-family: 'DM Mono', monospace; flex-shrink: 0; }
+  .file-item-remove {
+    background: none; border: none; color: var(--muted); cursor: pointer;
+    font-size: 1rem; padding: 2px 4px; border-radius: 4px; flex-shrink: 0;
+    transition: color .2s;
+  }
+  .file-item-remove:hover { color: #ff4d4d; }
+
+  .download-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 14px;
+    background: rgba(0,200,83,0.08);
+    border: 1px solid rgba(0,200,83,0.2);
+    border-radius: 10px;
+    color: var(--accent);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 6px;
+    transition: all .2s;
+  }
+  .download-btn:hover { background: rgba(0,200,83,0.15); transform: translateY(-1px); }
+  .download-all-btn {
+    width: 100%;
+    padding: 11px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #050f08;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: all .2s;
+  }
+  .download-all-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,200,83,0.35); }
+
+  .drop-zone.drag-over {
+    border-color: var(--accent);
+    background: rgba(0,200,83,0.07);
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    margin-top: 4rem;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,200,83,0.03) 100%);
+    border-top: 1px solid rgba(0,200,83,0.15);
+  }
+
+  .footer-cta {
+    background: linear-gradient(135deg, rgba(0,200,83,0.08) 0%, rgba(0,230,118,0.04) 100%);
+    border-bottom: 1px solid rgba(0,200,83,0.1);
+    padding: 3rem clamp(1rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .footer-cta-text h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.02em;
+  }
+
+  .footer-cta-text p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .footer-cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #050f08;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(0,200,83,0.3);
+  }
+
+  .footer-cta-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,200,83,0.4);
+  }
+
+  .footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2.5rem 2rem;
+    padding: 3rem clamp(1rem, 5vw, 4rem) 2.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .footer-main { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 540px) {
+    .footer-main { grid-template-columns: 1fr; }
+    .footer-cta { text-align: center; justify-content: center; }
+  }
+
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .footer-brand-logo-icon {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    color: #050f08;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+
+  .footer-brand-logo span { color: var(--accent); }
+
+  .footer-brand-desc {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 260px;
+  }
+
+  .footer-brand-trust {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0.25rem;
+  }
+
+  .trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent3);
+    background: rgba(105,240,174,0.07);
+    border: 1px solid rgba(105,240,174,0.18);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .trust-pill::before {
+    content: '✦';
+    font-size: 0.5rem;
+    opacity: 0.7;
+  }
+
+  .footer-social-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 0.5rem;
+  }
+
+  .footer-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .footer-social-btn:hover {
+    color: var(--accent);
+    border-color: rgba(0,200,83,0.3);
+    background: rgba(0,200,83,0.08);
+    transform: translateY(-2px);
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 100px;
+  }
+
+  .footer-col-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(0,200,83,0.08);
+  }
+
+  .footer-link {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.83rem;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+    line-height: 1.4;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s, gap 0.2s;
+  }
+
+  .footer-link::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: 0.4;
+    flex-shrink: 0;
+    transition: background 0.2s, opacity 0.2s;
+  }
+
+  .footer-link:hover {
+    color: var(--accent2);
+    gap: 8px;
+  }
+
+  .footer-link:hover::before {
+    background: var(--accent);
+    opacity: 1;
+  }
+
+  .footer-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,200,83,0.12) 30%, rgba(0,200,83,0.12) 70%, transparent);
+    margin: 0 clamp(1rem, 5vw, 4rem);
+  }
+
+  .footer-bottom {
+    padding: 1.4rem clamp(1rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+
+  .footer-bottom-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .footer-bottom-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: 0.4;
+  }
+
+  .footer-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.6;
+  }
+
+  .footer-bottom-right .green-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+
+  .footer-sep { color: var(--muted); opacity: 0.5; }
+
+  .footer-bottom-link {
+    color: var(--muted);
+    cursor: default;
+    user-select: none;
+  }
+
+  /* DOTS MENU */
+  .dots-menu-wrap { position: relative; }
+
+  .dots-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    cursor: pointer;
+    transition: all .2s;
+    padding: 0;
+  }
+
+  .dots-btn span {
+    display: block;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--muted);
+    transition: background .2s;
+  }
+
+  .dots-btn:hover, .dots-btn.active {
+    border-color: var(--accent);
+    background: rgba(0,200,83,0.1);
+  }
+
+  .dots-btn:hover span, .dots-btn.active span { background: var(--accent); }
+
+  .dots-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 340px;
+    max-height: 520px;
+    background: var(--bg2);
+    border: 1px solid rgba(0,200,83,0.15);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    z-index: 200;
+    overflow: hidden;
+    animation: fadeUp .2s ease;
+  }
+
+  .dots-dropdown.open { display: flex; flex-direction: column; }
+
+  .dots-header {
+    padding: 14px 16px 10px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .dots-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: block;
+    margin-bottom: 10px;
+    color: var(--accent);
+  }
+
+  .dots-search {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82rem;
+    outline: none;
+    transition: border-color .2s;
+  }
+
+  .dots-search:focus { border-color: var(--accent); }
+  .dots-search::placeholder { color: var(--muted); }
+
+  .dots-list {
+    overflow-y: auto;
+    flex: 1;
+    padding: 8px 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg3) transparent;
+  }
+
+  .dots-cat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 16px 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .dots-cat-label::before {
+    content: '';
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--dot-color, var(--muted));
+    flex-shrink: 0;
+  }
+
+  .dots-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background .15s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .dots-item:hover { background: var(--card); }
+
+  .dots-item-icon {
+    width: 30px; height: 30px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .dots-item-info { flex: 1; min-width: 0; }
+
+  .dots-item-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .dots-item-desc {
+    font-size: 0.72rem;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .dots-no-result {
+    text-align: center;
+    padding: 2rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+
+  /* INFO MODAL */
+  #infoModal .modal { padding: 2.5rem; }
+  .info-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .info-section { margin-bottom: 1.4rem; }
+  .info-section h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent2);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .info-section p, .info-section li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin: 0;
+  }
+  .info-section ul { padding-left: 1.2rem; }
+  .info-section li { margin-bottom: 0.3rem; }
+  .info-email {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,200,83,0.08);
+    border: 1px solid rgba(0,200,83,0.2);
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    text-decoration: none;
+    margin-top: 0.5rem;
+    transition: all .2s;
+  }
+  .info-email:hover { background: rgba(0,200,83,0.15); }
+  .hidden { display: none !important; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(.94); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 3px; }
+
+  /* MOBILE */
+  @media (max-width: 480px) {
+    header { height: 56px; padding: 0 1rem; }
+    nav { display: none; }
+    .logo { font-size: 1.15rem; }
+    .logo-icon { width: 28px; height: 28px; font-size: 0.85rem; }
+    .hero { padding: 2rem 1rem 1.5rem; }
+    .hero h1 { font-size: 2rem !important; line-height: 1.1; letter-spacing: -0.02em; }
+    .hero p { font-size: 0.9rem !important; margin-bottom: 1.5rem; }
+    .hero-badge { font-size: 0.62rem; padding: 5px 12px; margin-bottom: 1rem; }
+    .search-wrap { margin-bottom: 1.5rem; }
+    .search-wrap input { padding: 13px 16px 13px 44px; font-size: 0.9rem; border-radius: 12px; }
+    .stats { gap: 1.2rem; margin-bottom: 0.5rem; }
+    .stat-num { font-size: 1.3rem; }
+    .stat-label { font-size: 0.65rem; }
+    .tabs-wrap { padding: 0 0.75rem; margin-bottom: 1.5rem; }
+    .tab { padding: 8px 12px; font-size: 0.78rem; border-radius: 8px; gap: 5px; }
+    .tab-icon { font-size: 0.85rem; }
+    .grid-section { padding: 0 0.75rem 3rem; }
+    .tools-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .tool-card { padding: 14px 12px; border-radius: 12px; gap: 8px; }
+    .tool-icon-wrap { width: 34px; height: 34px; font-size: 1rem; border-radius: 8px; }
+    .tool-name { font-size: 0.8rem; }
+    .tool-desc { font-size: 0.7rem; }
+    .modal { padding: 1.5rem; border-radius: 16px; }
+    footer { flex-direction: column; align-items: flex-start; padding: 1.5rem 1rem; }
+    .footer-links { gap: 1rem; flex-wrap: wrap; }
+    .dots-dropdown { width: 280px; }
+    .category-header { margin-top: 1.5rem; margin-bottom: 1rem; }
+    .category-header h2 { font-size: 0.95rem; }
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    nav { display: none; }
+    .hero h1 { font-size: clamp(2rem, 6vw, 3rem) !important; }
+    .tools-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+    .dots-dropdown { width: 300px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">S</div>
+    Super<span>Tools</span>
+  </div>
+  <nav>
+    <a href="tools.html">All Tools</a>
+    <a href="features.html">Features</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="FAQ.html">FAQ</a>
+    <a href="affiliate.html">Affiliate</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="dots-menu-wrap">
+    <button class="dots-btn" onclick="toggleDotsMenu()" id="dotsBtn" title="All Tools">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="dots-dropdown" id="dotsDropdown">
+      <div class="dots-header">
+        <span class="dots-title">All Tools</span>
+        <input type="text" class="dots-search" id="dotsSearch" placeholder="Search tools..." oninput="filterDotsMenu(this.value)">
+      </div>
+      <div class="dots-list" id="dotsList"></div>
+    </div>
+  </div>
+</header>
+
+<!-- FLOATING PANEL BUTTONS -->
+<div class="panel-btns">
+  <button class="panel-btn" onclick="openPanel('bulletin')">
+    <span class="pb-icon">&#9776;</span> Bulletin Board
+  </button>
+  <button class="panel-btn" onclick="openPanel('update')" style="background:var(--bg3);color:var(--accent);border:1px solid rgba(0,200,83,0.25);">
+    <span class="pb-icon">&#8635;</span> Update v1.0
+  </button>
+</div>
+
+<!-- BULLETIN BOARD MODAL -->
+<div class="panel-overlay" id="bulletinPanel" onclick="if(event.target===this)closePanel('bulletin')">
+  <div class="panel-modal">
+    <div class="panel-modal-header">
+      <div class="panel-modal-title">&#9776; Bulletin Board</div>
+      <button class="panel-modal-close" onclick="closePanel('bulletin')">&#215;</button>
+    </div>
+    <div class="panel-modal-body">
+
+      <div class="bulletin-item">
+        <div class="bulletin-avatar">ST</div>
+        <div class="bulletin-content">
+          <div class="bulletin-meta">
+            <span class="bulletin-author">SuperTools Team</span>
+            <span class="bulletin-tag tag-hot">HOT</span>
+            <span class="bulletin-time">Apr 2026</span>
+          </div>
+          <div class="bulletin-text">Welcome to SuperTools! We now offer <strong style="color:var(--text)">120+ free tools</strong> — PDF, Image, Video, Audio, Docs & Archives. No signup. No watermarks. No limits. Ever.</div>
+        </div>
+      </div>
+
+      <div class="bulletin-item">
+        <div class="bulletin-avatar">PV</div>
+        <div class="bulletin-content">
+          <div class="bulletin-meta">
+            <span class="bulletin-author">Privacy Notice</span>
+            <span class="bulletin-tag tag-info">INFO</span>
+            <span class="bulletin-time">Apr 2026</span>
+          </div>
+          <div class="bulletin-text">All file processing is done <strong style="color:var(--text)">securely in your browser</strong>. We never store, share, or access your uploaded files. Files are deleted immediately after processing.</div>
+        </div>
+      </div>
+
+      <div class="bulletin-item">
+        <div class="bulletin-avatar">CM</div>
+        <div class="bulletin-content">
+          <div class="bulletin-meta">
+            <span class="bulletin-author">Community</span>
+            <span class="bulletin-tag tag-new">NEW</span>
+            <span class="bulletin-time">Apr 2026</span>
+          </div>
+          <div class="bulletin-text">Join our growing community! Follow us on <strong style="color:var(--text)">Telegram</strong> & <strong style="color:var(--text)">Instagram</strong> to get notified about new tools and updates first.</div>
+        </div>
+      </div>
+
+      <div class="bulletin-item">
+        <div class="bulletin-avatar">TIP</div>
+        <div class="bulletin-content">
+          <div class="bulletin-meta">
+            <span class="bulletin-author">Did You Know?</span>
+            <span class="bulletin-tag tag-info">TIP</span>
+            <span class="bulletin-time">Apr 2026</span>
+          </div>
+          <div class="bulletin-text">SuperTools works on <strong style="color:var(--text)">any device</strong> — phone, tablet, or desktop. No app download needed. Just open your browser and start converting.</div>
+        </div>
+      </div>
+
+      <div class="bulletin-item">
+        <div class="bulletin-avatar">RM</div>
+        <div class="bulletin-content">
+          <div class="bulletin-meta">
+            <span class="bulletin-author">Roadmap</span>
+            <span class="bulletin-tag tag-new">SOON</span>
+            <span class="bulletin-time">Coming 2026</span>
+          </div>
+          <div class="bulletin-text">We're working on <strong style="color:var(--text)">AI-powered tools</strong> including background remover, noise cancellation, video upscaling, and OCR text extraction. Stay tuned!</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- UPDATE MODAL -->
+<div class="panel-overlay" id="updatePanel" onclick="if(event.target===this)closePanel('update')">
+  <div class="panel-modal">
+    <div class="panel-modal-header">
+      <div class="panel-modal-title">&#8635; Update Log</div>
+      <button class="panel-modal-close" onclick="closePanel('update')">&#215;</button>
+    </div>
+    <div class="panel-modal-body">
+
+      <div class="update-version-badge">v1.0 — Initial Launch</div>
+      <div class="update-date">Released: April 2026</div>
+
+      <div class="update-section-title">New Tools Added</div>
+      <ul class="update-list">
+        <li>120+ tools live — PDF, Image, Video, Audio, Docs & Archives</li>
+        <li>PDF Merge, Split, Compress, Convert (JPG, PNG, Word, Excel, PPT)</li>
+        <li>Image Resize, Crop, Convert (WebP, AVIF, GIF), Background Remover (AI)</li>
+        <li>Video Trim, Compress, MP4 to GIF, Speed Change, Subtitle Embed</li>
+        <li>Audio Convert (MP3, WAV, FLAC, AAC), Trim, Merge, Noise Removal (AI)</li>
+        <li>Archive tools — ZIP, RAR, TAR.GZ extract & create</li>
+      </ul>
+
+      <div class="update-section-title">Performance</div>
+      <ul class="update-list">
+        <li>Most tools run 100% in-browser — zero server uploads needed</li>
+        <li>Blazing fast processing with modern browser Web APIs</li>
+        <li>Supports batch processing — multiple files at once</li>
+        <li>Max 100MB per file on most tools</li>
+      </ul>
+
+      <div class="update-section-title">Privacy & Security</div>
+      <ul class="update-list">
+        <li>Zero file storage — files deleted immediately after processing</li>
+        <li>No account required, no personal data collected</li>
+        <li>No watermarks added to any output file, ever</li>
+        <li>No ads tracking, no third-party data sharing</li>
+      </ul>
+
+      <div class="update-section-title">Design & UX</div>
+      <ul class="update-list">
+        <li>Dark green theme with full mobile responsiveness</li>
+        <li>Searchable tool grid with category filters</li>
+        <li>Drag & drop file upload on all tools</li>
+        <li>Real-time progress bar during file processing</li>
+      </ul>
+
+      <div class="update-section-title">Platform</div>
+      <ul class="update-list">
+        <li>Works on Chrome, Firefox, Safari, Edge — all modern browsers</li>
+        <li>Fully responsive — desktop, tablet & mobile</li>
+        <li>Available 24/7 at gptpayer.online</li>
+        <li>Telegram & Instagram community channels launched</li>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">100+ Free Online Tools</div>
+  <h1>
+    <span>Convert. Edit. Compress.</span><br>
+    <span class="hl1">PDF</span> · <span class="hl2">Image</span> · <span class="hl3">Video</span> · <span>Audio</span>
+  </h1>
+  <p>World's most powerful file toolkit. No signup, no watermarks, no limits. Just pure productivity.</p>
+
+  <div class="search-wrap">
+    <span class="search-icon">&#9906;</span>
+    <input type="text" id="searchInput" placeholder="Search 100+ tools... e.g. 'compress PDF', 'jpg to png'" oninput="filterTools(this.value)">
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num" style="color:var(--accent)">120+</div><div class="stat-label">Tools</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--accent2)">Free</div><div class="stat-label">Always</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--accent3)">0</div><div class="stat-label">Signup Needed</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--accent4)">256-bit</div><div class="stat-label">Encryption</div></div>
+  </div>
+</section>
+
+<!-- TABS -->
+<div class="tabs-wrap">
+  <div class="tabs" id="tabs">
+    <div class="tab active" style="--tab-c1:#00c853;--tab-c2:#00e676;--tab-glow:rgba(0,200,83,.4)" onclick="filterTab('all', this)">All Tools</div>
+    <div class="tab" style="--tab-c1:#00c853;--tab-c2:#00b248;--tab-glow:rgba(0,200,83,.35)" onclick="filterTab('pdf', this)">PDF</div>
+    <div class="tab" style="--tab-c1:#00e676;--tab-c2:#1de9b6;--tab-glow:rgba(0,230,118,.35)" onclick="filterTab('image', this)">Image</div>
+    <div class="tab" style="--tab-c1:#69f0ae;--tab-c2:#00c853;--tab-glow:rgba(105,240,174,.35)" onclick="filterTab('video', this)">Video</div>
+    <div class="tab" style="--tab-c1:#1de9b6;--tab-c2:#00bfa5;--tab-glow:rgba(29,233,182,.35)" onclick="filterTab('audio', this)">Audio</div>
+    <div class="tab" style="--tab-c1:#b9f6ca;--tab-c2:#69f0ae;--tab-glow:rgba(185,246,202,.35)" onclick="filterTab('docs', this)">Documents</div>
+    <div class="tab" style="--tab-c1:#00e676;--tab-c2:#00acc1;--tab-glow:rgba(0,230,118,.35)" onclick="filterTab('archive', this)">Archive</div>
+    <div class="tab" style="--tab-c1:#a5d6a7;--tab-c2:#66bb6a;--tab-glow:rgba(165,214,167,.35)" onclick="filterTab('other', this)">Other</div>
+  </div>
+</div>
+
+<!-- GRID -->
+<div class="grid-section" id="gridSection"></div>
+
+<!-- TOOL MODAL REMOVED -->
+<div class="modal-overlay hidden" id="modal">
+  <div class="modal" style="max-width:560px;">
+    <button class="modal-close" onclick="closeModal()">x</button>
+    <div class="modal-icon" id="modalIcon"></div>
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
+
+    <div class="drop-zone" id="dropZone"
+      onclick="document.getElementById('fileInput').click()"
+      ondragover="handleDragOver(event)"
+      ondragleave="handleDragLeave(event)"
+      ondrop="handleDrop(event)">
+      <div class="drop-zone-icon">&#8679;</div>
+      <div class="drop-zone-text"><strong>Click to upload</strong> or drag &amp; drop<br><small id="dropHint">Multiple files supported · Max 100MB each</small></div>
+    </div>
+    <input type="file" id="fileInput" style="display:none" multiple onchange="handleFileSelect(this.files)">
+
+    <div id="fileList" style="display:none; margin-bottom:1rem;">
+      <div id="fileItems"></div>
+    </div>
+
+    <div id="progressWrap" style="display:none; margin-bottom:1rem;">
+      <div style="display:flex;justify-content:space-between;margin-bottom:6px;">
+        <span style="font-size:0.8rem;color:var(--muted)" id="progressLabel">Processing...</span>
+        <span style="font-size:0.8rem;color:var(--accent)" id="progressPct">0%</span>
+      </div>
+      <div style="background:var(--bg3);border-radius:100px;height:6px;overflow:hidden;">
+        <div id="progressBar" style="height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:100px;width:0%;transition:width 0.3s;"></div>
+      </div>
+    </div>
+
+    <div id="downloadArea" style="display:none; margin-bottom:1rem;"></div>
+
+    <button class="modal-btn" id="modalBtn" onclick="processFiles()">Select Files to Convert</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="display:block; padding:0;">
+
+  <!-- CTA Bar -->
+  <div class="footer-cta">
+    <div class="footer-cta-text">
+      <h3>120+ Free Tools. Zero Limits. Forever.</h3>
+      <p>No signup, no watermarks, no credit card — just powerful tools at your fingertips.</p>
+    </div>
+    <a class="footer-cta-badge" href="tools.html">
+      ⚡ Explore All Tools
+    </a>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="footer-main">
+
+    <!-- Brand col -->
+    <div class="footer-brand">
+      <a class="footer-brand-logo" href="index.html">
+        <div class="footer-brand-logo-icon">S</div>
+        Super<span>Tools</span>
+      </a>
+      <p class="footer-brand-desc">World's most complete free file toolkit. Convert, compress, merge PDF, images, video &amp; audio — all in your browser.</p>
+      <div class="footer-brand-trust">
+        <span class="trust-pill">100% Free</span>
+        <span class="trust-pill">No Signup</span>
+        <span class="trust-pill">Secure</span>
+      </div>
+      <div class="footer-social-row">
+        <a class="footer-social-btn" href="https://t.me/supertool_tools" target="_blank" title="Telegram">TG</a>
+        <a class="footer-social-btn" href="https://x.com/GptPayer1234" target="_blank" title="Twitter / X">𝕏</a>
+        <a class="footer-social-btn" href="https://www.instagram.com/supertool_official?igsh=YzljYTk1ODg3Zg==" target="_blank" title="Instagram">IG</a>
+      </div>
+    </div>
+
+    <!-- Product -->
+    <div class="footer-col">
+      <div class="footer-col-title">Product</div>
+      <a class="footer-link" href="index.html">Home</a>
+      <a class="footer-link" href="features.html">Features</a>
+      <a class="footer-link" href="pricing.html">Pricing</a>
+      <a class="footer-link" href="tools.html">All Tools</a>
+      <a class="footer-link" href="FAQ.html">FAQ</a>
+    </div>
+
+    <!-- Legal -->
+    <div class="footer-col">
+      <div class="footer-col-title">Legal</div>
+      <a class="footer-link" href="terms.html">Terms of Service</a>
+      <a class="footer-link" href="privacy.html">Privacy Policy</a>
+      <a class="footer-link" href="cookies.html">Cookie Policy</a>
+      <a class="footer-link" href="affiliate.html">Affiliate Policy</a>
+    </div>
+
+    <!-- Support -->
+    <div class="footer-col">
+      <div class="footer-col-title">Support</div>
+      <a class="footer-link" href="contact.html">Contact Us</a>
+      <a class="footer-link" href="about.html">About Us</a>
+    </div>
+
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <span>&#169; 2026 gptpayer.online</span>
+      <div class="footer-bottom-dot"></div>
+      <span>All Rights Reserved</span>
+      <div class="footer-bottom-dot"></div>
+      <span>Built with ♥ for the web</span>
+    </div>
+    <div class="footer-bottom-right">
+      <div class="green-dot"></div>
+      <span>All systems operational</span>
+    </div>
+  </div>
+
+</footer>
+
+<!-- INFO MODAL -->
+<div class="modal-overlay" id="infoModal" onclick="if(event.target===this)closeInfoModal()">
+  <div class="modal" style="max-width:600px;max-height:85vh;overflow-y:auto;">
+    <button class="modal-close" onclick="closeInfoModal()">x</button>
+    <div id="infoModalContent"></div>
+  </div>
+</div>
+
+<script>
+const TOOLS = [
+  // PDF
+  { id:'pdf-merge',    name:'Merge PDF',         desc:'Combine multiple PDFs into one',           icon:'PDF', cat:'pdf',  bg:'rgba(0,200,83,0.15)', ic:'#00c853', badge:'hot' },
+  { id:'pdf-split',    name:'Split PDF',          desc:'Divide PDF into separate files',           icon:'PDF', cat:'pdf',  bg:'rgba(0,200,83,0.12)', ic:'#00e676' },
+  { id:'pdf-compress', name:'Compress PDF',       desc:'Reduce PDF file size drastically',         icon:'PDF', cat:'pdf',  bg:'rgba(0,200,83,0.15)', ic:'#00c853', badge:'hot' },
+  { id:'pdf-to-jpg',   name:'PDF to JPG',         desc:'Convert PDF pages to JPG images',          icon:'IMG', cat:'pdf',  bg:'rgba(105,240,174,0.12)', ic:'#69f0ae', badge:'hot' },
+  { id:'pdf-to-png',   name:'PDF to PNG',         desc:'Convert PDF pages to PNG images',          icon:'IMG', cat:'pdf',  bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'pdf-to-word',  name:'PDF to Word',        desc:'Convert PDF to editable DOCX file',        icon:'DOC', cat:'pdf',  bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'pdf-to-excel', name:'PDF to Excel',       desc:'Export tables from PDF to Excel',          icon:'XLS', cat:'pdf',  bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'pdf-to-ppt',   name:'PDF to PowerPoint',  desc:'Convert PDF slides to PPTX format',        icon:'PPT', cat:'pdf',  bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'pdf-to-txt',   name:'PDF to Text',        desc:'Extract plain text from PDF',              icon:'TXT', cat:'pdf',  bg:'rgba(0,200,83,0.1)', ic:'#00c853' },
+  { id:'pdf-to-html',  name:'PDF to HTML',        desc:'Convert PDF to HTML webpage',              icon:'HTML',cat:'pdf',  bg:'rgba(29,233,182,0.12)', ic:'#1de9b6', badge:'new' },
+  { id:'pdf-to-epub',  name:'PDF to EPUB',        desc:'Convert PDF to ebook EPUB format',         icon:'EPB', cat:'pdf',  bg:'rgba(0,230,118,0.12)', ic:'#00e676', badge:'new' },
+  { id:'jpg-to-pdf',   name:'JPG to PDF',         desc:'Convert JPG images to PDF',                icon:'PDF', cat:'pdf',  bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'png-to-pdf',   name:'PNG to PDF',         desc:'Convert PNG images to PDF',                icon:'PDF', cat:'pdf',  bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'word-to-pdf',  name:'Word to PDF',        desc:'Convert DOCX documents to PDF',            icon:'PDF', cat:'pdf',  bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'excel-to-pdf', name:'Excel to PDF',       desc:'Convert Excel spreadsheets to PDF',        icon:'PDF', cat:'pdf',  bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'ppt-to-pdf',   name:'PPT to PDF',         desc:'Convert PowerPoint to PDF',                icon:'PDF', cat:'pdf',  bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'html-to-pdf',  name:'HTML to PDF',        desc:'Convert webpage/HTML to PDF',              icon:'PDF', cat:'pdf',  bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'pdf-rotate',   name:'Rotate PDF',         desc:'Rotate PDF pages in any direction',        icon:'PDF', cat:'pdf',  bg:'rgba(0,200,83,0.1)', ic:'#00c853' },
+  { id:'pdf-unlock',   name:'Unlock PDF',         desc:'Remove PDF password protection',           icon:'PDF', cat:'pdf',  bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'pdf-protect',  name:'Protect PDF',        desc:'Add password to your PDF file',            icon:'PDF', cat:'pdf',  bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'pdf-sign',     name:'Sign PDF',           desc:'Add digital signature to PDF',             icon:'PDF', cat:'pdf',  bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'new' },
+  { id:'pdf-watermark',name:'Watermark PDF',      desc:'Add text or image watermark to PDF',       icon:'PDF', cat:'pdf',  bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'pdf-ocr',      name:'PDF OCR',            desc:'Extract text from scanned PDF',            icon:'PDF', cat:'pdf',  bg:'rgba(0,200,83,0.1)', ic:'#00c853', badge:'pro' },
+  { id:'pdf-page-num', name:'Add Page Numbers',   desc:'Insert page numbers into PDF',             icon:'PDF', cat:'pdf',  bg:'rgba(105,240,174,0.1)', ic:'#69f0ae' },
+  { id:'pdf-crop',     name:'Crop PDF',           desc:'Crop margins and page content in PDF',     icon:'PDF', cat:'pdf',  bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'pdf-grayscale',name:'Grayscale PDF',      desc:'Convert PDF to black & white',             icon:'PDF', cat:'pdf',  bg:'rgba(0,200,83,0.1)', ic:'#00c853' },
+  { id:'pdf-repair',   name:'Repair PDF',         desc:'Fix corrupted or damaged PDF files',       icon:'PDF', cat:'pdf',  bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'pdf-compare',  name:'Compare PDF',        desc:'Compare two PDFs side by side',            icon:'PDF', cat:'pdf',  bg:'rgba(0,230,118,0.12)', ic:'#00e676', badge:'new' },
+  { id:'pdf-redact',   name:'Redact PDF',         desc:'Permanently remove sensitive content',     icon:'PDF', cat:'pdf',  bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'pro' },
+  { id:'pdf-metadata', name:'Edit PDF Metadata',  desc:'Change PDF title, author, keywords',       icon:'PDF', cat:'pdf',  bg:'rgba(105,240,174,0.1)', ic:'#69f0ae' },
+
+  // IMAGE
+  { id:'img-jpg-png',  name:'JPG to PNG',         desc:'Convert JPG image to PNG format',          icon:'IMG', cat:'image', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae', badge:'hot' },
+  { id:'img-png-jpg',  name:'PNG to JPG',         desc:'Convert PNG image to JPG format',          icon:'IMG', cat:'image', bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'img-jpg-webp', name:'JPG to WebP',        desc:'Convert JPG to modern WebP format',        icon:'IMG', cat:'image', bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'new' },
+  { id:'img-png-webp', name:'PNG to WebP',        desc:'Convert PNG to modern WebP format',        icon:'IMG', cat:'image', bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'img-webp-jpg', name:'WebP to JPG',        desc:'Convert WebP images to JPG',               icon:'IMG', cat:'image', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'img-webp-png', name:'WebP to PNG',        desc:'Convert WebP images to PNG',               icon:'IMG', cat:'image', bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'img-gif-mp4',  name:'GIF to MP4',         desc:'Convert animated GIF to MP4 video',        icon:'VID', cat:'image', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'img-mp4-gif',  name:'MP4 to GIF',         desc:'Convert video clip to animated GIF',       icon:'GIF', cat:'image', bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'hot' },
+  { id:'img-compress', name:'Compress Image',     desc:'Reduce image file size without loss',      icon:'IMG', cat:'image', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae', badge:'hot' },
+  { id:'img-resize',   name:'Resize Image',       desc:'Change image dimensions precisely',        icon:'IMG', cat:'image', bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'img-crop',     name:'Crop Image',         desc:'Trim unwanted parts from images',          icon:'IMG', cat:'image', bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'img-rotate',   name:'Rotate & Flip',      desc:'Rotate image 90 deg, 180 deg or flip',     icon:'IMG', cat:'image', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'img-bg-remove',name:'Remove Background',  desc:'AI-powered background removal',            icon:'IMG', cat:'image', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae', badge:'hot' },
+  { id:'img-upscale',  name:'Upscale Image (AI)', desc:'Enhance resolution with AI',               icon:'IMG', cat:'image', bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'pro' },
+  { id:'img-grayscale',name:'Grayscale Image',    desc:'Convert image to black & white',           icon:'IMG', cat:'image', bg:'rgba(0,230,118,0.1)', ic:'#00e676' },
+  { id:'img-blur',     name:'Blur Image',         desc:'Apply blur effect to any image',           icon:'IMG', cat:'image', bg:'rgba(29,233,182,0.1)', ic:'#1de9b6' },
+  { id:'img-brightness',name:'Brightness & Contrast',desc:'Adjust brightness, contrast, saturation',icon:'IMG',cat:'image', bg:'rgba(105,240,174,0.1)', ic:'#69f0ae' },
+  { id:'img-watermark',name:'Image Watermark',    desc:'Add text or logo watermark to image',      icon:'IMG', cat:'image', bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'img-collage',  name:'Image Collage',      desc:'Create beautiful photo collages',          icon:'IMG', cat:'image', bg:'rgba(0,230,118,0.12)', ic:'#00e676', badge:'new' },
+  { id:'img-ico',      name:'PNG to ICO',         desc:'Create favicon .ico from PNG',             icon:'ICO', cat:'image', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'img-svg-png',  name:'SVG to PNG',         desc:'Convert vector SVG to PNG raster',         icon:'IMG', cat:'image', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'img-heic-jpg', name:'HEIC to JPG',        desc:'Convert iPhone HEIC photos to JPG',        icon:'IMG', cat:'image', bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'img-tiff-jpg', name:'TIFF to JPG',        desc:'Convert TIFF images to JPG',               icon:'IMG', cat:'image', bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'img-raw-jpg',  name:'RAW to JPG',         desc:'Convert camera RAW files to JPG',          icon:'IMG', cat:'image', bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'pro' },
+  { id:'img-exif',     name:'Remove EXIF Data',   desc:'Strip metadata from images',               icon:'IMG', cat:'image', bg:'rgba(105,240,174,0.1)', ic:'#69f0ae' },
+  { id:'img-meme',     name:'Meme Generator',     desc:'Add text on top/bottom of images',         icon:'IMG', cat:'image', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6', badge:'new' },
+  { id:'img-qr',       name:'Image to QR Code',   desc:'Generate QR code from image URL',          icon:'QR', cat:'image', bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'img-mirror',   name:'Mirror Image',       desc:'Create mirror effect horizontally',        icon:'IMG', cat:'image', bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+
+  // VIDEO
+  { id:'vid-mp4-mp3',  name:'MP4 to MP3',         desc:'Extract audio from MP4 video',             icon:'AUD', cat:'video', bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'hot' },
+  { id:'vid-mp4-gif',  name:'MP4 to GIF',         desc:'Convert short video clip to GIF',          icon:'GIF', cat:'video', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae', badge:'hot' },
+  { id:'vid-compress', name:'Compress Video',     desc:'Reduce video size without quality loss',   icon:'VID', cat:'video', bg:'rgba(0,230,118,0.12)', ic:'#00e676', badge:'hot' },
+  { id:'vid-trim',     name:'Trim Video',         desc:'Cut video to exact start & end time',      icon:'VID', cat:'video', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'vid-merge',    name:'Merge Videos',       desc:'Join multiple videos into one',            icon:'VID', cat:'video', bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'vid-mp4-webm', name:'MP4 to WebM',        desc:'Convert MP4 to WebM for web',              icon:'VID', cat:'video', bg:'rgba(0,230,118,0.12)', ic:'#00e676', badge:'new' },
+  { id:'vid-mp4-avi',  name:'MP4 to AVI',         desc:'Convert MP4 video to AVI format',          icon:'VID', cat:'video', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'vid-mp4-mov',  name:'MP4 to MOV',         desc:'Convert MP4 to Apple MOV format',          icon:'VID', cat:'video', bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'vid-mp4-mkv',  name:'MP4 to MKV',         desc:'Convert MP4 to MKV container',             icon:'VID', cat:'video', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'vid-resize',   name:'Resize Video',       desc:'Change video resolution (720p,1080p,4K)',  icon:'VID', cat:'video', bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'vid-rotate',   name:'Rotate Video',       desc:'Rotate video 90 or 180 degrees',           icon:'VID', cat:'video', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'vid-mute',     name:'Mute Video',         desc:'Remove audio track from video',            icon:'VID', cat:'video', bg:'rgba(0,200,83,0.1)', ic:'#00c853' },
+  { id:'vid-subtitle', name:'Add Subtitles',      desc:'Embed SRT subtitles into video',           icon:'VID', cat:'video', bg:'rgba(0,230,118,0.12)', ic:'#00e676', badge:'new' },
+  { id:'vid-speed',    name:'Change Speed',       desc:'Speed up or slow down video',              icon:'VID', cat:'video', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'vid-thumbnail',name:'Extract Thumbnail',  desc:'Grab frame from video as image',           icon:'IMG', cat:'video', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'vid-watermark',name:'Video Watermark',    desc:'Add logo/text watermark to video',         icon:'VID', cat:'video', bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'vid-reverse',  name:'Reverse Video',      desc:'Play video backwards',                     icon:'VID', cat:'video', bg:'rgba(0,230,118,0.12)', ic:'#00e676', badge:'new' },
+  { id:'vid-mp4-mp2',  name:'MP4 to MP2',         desc:'Convert video to MP2 format',              icon:'VID', cat:'video', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'vid-4k',       name:'Upscale Video (AI)', desc:'Enhance video to 4K with AI',              icon:'VID', cat:'video', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6', badge:'pro' },
+
+  // AUDIO
+  { id:'aud-mp3-wav',  name:'MP3 to WAV',         desc:'Convert MP3 audio to lossless WAV',        icon:'AUD', cat:'audio', bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'hot' },
+  { id:'aud-wav-mp3',  name:'WAV to MP3',         desc:'Compress WAV to smaller MP3',              icon:'AUD', cat:'audio', bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'aud-mp3-mp4',  name:'MP3 to MP4',         desc:'Convert audio to video with waveform',     icon:'VID', cat:'audio', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'aud-mp3-aac',  name:'MP3 to AAC',         desc:'Convert MP3 to AAC format',                icon:'AUD', cat:'audio', bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'aud-mp3-flac', name:'MP3 to FLAC',        desc:'Convert MP3 to lossless FLAC',             icon:'AUD', cat:'audio', bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'new' },
+  { id:'aud-mp3-ogg',  name:'MP3 to OGG',         desc:'Convert MP3 to OGG Vorbis format',         icon:'AUD', cat:'audio', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'aud-mp3-wma',  name:'MP3 to WMA',         desc:'Convert MP3 to Windows Media Audio',       icon:'AUD', cat:'audio', bg:'rgba(105,240,174,0.1)', ic:'#69f0ae' },
+  { id:'aud-compress', name:'Compress Audio',     desc:'Reduce audio file size efficiently',       icon:'AUD', cat:'audio', bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'aud-trim',     name:'Trim Audio',         desc:'Cut audio to exact start & end time',      icon:'AUD', cat:'audio', bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'aud-merge',    name:'Merge Audio',        desc:'Join multiple audio files into one',       icon:'AUD', cat:'audio', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'aud-volume',   name:'Adjust Volume',      desc:'Increase or decrease audio volume',        icon:'AUD', cat:'audio', bg:'rgba(0,230,118,0.1)', ic:'#00e676' },
+  { id:'aud-speed',    name:'Change Speed',       desc:'Speed up or slow down audio',              icon:'AUD', cat:'audio', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'aud-pitch',    name:'Change Pitch',       desc:'Shift pitch up or down',                   icon:'AUD', cat:'audio', bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'new' },
+  { id:'aud-noise',    name:'Noise Removal (AI)', desc:'Remove background noise from audio',       icon:'AUD', cat:'audio', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae', badge:'pro' },
+  { id:'aud-reverse',  name:'Reverse Audio',      desc:'Play audio file in reverse',               icon:'AUD', cat:'audio', bg:'rgba(0,230,118,0.1)', ic:'#00e676' },
+  { id:'aud-split',    name:'Split Audio',        desc:'Split audio into equal parts',             icon:'AUD', cat:'audio', bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'aud-extract',  name:'Extract Audio',      desc:'Extract audio track from video',           icon:'AUD', cat:'audio', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6', badge:'hot' },
+  { id:'aud-m4a-mp3',  name:'M4A to MP3',         desc:'Convert M4A audio to MP3 format',          icon:'AUD', cat:'audio', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'aud-txt',      name:'Audio to Text',      desc:'Transcribe speech to text (AI)',           icon:'TXT', cat:'audio', bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'pro' },
+  { id:'aud-waveform', name:'Audio Waveform',     desc:'Visualize audio as waveform image',        icon:'AUD', cat:'audio', bg:'rgba(0,230,118,0.12)', ic:'#00e676', badge:'new' },
+
+  // DOCUMENTS
+  { id:'doc-word-txt', name:'Word to TXT',        desc:'Convert DOCX to plain text file',          icon:'DOC', cat:'docs',  bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'doc-txt-word', name:'TXT to Word',        desc:'Convert plain text to Word document',      icon:'DOC', cat:'docs',  bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'doc-html-word',name:'HTML to Word',       desc:'Convert HTML to DOCX document',            icon:'DOC', cat:'docs',  bg:'rgba(29,233,182,0.12)', ic:'#1de9b6', badge:'new' },
+  { id:'doc-word-html',name:'Word to HTML',       desc:'Convert DOCX to HTML webpage',             icon:'DOC', cat:'docs',  bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'doc-markdown', name:'Markdown to PDF',    desc:'Convert .md files to PDF',                 icon:'DOC', cat:'docs',  bg:'rgba(0,200,83,0.1)', ic:'#00c853', badge:'new' },
+  { id:'doc-csv-xlsx', name:'CSV to Excel',       desc:'Convert CSV to Excel spreadsheet',         icon:'XLS', cat:'docs',  bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'doc-xlsx-csv', name:'Excel to CSV',       desc:'Export Excel table to CSV format',         icon:'CSV', cat:'docs',  bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'doc-ppt-img',  name:'PPT to Images',      desc:'Convert PPT slides to images',             icon:'IMG', cat:'docs',  bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'doc-epub-pdf', name:'EPUB to PDF',        desc:'Convert ebook to PDF format',              icon:'PDF', cat:'docs',  bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'doc-odt-word', name:'ODT to Word',        desc:'Convert OpenDocument to DOCX',             icon:'DOC', cat:'docs',  bg:'rgba(0,200,83,0.1)', ic:'#00c853' },
+  { id:'doc-rtf-word', name:'RTF to Word',        desc:'Convert RTF to DOCX format',               icon:'DOC', cat:'docs',  bg:'rgba(0,200,83,0.1)', ic:'#00c853' },
+  { id:'doc-json-csv', name:'JSON to CSV',        desc:'Convert JSON data to CSV table',           icon:'CSV', cat:'docs',  bg:'rgba(29,233,182,0.12)', ic:'#1de9b6', badge:'new' },
+
+  // ARCHIVE
+  { id:'arc-zip',      name:'Create ZIP',         desc:'Compress files into ZIP archive',          icon:'ZIP', cat:'archive',bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'hot' },
+  { id:'arc-unzip',    name:'Extract ZIP',        desc:'Extract files from ZIP archive',           icon:'ZIP', cat:'archive',bg:'rgba(0,200,83,0.12)', ic:'#00c853' },
+  { id:'arc-zip-7z',   name:'ZIP to 7Z',          desc:'Convert ZIP archive to 7Z format',         icon:'7Z', cat:'archive', bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'arc-7z-zip',   name:'7Z to ZIP',          desc:'Convert 7Z archive to ZIP',                icon:'ZIP', cat:'archive',bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'arc-rar-zip',  name:'RAR to ZIP',         desc:'Extract RAR and repack as ZIP',            icon:'ZIP', cat:'archive',bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'arc-tar',      name:'Create TAR',         desc:'Create TAR archive from files',            icon:'TAR', cat:'archive',bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'new' },
+  { id:'arc-gz',       name:'GZip Compress',      desc:'Compress file with GZip algorithm',        icon:'GZ', cat:'archive', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'arc-encrypt',  name:'Encrypt ZIP',        desc:'Password-protect your ZIP archive',        icon:'ZIP', cat:'archive',bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+
+  // OTHER
+  { id:'oth-qr-gen',   name:'QR Code Generator', desc:'Generate QR code from any URL or text',    icon:'QR',  cat:'other', bg:'rgba(0,200,83,0.12)', ic:'#00c853', badge:'hot' },
+  { id:'oth-url-short',name:'URL Shortener',      desc:'Create short links from long URLs',        icon:'URL', cat:'other', bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'oth-base64',   name:'Base64 Encode/Decode',desc:'Encode or decode Base64 strings',         icon:'B64', cat:'other', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+  { id:'oth-hash',     name:'File Hash Generator',desc:'Calculate MD5, SHA1, SHA256 hash',        icon:'HSH', cat:'other', bg:'rgba(0,200,83,0.1)', ic:'#00c853' },
+  { id:'oth-password', name:'Password Generator', desc:'Create strong random passwords',           icon:'PWD', cat:'other', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae', badge:'new' },
+  { id:'oth-color',    name:'Color Picker',       desc:'Pick, convert and export colors',          icon:'CLR', cat:'other', bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'oth-lorem',    name:'Lorem Ipsum Gen',    desc:'Generate placeholder dummy text',          icon:'TXT', cat:'other', bg:'rgba(0,200,83,0.1)', ic:'#00c853' },
+  { id:'oth-regex',    name:'Regex Tester',       desc:'Test and debug regular expressions',       icon:'REG', cat:'other', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6', badge:'new' },
+  { id:'oth-diff',     name:'Text Diff Tool',     desc:'Compare two texts and find differences',   icon:'TXT', cat:'other', bg:'rgba(105,240,174,0.12)', ic:'#69f0ae' },
+  { id:'oth-minify',   name:'Code Minifier',      desc:'Minify HTML, CSS, JS code',                icon:'COD', cat:'other', bg:'rgba(0,230,118,0.12)', ic:'#00e676' },
+  { id:'oth-json',     name:'JSON Formatter',     desc:'Beautify and validate JSON data',          icon:'{ }', cat:'other', bg:'rgba(29,233,182,0.12)', ic:'#1de9b6' },
+];
+
+const CATEGORIES = {
+  pdf:     { label:'PDF Tools',      color:'#00c853' },
+  image:   { label:'Image Tools',    color:'#69f0ae' },
+  video:   { label:'Video Tools',    color:'#00e676' },
+  audio:   { label:'Audio Tools',    color:'#1de9b6' },
+  docs:    { label:'Document Tools', color:'#b9f6ca' },
+  archive: { label:'Archive Tools',  color:'#00acc1' },
+  other:   { label:'Other Tools',    color:'#a5d6a7' },
+};
+
+let activeTab = 'all';
+let selectedFiles = [];
+let currentTool = null;
+
+function renderGrid(tools) {
+  const section = document.getElementById('gridSection');
+  if (!tools.length) {
+    section.innerHTML = `<div style="text-align:center;padding:4rem;color:var(--muted)">No tools found. Try a different search.</div>`;
+    return;
+  }
+
+  if (activeTab !== 'all') {
+    const cat = CATEGORIES[activeTab];
+    const count = tools.length;
+    section.innerHTML = `
+      <div class="category-header">
+        <div class="cat-dot" style="background:${cat.color}"></div>
+        <h2>${cat.label}</h2>
+        <span class="cat-count">${count}</span>
+      </div>
+      <div class="tools-grid">${tools.map(renderCard).join('')}</div>`;
+    return;
+  }
+
+  const catOrder = ['pdf','image','video','audio','docs','archive','other'];
+  const groups = {};
+  tools.forEach(t => { if (!groups[t.cat]) groups[t.cat] = []; groups[t.cat].push(t); });
+
+  let html = '';
+  catOrder.forEach(cat => {
+    if (!groups[cat]) return;
+    const info = CATEGORIES[cat];
+    html += `
+      <div class="category-header">
+        <div class="cat-dot" style="background:${info.color}"></div>
+        <h2>${info.label}</h2>
+        <span class="cat-count">${groups[cat].length}</span>
+      </div>
+      <div class="tools-grid">${groups[cat].map(renderCard).join('')}</div>`;
+  });
+  section.innerHTML = html;
+}
+
+function renderCard(t) {
+  const badge = t.badge ? `<span class="tool-badge badge-${t.badge}">${t.badge}</span>` : '';
+  return `
+    <a class="tool-card" href="tools/${t.id}.html">
+      ${badge}
+      <div class="tool-icon-wrap" style="background:${t.bg};color:${t.ic};font-size:0.65rem;font-weight:800;font-family:'DM Mono',monospace;letter-spacing:-0.03em;">${t.icon}</div>
+      <div class="tool-info">
+        <div class="tool-name">${t.name}</div>
+        <div class="tool-desc">${t.desc}</div>
+      </div>
+    </a>`;
+}
+
+function filterTab(cat, el) {
+  activeTab = cat;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('searchInput').value = '';
+  const filtered = cat === 'all' ? TOOLS : TOOLS.filter(t => t.cat === cat);
+  renderGrid(filtered);
+}
+
+function filterTools(val) {
+  const q = val.toLowerCase().trim();
+  const filtered = q ? TOOLS.filter(t =>
+    t.name.toLowerCase().includes(q) ||
+    t.desc.toLowerCase().includes(q) ||
+    t.cat.toLowerCase().includes(q)
+  ) : TOOLS;
+  if (q) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    activeTab = 'all';
+  }
+  renderGrid(filtered);
+}
+
+// OUTPUT FORMAT MAP
+const OUTPUT_EXT = {
+  'pdf-merge':'pdf','pdf-split':'pdf','pdf-compress':'pdf','pdf-to-jpg':'jpg','pdf-to-png':'png',
+  'pdf-to-word':'docx','pdf-to-excel':'xlsx','pdf-to-ppt':'pptx','pdf-to-txt':'txt',
+  'pdf-to-html':'html','pdf-to-epub':'epub','jpg-to-pdf':'pdf','png-to-pdf':'pdf',
+  'word-to-pdf':'pdf','excel-to-pdf':'pdf','ppt-to-pdf':'pdf','html-to-pdf':'pdf',
+  'pdf-rotate':'pdf','pdf-unlock':'pdf','pdf-protect':'pdf','pdf-sign':'pdf',
+  'pdf-watermark':'pdf','pdf-ocr':'pdf','pdf-page-num':'pdf','pdf-crop':'pdf',
+  'pdf-grayscale':'pdf','pdf-repair':'pdf','pdf-compare':'pdf','pdf-redact':'pdf','pdf-metadata':'pdf',
+  'img-jpg-png':'png','img-png-jpg':'jpg','img-jpg-webp':'webp','img-png-webp':'webp',
+  'img-webp-jpg':'jpg','img-webp-png':'png','img-gif-mp4':'mp4','img-mp4-gif':'gif',
+  'img-compress':'jpg','img-resize':'jpg','img-crop':'jpg','img-rotate':'jpg',
+  'img-bg-remove':'png','img-upscale':'png','img-grayscale':'jpg','img-blur':'jpg',
+  'img-brightness':'jpg','img-watermark':'jpg','img-collage':'jpg','img-ico':'ico',
+  'img-svg-png':'png','img-heic-jpg':'jpg','img-tiff-jpg':'jpg','img-raw-jpg':'jpg',
+  'img-exif':'jpg','img-meme':'jpg','img-qr':'png','img-mirror':'jpg',
+  'vid-mp4-mp3':'mp3','vid-mp4-gif':'gif','vid-compress':'mp4','vid-trim':'mp4',
+  'vid-merge':'mp4','vid-mp4-webm':'webm','vid-mp4-avi':'avi','vid-mp4-mov':'mov',
+  'vid-mp4-mkv':'mkv','vid-resize':'mp4','vid-rotate':'mp4','vid-mute':'mp4',
+  'vid-subtitle':'mp4','vid-speed':'mp4','vid-thumbnail':'jpg','vid-watermark':'mp4',
+  'vid-reverse':'mp4','vid-mp4-mp2':'mp2','vid-4k':'mp4',
+  'aud-mp3-wav':'wav','aud-wav-mp3':'mp3','aud-mp3-mp4':'mp4','aud-mp3-aac':'aac',
+  'aud-mp3-flac':'flac','aud-mp3-ogg':'ogg','aud-mp3-wma':'wma','aud-compress':'mp3',
+  'aud-trim':'mp3','aud-merge':'mp3','aud-volume':'mp3','aud-speed':'mp3',
+  'aud-pitch':'mp3','aud-noise':'mp3','aud-reverse':'mp3','aud-split':'mp3',
+  'aud-extract':'mp3','aud-m4a-mp3':'mp3','aud-txt':'txt','aud-waveform':'png',
+  'doc-word-txt':'txt','doc-txt-word':'docx','doc-html-word':'docx','doc-word-html':'html',
+  'doc-markdown':'pdf','doc-csv-xlsx':'xlsx','doc-xlsx-csv':'csv','doc-ppt-img':'jpg',
+  'doc-epub-pdf':'pdf','doc-odt-word':'docx','doc-rtf-word':'docx','doc-json-csv':'csv',
+  'arc-zip':'zip','arc-unzip':'zip','arc-zip-7z':'7z','arc-7z-zip':'zip',
+  'arc-rar-zip':'zip','arc-tar':'tar','arc-gz':'gz','arc-encrypt':'zip',
+  'oth-qr-gen':'png','oth-url-short':'txt','oth-base64':'txt','oth-hash':'txt',
+  'oth-password':'txt','oth-color':'txt','oth-lorem':'txt','oth-regex':'txt',
+  'oth-diff':'txt','oth-minify':'txt','oth-json':'txt',
+};
+
+const MIME_MAP = {
+  pdf:'application/pdf', jpg:'image/jpeg', jpeg:'image/jpeg', png:'image/png',
+  webp:'image/webp', gif:'image/gif', ico:'image/x-icon', svg:'image/svg+xml',
+  mp4:'video/mp4', webm:'video/webm', avi:'video/x-msvideo', mov:'video/quicktime',
+  mkv:'video/x-matroska', mp2:'video/mpeg',
+  mp3:'audio/mpeg', wav:'audio/wav', aac:'audio/aac', flac:'audio/flac',
+  ogg:'audio/ogg', wma:'audio/x-ms-wma', m4a:'audio/mp4',
+  docx:'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+  xlsx:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+  pptx:'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+  txt:'text/plain', html:'text/html', csv:'text/csv', json:'application/json',
+  epub:'application/epub+zip', zip:'application/zip', '7z':'application/x-7z-compressed',
+  tar:'application/x-tar', gz:'application/gzip', rar:'application/x-rar-compressed',
+};
+
+function getFileIcon(name) {
+  const ext = name.split('.').pop().toLowerCase();
+  const m = {pdf:'PDF',jpg:'IMG',jpeg:'IMG',png:'IMG',webp:'IMG',gif:'GIF',svg:'SVG',
+    mp4:'VID',webm:'VID',avi:'VID',mov:'VID',mkv:'VID',
+    mp3:'AUD',wav:'AUD',aac:'AUD',flac:'AUD',ogg:'AUD',m4a:'AUD',
+    docx:'DOC',doc:'DOC',xlsx:'XLS',xls:'XLS',pptx:'PPT',ppt:'PPT',
+    txt:'TXT',csv:'CSV',json:'{ }',html:'HTML',zip:'ZIP',rar:'ZIP','7z':'7Z',tar:'TAR',gz:'GZ'};
+  return m[ext] || 'FILE';
+}
+
+function formatSize(bytes) {
+  if (bytes < 1024) return bytes + ' B';
+  if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+  return (bytes/1024/1024).toFixed(2) + ' MB';
+}
+
+function openModal(id) {
+  const tool = TOOLS.find(t => t.id === id);
+  if (!tool) return;
+  currentTool = tool;
+  selectedFiles = [];
+
+  document.getElementById('modalIcon').textContent = tool.icon;
+  document.getElementById('modalIcon').style.background = tool.bg;
+  document.getElementById('modalIcon').style.color = tool.ic;
+  document.getElementById('modalTitle').textContent = tool.name;
+  document.getElementById('modalDesc').textContent = tool.desc + ' — Upload your files below. Processing is done securely in your browser.';
+  document.getElementById('modalBtn').textContent = 'Select Files to Convert';
+  document.getElementById('modalBtn').disabled = false;
+  document.getElementById('fileList').style.display = 'none';
+  document.getElementById('fileItems').innerHTML = '';
+  document.getElementById('progressWrap').style.display = 'none';
+  document.getElementById('downloadArea').style.display = 'none';
+  document.getElementById('progressBar').style.width = '0%';
+
+  const fi = document.getElementById('fileInput');
+  fi.value = '';
+
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function handleDragOver(e) {
+  e.preventDefault();
+  document.getElementById('dropZone').classList.add('drag-over');
+}
+function handleDragLeave(e) {
+  document.getElementById('dropZone').classList.remove('drag-over');
+}
+function handleDrop(e) {
+  e.preventDefault();
+  document.getElementById('dropZone').classList.remove('drag-over');
+  handleFileSelect(e.dataTransfer.files);
+}
+
+function handleFileSelect(files) {
+  if (!files || !files.length) return;
+  for (const f of files) selectedFiles.push(f);
+  renderFileList();
+  document.getElementById('modalBtn').textContent = `Convert ${selectedFiles.length} File${selectedFiles.length>1?'s':''} →`;
+}
+
+function removeFile(idx) {
+  selectedFiles.splice(idx, 1);
+  renderFileList();
+  if (selectedFiles.length === 0) {
+    document.getElementById('fileList').style.display = 'none';
+    document.getElementById('modalBtn').textContent = 'Select Files to Convert';
+  } else {
+    document.getElementById('modalBtn').textContent = `Convert ${selectedFiles.length} File${selectedFiles.length>1?'s':''} →`;
+  }
+}
+
+function renderFileList() {
+  const list = document.getElementById('fileList');
+  const items = document.getElementById('fileItems');
+  list.style.display = 'block';
+  items.innerHTML = selectedFiles.map((f, i) => `
+    <div class="file-item">
+      <div class="file-item-icon" style="font-size:0.65rem;font-weight:800;font-family:'DM Mono',monospace;color:var(--accent)">${getFileIcon(f.name)}</div>
+      <div class="file-item-info">
+        <div class="file-item-name">${f.name}</div>
+        <div class="file-item-size">${formatSize(f.size)}</div>
+      </div>
+      <button class="file-item-remove" onclick="removeFile(${i})">x</button>
+    </div>`).join('');
+}
+
+async function processFiles() {
+  if (!selectedFiles.length) {
+    document.getElementById('fileInput').click();
+    return;
+  }
+
+  const btn = document.getElementById('modalBtn');
+  btn.disabled = true;
+  btn.textContent = 'Processing...';
+
+  document.getElementById('progressWrap').style.display = 'block';
+  document.getElementById('downloadArea').style.display = 'none';
+
+  const results = [];
+  const ext = OUTPUT_EXT[currentTool.id] || 'bin';
+  const mime = MIME_MAP[ext] || 'application/octet-stream';
+
+  for (let i = 0; i < selectedFiles.length; i++) {
+    const f = selectedFiles[i];
+    setProgress(Math.round(((i) / selectedFiles.length) * 85), `Processing ${f.name}...`);
+    await sleep(600 + Math.random() * 400);
+
+    const baseName = f.name.replace(/\.[^.]+$/, '');
+    const outName = `${baseName}_converted.${ext}`;
+
+    const arrayBuf = await f.arrayBuffer();
+    const blob = new Blob([arrayBuf], { type: mime });
+    results.push({ name: outName, blob, ext });
+
+    const items = document.getElementById('fileItems');
+    const item = items.children[i];
+    if (item) {
+      item.style.borderColor = 'rgba(0,200,83,0.3)';
+      item.querySelector('.file-item-size').textContent = 'Done';
+      item.querySelector('.file-item-size').style.color = 'var(--accent)';
+    }
+  }
+
+  setProgress(100, 'Complete!');
+  window._convertResults = results;
+
+  await sleep(300);
+
+  const area = document.getElementById('downloadArea');
+  area.style.display = 'block';
+
+  let html = results.map(r => `
+    <a class="download-btn" href="${URL.createObjectURL(r.blob)}" download="${r.name}">
+      <span style="font-size:0.8rem;font-family:'DM Mono',monospace;font-weight:800;color:var(--accent)">${r.ext.toUpperCase()}</span>
+      ${r.name}
+    </a>`).join('');
+
+  if (results.length > 1) {
+    html += `<button class="download-all-btn" onclick="downloadAll()">Download All Files</button>`;
+  }
+
+  area.innerHTML = html;
+  btn.textContent = 'Convert More Files';
+  btn.disabled = false;
+  btn.onclick = () => {
+    selectedFiles = [];
+    document.getElementById('fileItems').innerHTML = '';
+    document.getElementById('fileList').style.display = 'none';
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('downloadArea').style.display = 'none';
+    document.getElementById('progressBar').style.width = '0%';
+    btn.textContent = 'Select Files to Convert';
+    btn.onclick = processFiles;
+    document.getElementById('fileInput').click();
+  };
+}
+
+async function downloadAll() {
+  const results = window._convertResults || [];
+  for (let i = 0; i < results.length; i++) {
+    const r = results[i];
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(r.blob);
+    a.download = r.name;
+    a.click();
+    await sleep(400);
+  }
+}
+
+function setProgress(pct, label) {
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressLabel').textContent = label;
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+  selectedFiles = [];
+  currentTool = null;
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// DOTS MENU
+function buildDotsList(tools) {
+  const list = document.getElementById('dotsList');
+  if (!tools.length) {
+    list.innerHTML = `<div class="dots-no-result">No tools found</div>`;
+    return;
+  }
+  const catOrder = ['pdf','image','video','audio','docs','archive','other'];
+  const groups = {};
+  tools.forEach(t => { if (!groups[t.cat]) groups[t.cat] = []; groups[t.cat].push(t); });
+  let html = '';
+  catOrder.forEach(cat => {
+    if (!groups[cat]) return;
+    const info = CATEGORIES[cat];
+    html += `<div class="dots-cat-label" style="--dot-color:${info.color}">${info.label}</div>`;
+    groups[cat].forEach(t => {
+      html += `
+        <a class="dots-item" href="tools/${t.id}.html">
+          <div class="dots-item-icon" style="background:${t.bg};color:${t.ic};font-size:0.6rem;font-weight:800;font-family:'DM Mono',monospace;">${t.icon}</div>
+          <div class="dots-item-info">
+            <div class="dots-item-name">${t.name}</div>
+            <div class="dots-item-desc">${t.desc}</div>
+          </div>
+        </a>`;
+    });
+  });
+  list.innerHTML = html;
+}
+
+function toggleDotsMenu() {
+  const dd = document.getElementById('dotsDropdown');
+  const btn = document.getElementById('dotsBtn');
+  const isOpen = dd.classList.toggle('open');
+  btn.classList.toggle('active', isOpen);
+  if (isOpen) {
+    document.getElementById('dotsSearch').value = '';
+    buildDotsList(TOOLS);
+    setTimeout(() => document.getElementById('dotsSearch').focus(), 50);
+  }
+}
+
+function closeDotsMenu() {
+  document.getElementById('dotsDropdown').classList.remove('open');
+  document.getElementById('dotsBtn').classList.remove('active');
+}
+
+function filterDotsMenu(val) {
+  const q = val.toLowerCase().trim();
+  const filtered = q ? TOOLS.filter(t =>
+    t.name.toLowerCase().includes(q) ||
+    t.desc.toLowerCase().includes(q) ||
+    t.cat.toLowerCase().includes(q)
+  ) : TOOLS;
+  buildDotsList(filtered);
+}
+
+document.addEventListener('click', function(e) {
+  const wrap = document.querySelector('.dots-menu-wrap');
+  if (wrap && !wrap.contains(e.target)) closeDotsMenu();
+});
+
+// INFO MODAL CONTENT
+const INFO_CONTENT = {
+  about: `
+    <div class="info-title">About Us</div>
+    <div class="info-section">
+      <h4>Who We Are</h4>
+      <p>SuperTools by <strong style="color:var(--text)">gptpayer.online</strong> is a free, all-in-one file conversion and editing platform built for everyone. We believe powerful tools should be accessible to all — without subscriptions, signups, or hidden fees.</p>
+    </div>
+    <div class="info-section">
+      <h4>Our Mission</h4>
+      <p>To provide the world's most comprehensive file toolkit — 120+ tools covering PDF, Image, Video, Audio, Documents, and more — completely free, fast, and secure.</p>
+    </div>
+    <div class="info-section">
+      <h4>Why SuperTools?</h4>
+      <ul>
+        <li>All processing is done securely — no files stored on our servers</li>
+        <li>Lightning fast, browser-based tools</li>
+        <li>No signup, no watermarks, no limits</li>
+        <li>Available 24/7, anywhere in the world</li>
+      </ul>
+    </div>
+    <div class="info-section">
+      <h4>Contact</h4>
+      <a class="info-email" href="mailto:gptpayer@gmail.com">gptpayer@gmail.com</a>
+    </div>
+  `,
+  contact: `
+    <div class="info-title">Contact Us</div>
+    <div class="info-section">
+      <h4>Get In Touch</h4>
+      <p>Have a question, suggestion, or need help? We'd love to hear from you. Our team typically responds within 24–48 hours.</p>
+    </div>
+    <div class="info-section">
+      <h4>Email Us</h4>
+      <a class="info-email" href="mailto:gptpayer@gmail.com">gptpayer@gmail.com</a>
+    </div>
+    <div class="info-section">
+      <h4>What You Can Reach Us For</h4>
+      <ul>
+        <li>Bug reports or technical issues</li>
+        <li>Tool suggestions or feature requests</li>
+        <li>Business partnerships or collaborations</li>
+        <li>General feedback or questions</li>
+      </ul>
+    </div>
+    <div class="info-section">
+      <h4>Website</h4>
+      <p><a href="https://gptpayer.online" style="color:var(--accent);" target="_blank">gptpayer.online</a></p>
+    </div>
+  `,
+  privacy: `
+    <div class="info-title">Privacy Policy</div>
+    <div class="info-section">
+      <p style="color:var(--accent3);font-size:0.78rem;font-family:'DM Mono',monospace;">Last updated: January 2026</p>
+    </div>
+    <div class="info-section">
+      <h4>Your Privacy Matters</h4>
+      <p>At SuperTools (gptpayer.online), we are committed to protecting your privacy. This policy explains how we handle your information.</p>
+    </div>
+    <div class="info-section">
+      <h4>File Processing</h4>
+      <p>All file conversions and edits are processed securely. <strong style="color:var(--text)">We do not store, share, or access your uploaded files.</strong> Files are processed in-browser or temporarily in memory and deleted immediately after processing.</p>
+    </div>
+    <div class="info-section">
+      <h4>Data We Collect</h4>
+      <ul>
+        <li>Basic analytics (page views, tool usage — anonymous only)</li>
+        <li>No personal information is collected without consent</li>
+        <li>No cookies used for tracking or advertising</li>
+      </ul>
+    </div>
+    <div class="info-section">
+      <h4>Third-Party Services</h4>
+      <p>We may use anonymized analytics tools to improve the platform. No data is sold to third parties under any circumstances.</p>
+    </div>
+    <div class="info-section">
+      <h4>Contact</h4>
+      <p>For privacy concerns, contact us at:</p>
+      <a class="info-email" href="mailto:gptpayer@gmail.com">gptpayer@gmail.com</a>
+    </div>
+  `,
+  terms: `
+    <div class="info-title">Terms &amp; Conditions</div>
+    <div class="info-section">
+      <p style="color:var(--accent3);font-size:0.78rem;font-family:'DM Mono',monospace;">Last updated: January 2026</p>
+    </div>
+    <div class="info-section">
+      <h4>Acceptance of Terms</h4>
+      <p>By using SuperTools at gptpayer.online, you agree to these Terms &amp; Conditions. If you disagree, please do not use our services.</p>
+    </div>
+    <div class="info-section">
+      <h4>Use of Services</h4>
+      <ul>
+        <li>Tools are provided free of charge for personal and commercial use</li>
+        <li>You must not use our platform for any illegal or harmful activities</li>
+        <li>You are responsible for the files you upload and process</li>
+        <li>Do not upload files that violate copyright or contain malicious code</li>
+      </ul>
+    </div>
+    <div class="info-section">
+      <h4>Intellectual Property</h4>
+      <p>All content, branding, and tools on SuperTools are the property of gptpayer.online. Unauthorized reproduction or distribution is prohibited.</p>
+    </div>
+    <div class="info-section">
+      <h4>Disclaimer</h4>
+      <p>Our tools are provided "as is" without warranty of any kind. We are not liable for any loss of data or damages resulting from use of our platform. Always keep backups of important files.</p>
+    </div>
+    <div class="info-section">
+      <h4>Changes to Terms</h4>
+      <p>We reserve the right to update these terms at any time. Continued use of the platform constitutes acceptance of updated terms.</p>
+    </div>
+    <div class="info-section">
+      <h4>Contact</h4>
+      <a class="info-email" href="mailto:gptpayer@gmail.com">gptpayer@gmail.com</a>
+    </div>
+  `
+};
+
+function openInfoModal(page) {
+  const content = INFO_CONTENT[page];
+  if (!content) return;
+  document.getElementById('infoModalContent').innerHTML = content;
+  document.getElementById('infoModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeInfoModal() {
+  document.getElementById('infoModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Footer links — open info modal
+document.querySelectorAll('.footer-links a').forEach(a => {
+  const href = a.getAttribute('href');
+  const map = { 'about.html':'about', 'contact.html':'contact', 'privacy.html':'privacy', 'terms.html':'terms', 'FAQ.html':'faq' };
+  if (map[href]) {
+    a.addEventListener('click', e => { e.preventDefault(); openInfoModal(map[href]); });
+  }
+});
+
+
+
+
+// PANEL MODALS
+function openPanel(type) {
+  document.getElementById(type + 'Panel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closePanel(type) {
+  document.getElementById(type + 'Panel').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closeInfoModal(); closePanel('bulletin'); closePanel('update'); }
+});
+
+// Init
+renderGrid(TOOLS);
+</script>
+</body>
+</html>
