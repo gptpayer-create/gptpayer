@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — SuperTools | Free Online File Tools</title>
+<meta name="description" content="Contact the SuperTools team. Report bugs, suggest features, or reach out for business inquiries.">
+<meta name="author" content="gptpayer.online">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#00c853">
+<link rel="canonical" href="https://gptpayer.online/contact.html">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#050f08;--bg2:#0a1a0e;--accent:#00c853;--accent5:#1de9b6;--text:#e8f5e9;--muted:#5a8c6a;--border:rgba(0,200,83,0.1);--card:rgba(0,200,83,0.04)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(0,200,83,0.15) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%,rgba(0,230,118,0.1) 0%,transparent 60%);pointer-events:none;z-index:0}
+  header{position:sticky;top:0;z-index:200;background:rgba(5,15,8,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 clamp(1rem,4vw,3rem);height:64px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-0.03em;display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text)}
+  .logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent5));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;color:#050f08}
+  .logo span{color:var(--accent)}
+  nav{display:flex;gap:8px}
+  nav a{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--muted);text-decoration:none;padding:6px 14px;border-radius:6px;border:1px solid transparent;transition:all .2s;letter-spacing:0.05em;text-transform:uppercase}
+  nav a:hover{color:#00e676;border-color:var(--border);background:var(--card)}
+  .page{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:clamp(2.5rem,6vw,5rem) clamp(1rem,4vw,2rem)}
+  .hero{text-align:center;margin-bottom:3rem}
+  .badge{display:inline-flex;align-items:center;background:rgba(0,200,83,0.1);border:1px solid rgba(0,200,83,0.25);color:var(--accent);font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;padding:5px 14px;border-radius:100px;margin-bottom:1.2rem;text-transform:uppercase}
+  .hero h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,6vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:0.8rem}
+  .hl{background:linear-gradient(135deg,var(--accent),var(--accent5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero p{font-size:1rem;color:var(--muted);max-width:520px;margin:0 auto;line-height:1.7}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-bottom:2.5rem}
+  @media(max-width:600px){.contact-grid{grid-template-columns:1fr}}
+  .info-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.6rem;transition:all 0.2s}
+  .info-card:hover{border-color:rgba(0,200,83,0.35);background:rgba(0,200,83,0.07)}
+  .card-label{font-family:'DM Mono',monospace;font-size:0.62rem;font-weight:700;color:var(--accent);background:rgba(0,200,83,0.1);border:1px solid rgba(0,200,83,0.2);border-radius:6px;padding:4px 10px;display:inline-block;letter-spacing:0.07em;text-transform:uppercase;margin-bottom:1rem}
+  .info-card h3{font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;margin-bottom:0.5rem}
+  .info-card p{font-size:0.87rem;color:var(--muted);line-height:1.6;margin-bottom:0.8rem}
+  .info-card a{color:var(--accent);text-decoration:none;font-family:'DM Mono',monospace;font-size:0.82rem;transition:color 0.2s}
+  .info-card a:hover{color:#00e676}
+  .response-bar{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.15);border-radius:14px;padding:1.1rem 1.4rem;display:flex;align-items:center;gap:14px;margin-bottom:2.5rem}
+  .resp-tag{font-family:'DM Mono',monospace;font-size:0.6rem;font-weight:700;color:var(--accent);background:rgba(0,200,83,0.12);border:1px solid rgba(0,200,83,0.2);border-radius:8px;padding:5px 10px;flex-shrink:0;letter-spacing:0.05em;white-space:nowrap}
+  .response-bar p{font-size:0.87rem;color:var(--muted);line-height:1.5}
+  .response-bar strong{color:var(--text)}
+  .topics-section{margin-bottom:2.5rem}
+  .topics-section h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.25rem;margin-bottom:1rem}
+  .topics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.7rem}
+  .topic-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:0.9rem 1.1rem;display:flex;align-items:flex-start;gap:9px}
+  .topic-arrow{color:var(--accent);font-size:0.75rem;margin-top:2px;flex-shrink:0}
+  .topic-item p{font-size:0.83rem;color:var(--muted);line-height:1.5}
+  .form-section{background:var(--bg2);border:1px solid var(--border);border-radius:22px;padding:2.2rem;margin-bottom:2rem}
+  .form-section h2{font-family:'Syne',sans-serif;font-weight:700;font-size:1.3rem;margin-bottom:0.4rem}
+  .form-section > p{font-size:0.87rem;color:var(--muted);margin-bottom:1.8rem;line-height:1.6}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:0}
+  @media(max-width:540px){.form-row{grid-template-columns:1fr}}
+  .form-group{display:flex;flex-direction:column;gap:0.4rem;margin-bottom:1rem}
+  .form-group label{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent)}
+  .form-group input,.form-group select,.form-group textarea{background:rgba(0,200,83,0.05);border:1px solid rgba(0,200,83,0.15);border-radius:10px;padding:11px 15px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.92rem;outline:none;transition:border-color 0.2s,box-shadow 0.2s;width:100%}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(0,200,83,0.5);box-shadow:0 0 0 3px rgba(0,200,83,0.1)}
+  .form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted)}
+  .form-group select{cursor:pointer;background-color:rgba(0,200,83,0.05)}
+  .form-group select option{background:#0a1a0e;color:var(--text)}
+  .form-group textarea{resize:vertical;min-height:130px;line-height:1.6}
+  .submit-btn{display:block;width:100%;background:linear-gradient(135deg,var(--accent),var(--accent5));color:#050f08;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;padding:13px;border-radius:100px;border:none;cursor:pointer;transition:opacity 0.2s,transform 0.2s;margin-top:0.5rem}
+  .submit-btn:hover{opacity:0.88;transform:translateY(-2px)}
+
+  
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    margin-top: 4rem;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,200,83,0.03) 100%);
+    border-top: 1px solid rgba(0,200,83,0.15);
+  }
+
+  .footer-cta {
+    background: linear-gradient(135deg, rgba(0,200,83,0.08) 0%, rgba(0,230,118,0.04) 100%);
+    border-bottom: 1px solid rgba(0,200,83,0.1);
+    padding: 3rem clamp(1rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-cta-text h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.02em;
+  }
+  .footer-cta-text p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .footer-cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #050f08;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(0,200,83,0.3);
+  }
+  .footer-cta-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,200,83,0.4);
+  }
+  .footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2.5rem 2rem;
+    padding: 3rem clamp(1rem, 5vw, 4rem) 2.5rem;
+  }
+  @media (max-width: 900px) {
+    .footer-main { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 540px) {
+    .footer-main { grid-template-columns: 1fr; }
+    .footer-cta { text-align: center; justify-content: center; }
+  }
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .footer-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .footer-brand-logo-icon {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    color: #050f08;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .footer-brand-logo span { color: var(--accent); }
+  .footer-brand-desc {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 260px;
+  }
+  .footer-brand-trust {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0.25rem;
+    flex-wrap: wrap;
+  }
+  .trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent3);
+    background: rgba(105,240,174,0.07);
+    border: 1px solid rgba(105,240,174,0.18);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+  .trust-pill::before {
+    content: '✦';
+    font-size: 0.5rem;
+    opacity: 0.7;
+  }
+  .footer-social-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 0.5rem;
+  }
+  .footer-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .footer-social-btn:hover {
+    color: var(--accent);
+    border-color: rgba(0,200,83,0.3);
+    background: rgba(0,200,83,0.08);
+    transform: translateY(-2px);
+  }
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 100px;
+  }
+  .footer-col-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(0,200,83,0.08);
+  }
+  .footer-link {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.83rem;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+    line-height: 1.4;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s, gap 0.2s;
+  }
+  .footer-link::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: 0.4;
+    flex-shrink: 0;
+    transition: background 0.2s, opacity 0.2s;
+  }
+  .footer-link:hover {
+    color: var(--accent2);
+    gap: 8px;
+  }
+  .footer-link:hover::before {
+    background: var(--accent);
+    opacity: 1;
+  }
+  .footer-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,200,83,0.12) 30%, rgba(0,200,83,0.12) 70%, transparent);
+    margin: 0 clamp(1rem, 5vw, 4rem);
+  }
+  .footer-bottom {
+    padding: 1.4rem clamp(1rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+  .footer-bottom-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .footer-bottom-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: 0.4;
+  }
+  .footer-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.6;
+  }
+  .footer-bottom-right .green-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+  .footer-sep { color: var(--muted); opacity: 0.5; }
+  .footer-bottom-link { color: var(--muted); cursor: default; user-select: none; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">
+    <div class="logo-icon">S</div>
+    Super<span>Tools</span>
+  </a>
+  <nav>
+    <a href="index.html">Home</a>
+  </nav>
+</header>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="badge">Contact Us</div>
+    <h1>Get In <span class="hl">Touch</span></h1>
+    <p>Have a question, found a bug, or want to suggest a new tool? Our team typically responds within 24 to 48 hours.</p>
+  </div>
+
+  <div class="response-bar">
+    <div class="resp-tag">24 - 48h</div>
+    <p><strong>Response Time:</strong> We reply to all messages within 24 to 48 hours on business days. For technical issues, please describe the problem in detail so we can help faster.</p>
+  </div>
+
+  <div class="contact-grid">
+    <div class="info-card">
+      <div class="card-label">Email</div>
+      <h3>Email Us Directly</h3>
+      <p>For support, feedback, or any inquiry, reach us at:</p>
+      <a href="/cdn-cgi/l/email-protection#c9aeb9bdb9a8b0acbb89aea4a8a0a5e7aaa6a4"><span class="__cf_email__" data-cfemail="01667175716078647341666c60686d2f626e6c">[email&#160;protected]</span></a>
+    </div>
+    <div class="info-card">
+      <div class="card-label">Website</div>
+      <h3>Visit Our Platform</h3>
+      <p>Access all 120+ free tools, guides, and updates:</p>
+      <a href="https://gptpayer.online" target="_blank">gptpayer.online</a>
+    </div>
+  </div>
+
+  <div class="topics-section">
+    <h2>What Can We Help With?</h2>
+    <div class="topics-grid">
+      <div class="topic-item"><div class="topic-arrow">→</div><p>Bug reports and technical issues</p></div>
+      <div class="topic-item"><div class="topic-arrow">→</div><p>Feature requests and new tool suggestions</p></div>
+      <div class="topic-item"><div class="topic-arrow">→</div><p>Business partnerships and collaborations</p></div>
+      <div class="topic-item"><div class="topic-arrow">→</div><p>General feedback and usage questions</p></div>
+      <div class="topic-item"><div class="topic-arrow">→</div><p>Privacy and data security concerns</p></div>
+      <div class="topic-item"><div class="topic-arrow">→</div><p>Press and media inquiries</p></div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <h2>Send Us a Message</h2>
+    <p>Fill in the form below and we will get back to you as soon as possible.</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" placeholder="Your first name">
+      </div>
+      <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" placeholder="Your last name">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="you@example.com">
+    </div>
+
+    <div class="form-group">
+      <label for="subject">Subject</label>
+      <select id="subject">
+        <option value="" disabled selected>Select a topic...</option>
+        <option value="Bug Report / Technical Issue">Bug Report / Technical Issue</option>
+        <option value="Feature Request / New Tool Suggestion">Feature Request / New Tool Suggestion</option>
+        <option value="Business Partnership / Collaboration">Business Partnership / Collaboration</option>
+        <option value="Privacy or Data Concern">Privacy or Data Concern</option>
+        <option value="Press / Media Inquiry">Press / Media Inquiry</option>
+        <option value="General Feedback / Other">General Feedback / Other</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" placeholder="Describe your question or issue in detail. For bug reports, include the tool name, what you expected, and what actually happened."></textarea>
+    </div>
+
+    <button class="submit-btn" onclick="submitForm()">Send Message</button>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<!-- FOOTER -->
+<footer style="display:block; padding:0;">
+
+  <!-- CTA Bar -->
+  <div class="footer-cta">
+    <div class="footer-cta-text">
+      <h3>120+ Free Tools. Zero Limits. Forever.</h3>
+      <p>No signup, no watermarks, no credit card — just powerful tools at your fingertips.</p>
+    </div>
+    <a class="footer-cta-badge" href="tools.html">
+      ⚡ Explore All Tools
+    </a>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="footer-main">
+
+    <!-- Brand col -->
+    <div class="footer-brand">
+      <a class="footer-brand-logo" href="index.html">
+        <div class="footer-brand-logo-icon">S</div>
+        Super<span>Tools</span>
+      </a>
+      <p class="footer-brand-desc">World's most complete free file toolkit. Convert, compress, merge PDF, images, video &amp; audio — all in your browser.</p>
+      <div class="footer-brand-trust">
+        <span class="trust-pill">100% Free</span>
+        <span class="trust-pill">No Signup</span>
+        <span class="trust-pill">Secure</span>
+      </div>
+      <div class="footer-social-row">
+        <a class="footer-social-btn" href="https://t.me/supertool_tools" target="_blank" title="Telegram">TG</a>
+        <a class="footer-social-btn" href="https://x.com/GptPayer1234" target="_blank" title="Twitter / X">𝕏</a>
+        <a class="footer-social-btn" href="https://www.instagram.com/supertool_official?igsh=YzljYTk1ODg3Zg==" target="_blank" title="Instagram">IG</a>
+      </div>
+    </div>
+
+    <!-- Product -->
+    <div class="footer-col">
+      <div class="footer-col-title">Product</div>
+      <a class="footer-link" href="index.html">Home</a>
+      <a class="footer-link" href="features.html">Features</a>
+      <a class="footer-link" href="pricing.html">Pricing</a>
+      <a class="footer-link" href="tools.html">All Tools</a>
+      <a class="footer-link" href="FAQ.html">FAQ</a>
+    </div>
+
+    <!-- Legal -->
+    <div class="footer-col">
+      <div class="footer-col-title">Legal</div>
+      <a class="footer-link" href="terms.html">Terms of Service</a>
+      <a class="footer-link" href="privacy.html">Privacy Policy</a>
+      <a class="footer-link" href="cookies.html">Cookie Policy</a>
+      <a class="footer-link" href="affiliate.html">Affiliate Policy</a>
+    </div>
+
+    <!-- Support -->
+    <div class="footer-col">
+      <div class="footer-col-title">Support</div>
+      <a class="footer-link" href="contact.html">Contact Us</a>
+      <a class="footer-link" href="about.html">About Us</a>
+    </div>
+
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <span>&#169; 2026 gptpayer.online</span>
+      <div class="footer-bottom-dot"></div>
+      <span>All Rights Reserved</span>
+      <div class="footer-bottom-dot"></div>
+      <span>Built with ♥ for the web</span>
+    </div>
+    <div class="footer-bottom-right">
+      <div class="green-dot"></div>
+      <span>All systems operational</span>
+    </div>
+  </div>
+
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function submitForm() {
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value.trim();
+
+  if (!fname || !email || !subject || !message) {
+    alert('Please fill in all required fields before sending.');
+    return;
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  const fullName = fname + (lname ? ' ' + lname : '');
+  const body 

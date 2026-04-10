@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Tools — SuperTools | 120+ Free Online File Tools</title>
+<meta name="description" content="Browse all 120+ free online tools. PDF, Image, Video, Audio, Document, Archive and more. No signup, no watermarks.">
+<meta name="author" content="gptpayer.online">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#00c853">
+<link rel="canonical" href="https://gptpayer.online/tools.html">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#050f08;--accent:#00c853;--accent5:#1de9b6;--text:#e8f5e9;--muted:#5a8c6a;--border:rgba(0,200,83,0.1);--card:rgba(0,200,83,0.04)}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(0,200,83,0.15) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%,rgba(0,230,118,0.1) 0%,transparent 60%);pointer-events:none;z-index:0}
+
+  header{position:sticky;top:0;z-index:200;background:rgba(5,15,8,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 clamp(1rem,4vw,3rem);height:64px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-0.03em;display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text)}
+  .logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent5));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;color:#050f08}
+  .logo span{color:var(--accent)}
+  .nav-home{color:var(--muted);text-decoration:none;font-size:0.85rem;font-family:'Outfit',sans-serif;border:1px solid var(--border);padding:7px 18px;border-radius:100px;transition:all 0.2s}
+  .nav-home:hover{color:var(--accent);border-color:rgba(0,200,83,0.4)}
+
+  .page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:clamp(2rem,5vw,4rem) clamp(1rem,4vw,2rem)}
+
+  .hero{text-align:center;margin-bottom:2rem}
+  .badge{display:inline-flex;align-items:center;background:rgba(0,200,83,0.1);border:1px solid rgba(0,200,83,0.25);color:var(--accent);font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;padding:5px 14px;border-radius:100px;margin-bottom:1rem;text-transform:uppercase}
+  .hero h1{font-family:'Syne',sans-serif;font-size:clamp(2rem,6vw,3.2rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:0.7rem}
+  .hl{background:linear-gradient(135deg,var(--accent),var(--accent5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero p{font-size:0.95rem;color:var(--muted);max-width:480px;margin:0 auto 1.5rem;line-height:1.6}
+
+  .search-wrap{position:relative;max-width:500px;margin:0 auto 1.8rem}
+  .search-wrap input{width:100%;background:rgba(0,200,83,0.06);border:1px solid rgba(0,200,83,0.2);border-radius:100px;padding:13px 20px 13px 46px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.95rem;outline:none;transition:border-color 0.2s}
+  .search-wrap input::placeholder{color:var(--muted)}
+  .search-wrap input:focus{border-color:rgba(0,200,83,0.5)}
+  .s-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;font-size:0.9rem}
+
+  .cat-tabs{display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem}
+  .cat-tab{background:rgba(0,200,83,0.05);border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.05em;padding:7px 15px;border-radius:100px;cursor:pointer;transition:all 0.2s;user-select:none}
+  .cat-tab:hover,.cat-tab.active{background:rgba(0,200,83,0.15);border-color:rgba(0,200,83,0.4);color:var(--accent)}
+
+  .section{margin-bottom:3rem}
+  .section-head{display:flex;align-items:center;gap:10px;margin-bottom:1.2rem;padding-bottom:0.8rem;border-bottom:1px solid var(--border)}
+  .section-label{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:0.6rem;font-weight:700;flex-shrink:0}
+  .section-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem}
+  .section-count{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--muted);background:rgba(0,200,83,0.08);border:1px solid var(--border);padding:3px 10px;border-radius:100px;margin-left:auto}
+
+  .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.8rem}
+  @media(max-width:500px){.tools-grid{grid-template-columns:repeat(2,1fr)}}
+
+  .tool-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.1rem;cursor:pointer;display:flex;flex-direction:column;gap:9px;transition:all 0.2s;position:relative;overflow:hidden;text-align:left}
+  .tool-card:hover{border-color:rgba(0,200,83,0.4);background:rgba(0,200,83,0.08);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,200,83,0.1)}
+  .tool-badge-wrap{position:absolute;top:9px;right:9px}
+  .tbadge{font-family:'DM Mono',monospace;font-size:0.56rem;letter-spacing:0.07em;text-transform:uppercase;padding:2px 7px;border-radius:100px;font-weight:700}
+  .tbadge.hot{background:rgba(255,80,80,0.15);color:#ff6b6b;border:1px solid rgba(255,80,80,0.3)}
+  .tbadge.new{background:rgba(0,200,83,0.15);color:var(--accent);border:1px solid rgba(0,200,83,0.3)}
+  .tbadge.pro{background:rgba(255,193,7,0.15);color:#ffd54f;border:1px solid rgba(255,193,7,0.3)}
+  .tool-icon-box{font-family:'DM Mono',monospace;font-size:0.65rem;font-weight:700;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .tool-name{font-family:'Syne',sans-serif;font-weight:700;font-size:0.9rem;color:var(--text);line-height:1.3}
+  .tool-short{font-size:0.76rem;color:var(--muted);line-height:1.4}
+  .tool-more{font-size:0.72rem;color:var(--accent);font-family:'DM Mono',monospace;margin-top:2px;opacity:0;transition:opacity 0.2s}
+  .tool-card:hover .tool-more{opacity:1}
+
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);z-index:500;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity 0.25s}
+  .modal-overlay.open{opacity:1;pointer-events:all}
+  .modal{background:#0a1a0e;border:1px solid rgba(0,200,83,0.3);border-radius:24px;max-width:600px;width:100%;max-height:90vh;overflow-y:auto;padding:2rem;position:relative;transform:translateY(20px) scale(0.97);transition:transform 0.25s}
+  .modal-overlay.open .modal{transform:translateY(0) scale(1)}
+
+  .modal-close{position:absolute;top:1rem;right:1rem;width:32px;height:32px;border-radius:50%;border:1px solid rgba(0,200,83,0.3);background:rgba(0,200,83,0.08);color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all 0.2s}
+  .modal-close:hover{background:rgba(0,200,83,0.2);color:var(--text)}
+
+  .modal-top{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem}
+  .modal-icon{font-family:'DM Mono',monospace;font-size:0.8rem;font-weight:700;width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .modal-title{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;color:var(--text)}
+  .modal-cat{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--muted);letter-spacing:0.06em;text-transform:uppercase;margin-top:3px}
+
+  .modal-section{margin-bottom:1.3rem}
+  .modal-section-title{font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem}
+  .modal-section p{font-size:0.92rem;color:var(--muted);line-height:1.7}
+
+  .modal-steps{display:flex;flex-direction:column;gap:0.5rem}
+  .step{display:flex;align-items:flex-start;gap:10px;font-size:0.9rem;color:var(--muted);line-height:1.5}
+  .step-num{background:rgba(0,200,83,0.15);border:1px solid rgba(0,200,83,0.3);color:var(--accent);font-family:'DM Mono',monospace;font-size:0.68rem;font-weight:700;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+
+  .modal-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+  .modal-tag{background:rgba(0,200,83,0.08);border:1px solid rgba(0,200,83,0.2);color:var(--accent);font-family:'DM Mono',monospace;font-size:0.68rem;padding:4px 10px;border-radius:100px}
+
+  .modal-usecases{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
+  @media(max-width:400px){.modal-usecases{grid-template-columns:1fr}}
+  .usecase{background:rgba(0,200,83,0.05);border:1px solid var(--border);border-radius:10px;padding:0.6rem 0.8rem;font-size:0.82rem;color:var(--text);display:flex;align-items:center;gap:7px}
+  .usecase::before{content:'→';color:var(--accent);font-size:0.8rem}
+
+  .modal-cta{display:block;width:100%;background:linear-gradient(135deg,var(--accent),var(--accent5));color:#050f08;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;padding:13px;border-radius:100px;text-align:center;text-decoration:none;margin-top:1.5rem;transition:opacity 0.2s;border:none;cursor:pointer}
+  .modal-cta:hover{opacity:0.88}
+
+  .no-results{text-align:center;padding:4rem 1rem;color:var(--muted);display:none}
+  .no-results p{font-family:'Syne',sans-serif;font-size:1.1rem;color:var(--text);margin-bottom:0.4rem}
+
+  .stats-bar{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem}
+  .stat{text-align:center}
+  .stat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:1.5rem;color:var(--accent)}
+  .stat-label{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--muted);letter-spacing:0.05em;text-transform:uppercase}
+
+
+.hidden{display:none!important}
+  
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    margin-top: 4rem;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,200,83,0.03) 100%);
+    border-top: 1px solid rgba(0,200,83,0.15);
+  }
+
+  .footer-cta {
+    background: linear-gradient(135deg, rgba(0,200,83,0.08) 0%, rgba(0,230,118,0.04) 100%);
+    border-bottom: 1px solid rgba(0,200,83,0.1);
+    padding: 3rem clamp(1rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-cta-text h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.02em;
+  }
+  .footer-cta-text p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .footer-cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #050f08;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(0,200,83,0.3);
+  }
+  .footer-cta-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,200,83,0.4);
+  }
+  .footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2.5rem 2rem;
+    padding: 3rem clamp(1rem, 5vw, 4rem) 2.5rem;
+  }
+  @media (max-width: 900px) {
+    .footer-main { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 540px) {
+    .footer-main { grid-template-columns: 1fr; }
+    .footer-cta { text-align: center; justify-content: center; }
+  }
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .footer-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .footer-brand-logo-icon {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    color: #050f08;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .footer-brand-logo span { color: var(--accent); }
+  .footer-brand-desc {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 260px;
+  }
+  .footer-brand-trust {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0.25rem;
+    flex-wrap: wrap;
+  }
+  .trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent3);
+    background: rgba(105,240,174,0.07);
+    border: 1px solid rgba(105,240,174,0.18);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+  .trust-pill::before {
+    content: '✦';
+    font-size: 0.5rem;
+    opacity: 0.7;
+  }
+  .footer-social-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 0.5rem;
+  }
+  .footer-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .footer-social-btn:hover {
+    color: var(--accent);
+    border-color: rgba(0,200,83,0.3);
+    background: rgba(0,200,83,0.08);
+    transform: translateY(-2px);
+  }
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 100px;
+  }
+  .footer-col-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(0,200,83,0.08);
+  }
+  .footer-link {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.83rem;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+    line-height: 1.4;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s, gap 0.2s;
+  }
+  .footer-link::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: 0.4;
+    flex-shrink: 0;
+    transition: background 0.2s, opacity 0.2s;
+  }
+  .footer-link:hover {
+    color: var(--accent2);
+    gap: 8px;
+  }
+  .footer-link:hover::before {
+    background: var(--accent);
+    opacity: 1;
+  }
+  .footer-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,200,83,0.12) 30%, rgba(0,200,83,0.12) 70%, transparent);
+    margin: 0 clamp(1rem, 5vw, 4rem);
+  }
+  .footer-bottom {
+    padding: 1.4rem clamp(1rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+  .footer-bottom-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .footer-bottom-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: 0.4;
+  }
+  .footer-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.6;
+  }
+  .footer-bottom-right .green-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+  .footer-sep { color: var(--muted); opacity: 0.5; }
+  .footer-bottom-link { color: var(--muted); cursor: default; user-select: none; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">
+    <div class="logo-icon">S</div>
+    Super<span>Tools</span>
+  </a>
+  <a class="nav-home" href="index.html">Home</a>
+</header>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">x</button>
+    <div class="modal-top">
+      <div class="modal-icon" id="mIcon"></div>
+      <div>
+        <div class="modal-title" id="mTitle"></div>
+        <div class="modal-cat" id="mCat"></div>
+      </div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">What This Tool Does</div>
+      <p id="mWhat"></p>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">How It Works</div>
+      <div class="modal-steps" id="mSteps"></div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">When To Use It</div>
+      <div class="modal-usecases" id="mUsecases"></div>
+    </div>
+    <div class="modal-section">
+      <div class="modal-section-title">Supported Formats</div>
+      <div class="modal-tags" id="mFormats"></div>
+    </div>
+    <a class="modal-cta" id="mCta" href="#">Use This Tool</a>
+  </div>
+</div>
+
+<div class="page">
+  <div class="hero">
+    <div class="badge">All Tools</div>
+    <h1>120+ <span class="hl">Free</span> Online Tools</h1>
+    <p>Click on any tool to see full details — what it does, how it works, and when to use it.</p>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">30+</div><div class="stat-label">PDF</div></div>
+    <div class="stat"><div class="stat-num">28+</div><div class="stat-label">Image</div></div>
+    <div class="stat"><div class="stat-num">19+</div><div class="stat-label">Video</div></div>
+    <div class="stat"><div class="stat-num">20+</div><div class="stat-label">Audio</div></div>
+    <div class="stat"><div class="stat-num">12+</div><div class="stat-label">Docs</div></div>
+    <div class="stat"><div class="stat-num">11+</div><div class="stat-label">Other</div></div>
+  </div>
+
+  <div class="search-wrap">
+    <span class="s-icon">&#9906;</span>
+    <input type="text" id="toolSearch" placeholder="Search tools... e.g. 'PDF compress' or 'JPG to PNG'" oninput="searchTools(this.value)">
+  </div>
+
+  <div class="cat-tabs">
+    <div class="cat-tab active" onclick="filterCat('all',this)">All Tools</div>
+    <div class="cat-tab" onclick="filterCat('pdf',this)">PDF</div>
+    <div class="cat-tab" onclick="filterCat('image',this)">Image</div>
+    <div class="cat-tab" onclick="filterCat('video',this)">Video</div>
+    <div class="cat-tab" onclick="filterCat('audio',this)">Audio</div>
+    <div class="cat-tab" onclick="filterCat('docs',this)">Documents</div>
+    <div class="cat-tab" onclick="filterCat('archive',this)">Archive</div>
+    <div class="cat-tab" onclick="filterCat('other',this)">Other</div>
+  </div>
+
+  <div id="noResults" class="no-results"><p>No tools found</p><span>Try a different keyword</span></div>
+  <div id="allSections"></div>
+</div>
+
+<!-- FOOTER -->
+<!-- FOOTER -->
+<footer style="display:block; padding:0;">
+
+  <!-- CTA Bar -->
+  <div class="footer-cta">
+    <div class="footer-cta-text">
+      <h3>120+ Free Tools. Zero Limits. Forever.</h3>
+      <p>No signup, no watermarks, no credit card — just powerful tools at your fingertips.</p>
+    </div>
+    <a class="footer-cta-badge" href="tools.html">
+      ⚡ Explore All Tools
+    </a>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="footer-main">
+
+    <!-- Brand col -->
+    <div class="footer-brand">
+      <a class="footer-brand-logo" href="index.html">
+        <div class="footer-brand-logo-icon">S</div>
+        Super<span>Tools</span>
+      </a>
+      <p class="footer-brand-desc">World's most complete free file toolkit. Convert, compress, merge PDF, images, video &amp; audio — all in your browser.</p>
+      <div class="footer-brand-trust">
+        <span class="trust-pill">100% Free</span>
+        <span class="trust-pill">No Signup</span>
+        <span class="trust-pill">Secure</span>
+      </div>
+      <div class="footer-social-row">
+        <a class="footer-social-btn" href="https://t.me/supertool_tools" target="_blank" title="Telegram">TG</a>
+        <a class="footer-social-btn" href="https://x.com/GptPayer1234" target="_blank" title="Twitter / X">𝕏</a>
+        <a class="footer-social-btn" href="https://www.instagram.com/supertool_official?igsh=YzljYTk1ODg3Zg==" target="_blank" title="Instagram">IG</a>
+      </div>
+    </div>
+
+    <!-- Product -->
+    <div class="footer-col">
+      <div class="footer-col-title">Product</div>
+      <a class="footer-link" href="index.html">Home</a>
+      <a class="footer-link" href="features.html">Features</a>
+      <a class="footer-link" href="pricing.html">Pricing</a>
+      <a class="footer-link" href="tools.html">All Tools</a>
+      <a class="footer-link" href="FAQ.html">FAQ</a>
+    </div>
+
+    <!-- Legal -->
+    <div class="footer-col">
+      <div class="footer-col-title">Legal</div>
+      <a class="footer-link" href="terms.html">Terms of Service</a>
+      <a class="footer-link" href="privacy.html">Privacy Policy</a>
+      <a class="footer-link" href="cookies.html">Cookie Policy</a>
+      <a class="footer-link" href="affiliate.html">Affiliate Policy</a>
+    </div>
+
+    <!-- Support -->
+    <div class="footer-col">
+      <div class="footer-col-title">Support</div>
+      <a class="footer-link" href="contact.html">Contact Us</a>
+      <a class="footer-link" href="about.html">About Us</a>
+    </div>
+
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <span>&#169; 2026 gptpayer.online</span>
+      <div class="footer-bottom-dot"></div>
+      <span>All Rights Reserved</span>
+      <div class="footer-bottom-dot"></div>
+      <span>Built with ♥ for the web</span>
+    </div>
+    <div class="footer-bottom-right">
+      <div class="green-dot"></div>
+      <span>All systems operational</span>
+    </div>
+  </div>
+
+</footer>
+
+<script>
+const TOOLS = [
+  // PDF
+  { id:'pdf-merge', name:'Merge PDF', short:'Combine multiple PDFs into one file', cat:'pdf', icon:'PDF', ic:'#00c853', bg:'rgba(0,200,83,0.15)', badge:'hot',
+    what:'This tool lets you combine multiple PDF files into a single PDF. Whether you have 2 files or 20, they all merge together seamlessly.',
+    steps:['Upload your PDF files (drag & drop or browse)','Arrange files in your desired order','Click the Merge button','Download the combined PDF'],
+    uses:['Send multiple documents in one file','Combine project reports','Merge separately scanned pages','Join contracts and annexures'],
+    formats:['PDF'] },
+
+  { id:'pdf-split', name:'Split PDF', short:'Divide a PDF into separate pages', cat:'pdf', icon:'PDF', ic:'#00e676', bg:'rgba(0,200,83,0.12)',
+    what:'This tool lets you break a large PDF into smaller parts. Extract specific pages or split every page into its own file.',
+    steps:['Upload the PDF file','Select the pages you want to separate','Click Split','Download the individual pages'],
+    uses:['Extract a chapter from a large PDF','Send specific pages to someone','Separate pages from a scanned document','Manage long PDFs'],
+    formats:['PDF'] },
+
+  { id:'pdf-compress', name:'Compress PDF', short:'Reduce PDF size while keeping quality', cat:'pdf', icon:'PDF', ic:'#00c853', bg:'rgba(0,200,83,0.15)', badge:'hot',
+    what:'Drastically reduces PDF file size without significant quality loss. Ideal for email attachment limits or saving storage space.',
+    steps:['Upload the PDF','Choose compression level (light/medium/heavy)','Click Compress','Download the smaller PDF'],
+    uses:['Send via email within size limits','Share PDF on WhatsApp','Reduce size for website uploads','Save cloud storage'],
+    formats:['PDF'] },
+
+  { id:'pdf-to-jpg', name:'PDF to JPG', short:'Convert PDF pages to JPG images', cat:'pdf', icon:'IMG', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)', badge:'hot',
+    what:'Converts each page of a PDF into a separate JPG image. You get high-quality images that can be viewed on any device easily.',
+    steps:['Upload the PDF','Select quality and DPI','Click Convert','Download JPG images (in a ZIP)'],
+    uses:['Create a PDF preview image','Share a page on social media','Add a PDF slide to a presentation','Extract a page for image editing'],
+    formats:['PDF → JPG'] },
+
+  { id:'pdf-to-png', name:'PDF to PNG', short:'Convert PDF pages to transparent PNG', cat:'pdf', icon:'IMG', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Converts PDF pages into PNG format. PNG supports transparent backgrounds — perfect for graphic design work.',
+    steps:['Upload the PDF','Choose resolution','Click Convert','Download the PNG files'],
+    uses:['Extract logos or watermarks','Use PDFs in design work','When you need a transparent background','Create high-quality screenshots'],
+    formats:['PDF → PNG'] },
+
+  { id:'pdf-to-word', name:'PDF to Word', short:'Convert PDF to editable Word document', cat:'pdf', icon:'DOC', ic:'#00c853', bg:'rgba(0,200,83,0.12)', badge:'hot',
+    what:'Converts PDF files into fully editable Microsoft Word (.docx) documents. Formatting, tables, and text are preserved as much as possible.',
+    steps:['Upload the PDF','Click Convert','Download the Word document','Edit in Microsoft Word or Google Docs'],
+    uses:['Edit a received PDF','Update old documents','Extract text from PDF','Create editable contract'],
+    formats:['PDF → DOCX'] },
+
+  { id:'pdf-to-excel', name:'PDF to Excel', short:'Extract tables from PDF into spreadsheet', cat:'pdf', icon:'XLS', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Extracts tables and data from PDF files and converts them into an Excel spreadsheet. Great for data analysis.',
+    steps:['Upload the PDF','Select table extraction options','Convert','Download the Excel file'],
+    uses:['Analyze PDF data','Work with financial reports','Process invoices','Extract survey results'],
+    formats:['PDF → XLSX'] },
+
+  { id:'pdf-to-ppt', name:'PDF to PowerPoint', short:'Convert PDF slides to editable presentation', cat:'pdf', icon:'PPT', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Converts PDF presentations back into editable PowerPoint (.pptx) files. Each PDF page becomes a slide.',
+    steps:['Upload the PDF','Click Convert','Download the PPTX file','Edit in PowerPoint'],
+    uses:['Edit received presentation PDFs','Repurpose old presentations','Update slide content','Share as editable deck'],
+    formats:['PDF → PPTX'] },
+
+  { id:'pdf-ocr', name:'PDF OCR', short:'Extract text from scanned PDFs', cat:'pdf', icon:'OCR', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)', badge:'new',
+    what:'Uses Optical Character Recognition (OCR) to extract text from scanned PDF images. Makes scanned documents searchable and copy-able.',
+    steps:['Upload the scanned PDF','Select language','Run OCR','Download searchable PDF or text'],
+    uses:['Make scanned documents searchable','Extract text from old documents','Convert paper scans to digital text','Archive physical documents digitally'],
+    formats:['Scanned PDF → Searchable PDF / TXT'] },
+
+  { id:'pdf-protect', name:'Protect PDF', short:'Add password protection to your PDF', cat:'pdf', icon:'PDF', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Adds password protection to a PDF file. You can restrict opening, printing, or editing of the document.',
+    steps:['Upload the PDF','Set a password','Choose permissions','Download the protected PDF'],
+    uses:['Protect confidential documents','Restrict editing access','Secure sensitive reports','Share safely with password'],
+    formats:['PDF → Protected PDF'] },
+
+  { id:'pdf-unlock', name:'Unlock PDF', short:'Remove password from a PDF file', cat:'pdf', icon:'PDF', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Removes the password from a PDF you have permission to access. Makes the file freely accessible without entering a password each time.',
+    steps:['Upload the password-protected PDF','Enter the current password','Unlock','Download the unlocked PDF'],
+    uses:['Remove unnecessary password','Share freely with colleagues','Enable editing','Merge with other PDFs'],
+    formats:['Locked PDF → Unlocked PDF'] },
+
+  { id:'pdf-rotate', name:'Rotate PDF', short:'Rotate pages in a PDF to correct orientation', cat:'pdf', icon:'PDF', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Rotates one or all pages in a PDF by 90, 180, or 270 degrees. Fix upside-down or sideways scanned documents.',
+    steps:['Upload the PDF','Select pages to rotate','Choose rotation angle','Download the corrected PDF'],
+    uses:['Fix scanned document orientation','Correct upside-down pages','Prepare for printing','Standardize document direction'],
+    formats:['PDF'] },
+
+  { id:'pdf-watermark', name:'PDF Watermark', short:'Add text or image watermark to PDF', cat:'pdf', icon:'PDF', ic:'#00c853', bg:'rgba(0,200,83,0.15)',
+    what:'Adds a custom text or image watermark to every page of a PDF. Position, opacity, and size are all customizable.',
+    steps:['Upload the PDF','Enter watermark text or upload image','Set position and opacity','Download watermarked PDF'],
+    uses:['Mark documents as confidential','Add company branding','Proof watermark for drafts','Copyright protection'],
+    formats:['PDF → Watermarked PDF'] },
+
+  { id:'pdf-sign', name:'Sign PDF', short:'Add your digital signature to a PDF', cat:'pdf', icon:'PDF', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)', badge:'new',
+    what:'Add your electronic signature to a PDF document. Draw, type, or upload your signature and place it anywhere on the document.',
+    steps:['Upload the PDF','Create or upload your signature','Place it on the document','Download the signed PDF'],
+    uses:['Sign contracts digitally','Approve documents remotely','Avoid printing and scanning','Quick professional sign-off'],
+    formats:['PDF → Signed PDF'] },
+
+  { id:'pdf-number', name:'Add Page Numbers', short:'Add page numbers to your PDF', cat:'pdf', icon:'PDF', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Adds page numbers to every page of a PDF. Choose position (header/footer), font, size, and starting number.',
+    steps:['Upload the PDF','Choose position and format','Apply page numbers','Download the numbered PDF'],
+    uses:['Professional document formatting','Long reports','Legal documents','Academic papers'],
+    formats:['PDF'] },
+
+  { id:'pdf-word-pdf', name:'Word to PDF', short:'Convert Word document to PDF', cat:'pdf', icon:'PDF', ic:'#00c853', bg:'rgba(0,200,83,0.12)', badge:'hot',
+    what:'Converts Microsoft Word (.doc / .docx) files to PDF format. Preserves formatting perfectly for sharing and printing.',
+    steps:['Upload the Word document','Click Convert','Download the PDF'],
+    uses:['Share documents without formatting issues','Submit forms as PDF','Print-ready documents','Universal sharing format'],
+    formats:['DOC, DOCX → PDF'] },
+
+  { id:'pdf-excel-pdf', name:'Excel to PDF', short:'Convert Excel spreadsheet to PDF', cat:'pdf', icon:'PDF', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Converts Excel spreadsheets to PDF format. Tables, charts, and formatting are preserved in the PDF output.',
+    steps:['Upload the Excel file','Click Convert','Download the PDF'],
+    uses:['Share reports without Excel','Client-facing documents','Print spreadsheets cleanly','Archive financial data'],
+    formats:['XLS, XLSX → PDF'] },
+
+  { id:'pdf-ppt-pdf', name:'PowerPoint to PDF', short:'Convert presentation to PDF', cat:'pdf', icon:'PDF', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Converts PowerPoint presentations to PDF format. Each slide becomes a page in the PDF.',
+    steps:['Upload the PPTX file','Click Convert','Download the PDF'],
+    uses:['Share presentations without PowerPoint','Archive slide decks','Print handouts','Universal presentation format'],
+    formats:['PPTX, PPT → PDF'] },
+
+  { id:'pdf-html-pdf', name:'HTML to PDF', short:'Convert a webpage or HTML file to PDF', cat:'pdf', icon:'PDF', ic:'#00c853', bg:'rgba(0,200,83,0.1)',
+    what:'Converts HTML files or web pages into PDF documents. Useful for archiving web content or creating print-ready pages.',
+    steps:['Upload HTML file or enter URL','Click Convert','Download the PDF'],
+    uses:['Archive web pages','Create printable receipts','Save web-based reports','Generate PDF from HTML templates'],
+    formats:['HTML / URL → PDF'] },
+
+  { id:'pdf-jpg-pdf', name:'JPG to PDF', short:'Convert JPG images to a PDF', cat:'pdf', icon:'PDF', ic:'#00e676', bg:'rgba(0,230,118,0.12)', badge:'hot',
+    what:'Converts one or more JPG images into a PDF file. You can set image order, margins, and page size.',
+    steps:['Upload your JPG images','Arrange in desired order','Choose page settings','Download the PDF'],
+    uses:['Send photos as a PDF','Compile scanned documents','Create photo books','Submit image documents'],
+    formats:['JPG, PNG, WebP → PDF'] },
+
+  { id:'pdf-repair', name:'Repair PDF', short:'Fix corrupted or damaged PDF files', cat:'pdf', icon:'PDF', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)', badge:'new',
+    what:'Attempts to repair corrupted, damaged, or unreadable PDF files. Recovers as much content as possible from broken files.',
+    steps:['Upload the corrupted PDF','Click Repair','Preview recovered content','Download the repaired PDF'],
+    uses:['Open a corrupted download','Recover important documents','Fix partially damaged files','Retrieve unreadable PDFs'],
+    formats:['Corrupted PDF → Repaired PDF'] },
+
+  { id:'pdf-grayscale', name:'PDF to Grayscale', short:'Convert color PDF to black and white', cat:'pdf', icon:'PDF', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Converts a color PDF to grayscale (black and white). Useful for reducing file size or preparing for monochrome printing.',
+    steps:['Upload the PDF','Click Convert to Grayscale','Download the grayscale PDF'],
+    uses:['Black and white printing','Reduce file size','Professional documents','Ink-saving printing'],
+    formats:['Color PDF → Grayscale PDF'] },
+
+  { id:'pdf-redact', name:'Redact PDF', short:'Permanently hide sensitive text in PDF', cat:'pdf', icon:'PDF', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Permanently blacks out or removes sensitive text and images from a PDF. Unlike highlighting, redacted content cannot be recovered.',
+    steps:['Upload the PDF','Select areas or text to redact','Apply redaction','Download the redacted PDF'],
+    uses:['Remove personal information','Legal document review','Confidential data removal','GDPR compliance'],
+    formats:['PDF → Redacted PDF'] },
+
+  { id:'pdf-extract', name:'Extract PDF Pages', short:'Extract specific pages from a PDF', cat:'pdf', icon:'PDF', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Extracts specific pages or a page range from a PDF and saves them as a new PDF file.',
+    steps:['Upload the PDF','Enter page numbers or range','Extract','Download the extracted pages as PDF'],
+    uses:['Get a specific chapter','Share selected pages','Create a sub-document','Archive particular pages'],
+    formats:['PDF → PDF (selected pages)'] },
+
+  { id:'pdf-delete', name:'Delete PDF Pages', short:'Remove unwanted pages from a PDF', cat:'pdf', icon:'PDF', ic:'#00c853', bg:'rgba(0,200,83,0.1)',
+    what:'Deletes specific pages from a PDF file. The remaining pages are saved as a new PDF.',
+    steps:['Upload the PDF','Select pages to delete','Click Delete','Download the updated PDF'],
+    uses:['Remove blank pages','Delete duplicate pages','Clean up scanned documents','Remove confidential sections'],
+    formats:['PDF'] },
+
+  { id:'pdf-flatten', name:'Flatten PDF', short:'Flatten form fields and annotations', cat:'pdf', icon:'PDF', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Flattens interactive form fields and annotations into the PDF content. Makes the PDF non-editable and ready for archiving.',
+    steps:['Upload the PDF','Click Flatten','Download the flattened PDF'],
+    uses:['Finalize filled forms','Prevent further editing','Archive completed documents','Share read-only versions'],
+    formats:['Interactive PDF → Flat PDF'] },
+
+  { id:'pdf-metadata', name:'PDF Metadata Editor', short:'View and edit PDF metadata', cat:'pdf', icon:'PDF', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'View and edit the metadata of a PDF file — title, author, subject, keywords, and creation date. Also useful for privacy cleanup.',
+    steps:['Upload the PDF','View existing metadata','Edit fields as needed','Download the updated PDF'],
+    uses:['Add proper document info','Remove author info for privacy','Update creation dates','Organize document libraries'],
+    formats:['PDF'] },
+
+  { id:'pdf-compare', name:'Compare PDFs', short:'Highlight differences between two PDFs', cat:'pdf', icon:'PDF', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Compares two PDF files and highlights the differences between them. Useful for reviewing document revisions.',
+    steps:['Upload the first PDF','Upload the second PDF','Click Compare','Review highlighted differences'],
+    uses:['Document version review','Contract change tracking','Proofreading','Legal document auditing'],
+    formats:['PDF vs PDF → Comparison Report'] },
+
+  { id:'pdf-bookmarks', name:'PDF Bookmarks', short:'Add or manage bookmarks in a PDF', cat:'pdf', icon:'PDF', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Add, edit, or remove bookmarks (table of contents entries) in a PDF. Makes navigating long documents easy.',
+    steps:['Upload the PDF','Add bookmark titles and page numbers','Save bookmark structure','Download the bookmarked PDF'],
+    uses:['Long report navigation','E-book chapters','Legal document indexing','User manuals'],
+    formats:['PDF'] },
+
+  // IMAGE
+  { id:'img-compress', name:'Compress Image', short:'Reduce image file size without losing quality', cat:'image', icon:'IMG', ic:'#00c853', bg:'rgba(0,200,83,0.15)', badge:'hot',
+    what:'Compresses images to reduce file size while maintaining visual quality. Supports batch compression of multiple images at once.',
+    steps:['Upload image(s)','Set compression level','Compress','Download the compressed image(s)'],
+    uses:['Website image optimization','Email attachments','Social media uploads','Faster page loading'],
+    formats:['JPG, PNG, WebP, GIF'] },
+
+  { id:'img-resize', name:'Resize Image', short:'Make an image larger or smaller', cat:'image', icon:'IMG', ic:'#00e676', bg:'rgba(0,200,83,0.12)', badge:'hot',
+    what:'Changes the width and height of an image. You can resize by exact pixels or by percentage. Aspect ratio lock is also available.',
+    steps:['Upload the image','Enter width/height or set a percentage','Click Resize','Download the resized image'],
+    uses:['Correct size for social media','Resize a profile picture','Optimize images for websites','Get exact print dimensions'],
+    formats:['JPG, PNG, WebP, GIF, BMP'] },
+
+  { id:'img-crop', name:'Crop Image', short:'Cut out any part of an image', cat:'image', icon:'IMG', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Crops a specific area of an image. You can crop with custom dimensions or preset ratios (1:1, 16:9, 4:3).',
+    steps:['Upload the image','Select the crop area or choose a ratio','Click Crop','Download the cropped image'],
+    uses:['Make a profile picture square','Crop a thumbnail','Remove unwanted backgrounds','Focus on a specific area'],
+    formats:['JPG, PNG, WebP, BMP'] },
+
+  { id:'img-rotate', name:'Rotate Image', short:'Rotate an image to any angle', cat:'image', icon:'IMG', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Rotates an image by 90, 180, 270 degrees or any custom angle. Flip (mirror) is also available.',
+    steps:['Upload the image','Choose a rotation angle','Click Rotate','Download the rotated image'],
+    uses:['Fix wrong orientation','Correct a sideways photo','Creative effects','Thumbnail orientation'],
+    formats:['JPG, PNG, WebP, BMP, GIF'] },
+
+  { id:'img-bg-remove', name:'Remove Background', short:'Automatically remove image backgrounds', cat:'image', icon:'IMG', ic:'#00c853', bg:'rgba(0,200,83,0.15)', badge:'hot',
+    what:'Uses AI to automatically detect and remove the background from an image. Perfect for product photos and portraits. Output is a transparent PNG.',
+    steps:['Upload the image','AI automatically detects the background','Preview the result','Download the PNG with transparent background'],
+    uses:['White background for product photos','Change ID photo background','Create stickers','Make logo transparent'],
+    formats:['JPG, PNG → PNG (transparent)'] },
+
+  { id:'img-jpg-png', name:'JPG to PNG', short:'Convert JPG image to PNG format', cat:'image', icon:'IMG', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Converts a JPG image to lossless PNG format. PNG supports transparency and does not compress quality.',
+    steps:['Upload the JPG','Click Convert','Download the PNG'],
+    uses:['When transparency is needed','Avoid quality loss','For design work','Convert a logo'],
+    formats:['JPG → PNG'] },
+
+  { id:'img-png-jpg', name:'PNG to JPG', short:'Convert PNG to smaller JPG format', cat:'image', icon:'IMG', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Converts a PNG image to JPG format. JPG files are smaller in size — better for web use and sharing.',
+    steps:['Upload the PNG','Choose quality level','Click Convert','Download the JPG'],
+    uses:['Reduce file size','Web upload optimization','Social media sharing','Email attachments'],
+    formats:['PNG → JPG'] },
+
+  { id:'img-jpg-webp', name:'JPG to WebP', short:'Convert JPG to modern WebP format', cat:'image', icon:'IMG', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Converts JPG to WebP format. WebP is 25-35% smaller than JPG at the same quality — the best format for the web.',
+    steps:['Upload the JPG','Set quality','Click Convert','Download the WebP'],
+    uses:['Improve website speed','For modern browsers','Save bandwidth','Improve Google ranking'],
+    formats:['JPG → WebP'] },
+
+  { id:'img-webp-jpg', name:'WebP to JPG', short:'Convert WebP to widely supported JPG', cat:'image', icon:'IMG', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Converts WebP images to JPG format so they can be opened on older devices and software.',
+    steps:['Upload the WebP','Click Convert','Download the JPG'],
+    uses:['Old software compatibility','Social media uploads','Email sharing','For editing software'],
+    formats:['WebP → JPG'] },
+
+  { id:'img-png-webp', name:'PNG to WebP', short:'Convert PNG to WebP for web use', cat:'image', icon:'IMG', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Converts PNG to WebP format. WebP gives an even smaller size than PNG while also supporting transparency.',
+    steps:['Upload the PNG','Click Convert','Download the WebP'],
+    uses:['Optimize website images','WebP with transparency','Improve page speed','Reduce CDN costs'],
+    formats:['PNG → WebP'] },
+
+  { id:'img-webp-png', name:'WebP to PNG', short:'Convert WebP to PNG for editing', cat:'image', icon:'IMG', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Converts WebP images to PNG format, making them easy to use in editing tools.',
+    steps:['Upload the WebP','Click Convert','Download the PNG'],
+    uses:['Edit in Photoshop','For design tools','Preserve high quality','Create a lossless copy'],
+    formats:['WebP → PNG'] },
+
+  { id:'img-heic-jpg', name:'HEIC to JPG', short:'Convert iPhone photos to JPG', cat:'image', icon:'IMG', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Converts HEIC/HEIF format photos from iPhone and iPad to universal JPG format, so they can be opened on Windows and Android too.',
+    steps:['Upload the HEIC file','Click Convert','Download the JPG'],
+    uses:['Share iPhone photos','Open on Windows','Send to Android devices','Upload to social media'],
+    formats:['HEIC, HEIF → JPG'] },
+
+  { id:'img-raw-jpg', name:'RAW to JPG', short:'Convert camera RAW photos to JPG', cat:'image', icon:'IMG', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Converts DSLR camera RAW format photos (CR2, NEF, ARW, etc.) to standard JPG format.',
+    steps:['Upload the RAW file','Choose quality settings','Click Convert','Download the JPG'],
+    uses:['Share camera photos','Upload to social media','Quick processing after editing','Reduce storage'],
+    formats:['CR2, NEF, ARW, RAF → JPG'] },
+
+  { id:'img-tiff-jpg', name:'TIFF to JPG', short:'Convert TIFF image to JPG format', cat:'image', icon:'IMG', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Converts professional TIFF images to smaller JPG format. Makes print industry files ready for the web.',
+    steps:['Upload the TIFF','Choose quality','Click Convert','Download the JPG'],
+    uses:['Web-ready print files','Drastically reduce file size','Convert scanner output','Send via email'],
+    formats:['TIFF, TIF → JPG'] },
+
+  { id:'img-svg-png', name:'SVG to PNG', short:'Convert vector SVG to raster PNG', cat:'image', icon:'IMG', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Converts Scalable Vector Graphics (SVG) to PNG image format. You can choose a custom output size.',
+    steps:['Upload the SVG','Choose output size','Click Convert','Download the PNG'],
+    uses:['Create PNG version of a logo','Export website icons','For social media','Old browser compatibility'],
+    formats:['SVG → PNG'] },
+
+  { id:'img-ico', name:'Image to ICO', short:'Create favicon ICO file from an image', cat:'image', icon:'ICO', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Converts an image to Windows ICO format. Used for website favicons and desktop icons.',
+    steps:['Upload the image','Select icon sizes (16x16, 32x32, etc.)','Click Convert','Download the ICO file'],
+    uses:['Create a website favicon','Windows application icon','Desktop shortcut icon','Browser tab icon'],
+    formats:['PNG, JPG, WebP → ICO'] },
+
+  { id:'img-grayscale', name:'Grayscale Image', short:'Convert color image to black and white', cat:'image', icon:'IMG', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Converts a color image to black and white (grayscale). For artistic effect or a professional look.',
+    steps:['Upload the image','Click Convert','Download the B&W image'],
+    uses:['Artistic photography','Give an old-style look','For printing','Document images'],
+    formats:['JPG, PNG, WebP, BMP'] },
+
+  { id:'img-blur', name:'Blur Image', short:'Add blur effect to an image', cat:'image', icon:'IMG', ic:'#00c853', bg:'rgba(0,200,83,0.1)',
+    what:'Blurs an image or a specific area of it. For privacy protection or artistic bokeh effects.',
+    steps:['Upload the image','Set blur intensity','Apply','Download the blurred image'],
+    uses:['Blur faces or personal info','Background blur effect','Privacy protection','Artistic photos'],
+    formats:['JPG, PNG, WebP'] },
+
+  { id:'img-brightness', name:'Brightness & Contrast', short:'Adjust image brightness and contrast', cat:'image', icon:'IMG', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Adjusts brightness, contrast, and saturation of an image. Fix dark or overexposed photos.',
+    steps:['Upload the image','Adjust sliders','Preview','Download'],
+    uses:['Brighten dark photos','Fix overexposed shots','Make colors more vivid','Improve document scans'],
+    formats:['JPG, PNG, WebP, BMP'] },
+
+  { id:'img-mirror', name:'Mirror Image', short:'Flip an image horizontally or vertically', cat:'image', icon:'IMG', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Flips an image horizontally (left-right) or vertically (top-bottom) to create a mirror effect.',
+    steps:['Upload the image','Choose flip direction','Apply','Download the flipped image'],
+    uses:['Flip selfie mirror-style','Create symmetrical designs','Make text readable','Creative effects'],
+    formats:['JPG, PNG, WebP, BMP'] },
+
+  { id:'img-watermark', name:'Watermark Image', short:'Add text or logo watermark to an image', cat:'image', icon:'IMG', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Adds a custom text or image watermark to an image. Position, opacity, and size are all customizable.',
+    steps:['Upload the image','Upload watermark text or logo','Set position and opacity','Download'],
+    uses:['Protect photography copyright','Add brand watermark','Social media posts','Proof watermark'],
+    formats:['JPG, PNG, WebP'] },
+
+  { id:'img-upscale', name:'Upscale Image', short:'Increase image resolution using AI', cat:'image', icon:'IMG', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)', badge:'hot',
+    what:'Uses AI technology to enhance the quality and resolution of a small or blurry image. 2x or 4x upscale is possible.',
+    steps:['Upload the low-resolution image','Choose upscale factor (2x/4x)','Process','Download the high-res image'],
+    uses:['Restore old photos','Enlarge small images','Improve print quality','Enhance web images'],
+    formats:['JPG, PNG, WebP'] },
+
+  { id:'img-exif', name:'EXIF Editor', short:'View and edit hidden image metadata', cat:'image', icon:'IMG', ic:'#00c853', bg:'rgba(0,200,83,0.1)',
+    what:'View and edit an image\'s EXIF metadata (camera settings, GPS location, date/time), or completely remove it.',
+    steps:['Upload the image','View EXIF data','Edit what you need','Download'],
+    uses:['Remove GPS location for privacy','Check camera info','Fix date/time','Organize metadata'],
+    formats:['JPG, TIFF'] },
+
+  { id:'img-collage', name:'Image Collage', short:'Combine multiple images into one collage', cat:'image', icon:'IMG', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Combines multiple images into a single collage. Choose from different layouts, borders, and backgrounds.',
+    steps:['Upload multiple images','Choose a layout','Customize','Download the collage'],
+    uses:['Photo albums','Social media posts','Memory collages','Product showcases'],
+    formats:['JPG, PNG, WebP'] },
+
+  { id:'img-meme', name:'Meme Generator', short:'Create memes with custom text', cat:'image', icon:'IMG', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Create memes by adding custom text to images. Adjust top and bottom text, font size, and color.',
+    steps:['Upload an image or choose a template','Add your text','Choose font and color','Download the meme'],
+    uses:['Create funny memes','Social media content','Sharing with friends','Create viral content'],
+    formats:['JPG, PNG → JPG'] },
+
+  { id:'img-qr', name:'Image to QR', short:'Generate a QR code from an image', cat:'image', icon:'QR', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Embeds an image or logo into a QR code, or generates a QR code linking to an image URL.',
+    steps:['Upload an image or enter URL','Choose QR style','Generate','Download the QR code'],
+    uses:['Business card QR codes','Product packaging','Visiting cards','Restaurant menus'],
+    formats:['JPG, PNG → QR (PNG/SVG)'] },
+
+  { id:'img-gif-mp4', name:'GIF to MP4', short:'Convert animated GIF to MP4 video', cat:'image', icon:'GIF', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Converts an animated GIF file to MP4 video format. MP4 has a smaller size and smoother playback.',
+    steps:['Upload the GIF','Click Convert','Download the MP4'],
+    uses:['Social media video posts','Smaller file size','Better quality animation','Share via email'],
+    formats:['GIF → MP4'] },
+
+  { id:'img-mp4-gif', name:'MP4 to GIF', short:'Convert a video clip to animated GIF', cat:'image', icon:'GIF', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Converts an MP4 video clip to an animated GIF. Select a specific portion of the video to create the GIF.',
+    steps:['Upload the MP4','Set start and end time','Choose GIF quality','Download the GIF'],
+    uses:['Create funny reaction GIFs','Tutorial GIFs','Social media loops','Chat stickers'],
+    formats:['MP4, AVI, MOV → GIF'] },
+
+  // VIDEO
+  { id:'vid-compress', name:'Compress Video', short:'Reduce video size while keeping quality', cat:'video', icon:'VID', ic:'#00c853', bg:'rgba(0,200,83,0.15)', badge:'hot',
+    what:'Compresses video file size. The best tool for WhatsApp limits, saving storage, or improving upload speed.',
+    steps:['Upload the video','Choose quality/size target','Compress','Download the compressed video'],
+    uses:['Send videos on WhatsApp','Instagram uploads','Save storage space','Email attachments'],
+    formats:['MP4, AVI, MKV, MOV, WebM'] },
+
+  { id:'vid-trim', name:'Trim Video', short:'Cut out unwanted parts of a video', cat:'video', icon:'VID', ic:'#00e676', bg:'rgba(0,200,83,0.12)',
+    what:'Cuts unwanted parts from the beginning or end of a video. Set a precise start and end point.',
+    steps:['Upload the video','Set start and end time','Trim','Download the trimmed video'],
+    uses:['Remove intros/outros','Extract a specific scene','Create short clips','Remove unnecessary footage'],
+    formats:['MP4, AVI, MKV, MOV'] },
+
+  { id:'vid-merge', name:'Merge Videos', short:'Join multiple videos into one', cat:'video', icon:'VID', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Merges multiple video clips into a single video. You can also set the order of clips.',
+    steps:['Upload the videos','Arrange in desired order','Merge','Download the combined video'],
+    uses:['Join video parts','Create compilations','Edit travel vlogs','Combine clips'],
+    formats:['MP4, AVI, MKV'] },
+
+  { id:'vid-resize', name:'Resize Video', short:'Change video resolution', cat:'video', icon:'VID', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Changes the resolution of a video — from 1080p to 720p or from 4K to 1080p. File size is also reduced.',
+    steps:['Upload the video','Choose target resolution','Convert','Download the resized video'],
+    uses:['Meet social media requirements','Reduce file size','For different devices','Improve upload speed'],
+    formats:['MP4, AVI, MKV, MOV'] },
+
+  { id:'vid-rotate', name:'Rotate Video', short:'Rotate a video to the correct orientation', cat:'video', icon:'VID', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Rotates a video by 90, 180, or 270 degrees. Fix videos that were recorded sideways.',
+    steps:['Upload the video','Choose rotation','Apply','Download the rotated video'],
+    uses:['Fix sideways phone recordings','Convert portrait to landscape','Fix upside-down video'],
+    formats:['MP4, AVI, MKV, MOV'] },
+
+  { id:'vid-speed', name:'Change Video Speed', short:'Make a video faster or slower', cat:'video', icon:'VID', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Changes the playback speed of a video. From 0.25x slow motion to 4x fast forward.',
+    steps:['Upload the video','Choose speed (0.25x to 4x)','Apply','Download'],
+    uses:['Slow motion effect','Create time-lapse','Speed up tutorials','Dramatic effects'],
+    formats:['MP4, AVI, MKV, MOV'] },
+
+  { id:'vid-reverse', name:'Reverse Video', short:'Play a video backwards', cat:'video', icon:'VID', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Reverses the playback of a video so it plays backwards. Used for creative and artistic video effects.',
+    steps:['Upload the video','Click Reverse','Download the reversed video'],
+    uses:['Creative video effects','Satisfying reverse clips','Fun social media content','Music video effects'],
+    formats:['MP4, AVI, MKV, MOV'] },
+
+  { id:'vid-mp4-mp3', name:'Video to MP3', short:'Extract audio from a video file', cat:'video', icon:'MP3', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Extracts the audio track from a video file and saves it as an MP3 file. Useful for getting music or audio from videos.',
+    steps:['Upload the video','Click Extract Audio','Download the MP3'],
+    uses:['Extract music from a video','Get a speech recording','Podcast from a video','Save audio separately'],
+    formats:['MP4, AVI, MKV, MOV → MP3'] },
+
+  { id:'vid-mp4-gif', name:'Video to GIF', short:'Convert a short video clip to GIF', cat:'video', icon:'GIF', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Converts a video clip to an animated GIF. Select the time range and frame rate to customize your GIF.',
+    steps:['Upload the video','Set time range','Choose frame rate','Download the GIF'],
+    uses:['Reaction GIFs','Tutorial animations','Social media loops','Highlight moments'],
+    formats:['MP4, MOV, AVI → GIF'] },
+
+  { id:'vid-add-sub', name:'Add Subtitles', short:'Add subtitles or captions to a video', cat:'video', icon:'VID', ic:'#00e676', bg:'rgba(0,230,118,0.12)', badge:'new',
+    what:'Adds subtitle or caption text to a video. Upload an SRT file or type subtitles manually with timing.',
+    steps:['Upload the video','Upload SRT file or type subtitles','Set timing and style','Download the video with subtitles'],
+    uses:['Accessibility for deaf viewers','Foreign language subtitles','Educational videos','Social media with captions'],
+    formats:['MP4 + SRT → MP4 with subtitles'] },
+
+  { id:'vid-mute', name:'Mute Video', short:'Remove audio track from a video', cat:'video', icon:'VID', ic:'#00c853', bg:'rgba(0,200,83,0.1)',
+    what:'Removes the audio track from a video file, leaving a silent video. Useful for adding new audio later.',
+    steps:['Upload the video','Click Mute Audio','Download the silent video'],
+    uses:['Remove background noise','Add new music later','Privacy — mute speech','Clean video for dubbing'],
+    formats:['MP4, AVI, MKV, MOV'] },
+
+  { id:'vid-thumbnail', name:'Video Thumbnail', short:'Extract a frame from a video as an image', cat:'video', icon:'VID', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Captures a specific frame from a video and saves it as a JPG or PNG image. Perfect for creating video thumbnails.',
+    steps:['Upload the video','Seek to the desired frame','Capture frame','Download as image'],
+    uses:['YouTube thumbnail','Video preview image','Social media cover','Archive frame from video'],
+    formats:['MP4, AVI, MKV, MOV → JPG/PNG'] },
+
+  { id:'vid-watermark', name:'Video Watermark', short:'Add text or image watermark to video', cat:'video', icon:'VID', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Adds a custom text or image watermark to your video. Set position, opacity, and display time.',
+    steps:['Upload the video','Add text or image watermark','Set position and timing','Download the watermarked video'],
+    uses:['Brand watermark','Copyright protection','Channel logo','Promotional overlay'],
+    formats:['MP4, AVI, MKV, MOV'] },
+
+  { id:'vid-crop', name:'Crop Video', short:'Crop the frame dimensions of a video', cat:'video', icon:'VID', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Crops the visual frame of a video to remove unwanted borders or focus on a specific area.',
+    steps:['Upload the video','Set crop area','Apply','Download the cropped video'],
+    uses:['Remove black bars','Change aspect ratio','Focus on a subject','Remove watermarks or borders'],
+    formats:['MP4, AVI, MKV, MOV'] },
+
+  { id:'vid-stabilize', name:'Stabilize Video', short:'Reduce camera shake in a video', cat:'video', icon:'VID', ic:'#00c853', bg:'rgba(0,200,83,0.12)', badge:'new',
+    what:'Reduces camera shake and stabilizes shaky or handheld video footage using digital stabilization.',
+    steps:['Upload the shaky video','Click Stabilize','Download the stabilized video'],
+    uses:['Smooth handheld footage','Fix action camera video','Professional-looking clips','Travel vlog smoothing'],
+    formats:['MP4, AVI, MKV, MOV'] },
+
+  { id:'vid-merge-audio', name:'Add Audio to Video', short:'Replace or add an audio track to a video', cat:'video', icon:'VID', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Adds or replaces the audio track in a video with a new audio file. Mix volumes or fully replace existing audio.',
+    steps:['Upload the video','Upload the audio file','Set mixing options','Download the merged video'],
+    uses:['Add background music','Replace poor audio','Dub a video','Add voiceover'],
+    formats:['MP4 + MP3/WAV → MP4'] },
+
+  // AUDIO
+  { id:'aud-compress', name:'Compress Audio', short:'Reduce audio file size', cat:'audio', icon:'AUD', ic:'#00c853', bg:'rgba(0,200,83,0.15)',
+    what:'Compresses audio files to reduce their size by adjusting bitrate. Good for saving storage or sharing audio.',
+    steps:['Upload the audio file','Choose target bitrate','Compress','Download the compressed audio'],
+    uses:['Smaller file for sharing','Save storage space','Email audio files','Reduce upload size'],
+    formats:['MP3, WAV, AAC, OGG, FLAC'] },
+
+  { id:'aud-mp3-wav', name:'MP3 to WAV', short:'Convert MP3 to high quality WAV', cat:'audio', icon:'AUD', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Converts compressed MP3 audio to uncompressed WAV format for better quality in professional audio work.',
+    steps:['Upload the MP3','Click Convert','Download the WAV'],
+    uses:['Professional audio editing','Studio work','High-quality playback','Remove compression artifacts'],
+    formats:['MP3 → WAV'] },
+
+  { id:'aud-wav-mp3', name:'WAV to MP3', short:'Convert WAV to compressed MP3', cat:'audio', icon:'AUD', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Converts large WAV files to smaller MP3 format. Choose bitrate for the best balance of quality and file size.',
+    steps:['Upload the WAV','Set bitrate','Convert','Download the MP3'],
+    uses:['Share music easily','Reduce large audio files','For music players','Upload to streaming platforms'],
+    formats:['WAV → MP3'] },
+
+  { id:'aud-mp3-aac', name:'MP3 to AAC', short:'Convert MP3 to AAC for Apple devices', cat:'audio', icon:'AUD', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Converts MP3 to AAC format, which provides better quality at the same bitrate. Ideal for Apple devices and iTunes.',
+    steps:['Upload the MP3','Set quality','Convert','Download the AAC'],
+    uses:['Apple device compatibility','Better quality at same size','iTunes library','iPhone ringtone'],
+    formats:['MP3 → AAC'] },
+
+  { id:'aud-flac-mp3', name:'FLAC to MP3', short:'Convert lossless FLAC to MP3', cat:'audio', icon:'AUD', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Converts high-quality lossless FLAC audio files to compressed MP3. Useful for reducing large FLAC file sizes.',
+    steps:['Upload the FLAC','Set MP3 bitrate','Convert','Download the MP3'],
+    uses:['Reduce massive FLAC files','Portable player compatibility','Streaming music','Share audio easily'],
+    formats:['FLAC → MP3'] },
+
+  { id:'aud-mp3-flac', name:'MP3 to FLAC', short:'Convert MP3 to lossless FLAC format', cat:'audio', icon:'AUD', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Converts MP3 files to FLAC (Free Lossless Audio Codec) format for archiving or high-fidelity playback.',
+    steps:['Upload the MP3','Click Convert','Download the FLAC'],
+    uses:['Archiving audio','Hi-fi audio systems','Professional editing','Lossless collection'],
+    formats:['MP3 → FLAC'] },
+
+  { id:'aud-ogg-mp3', name:'OGG to MP3', short:'Convert OGG to universally supported MP3', cat:'audio', icon:'AUD', ic:'#00c853', bg:'rgba(0,200,83,0.1)',
+    what:'Converts OGG Vorbis audio files to MP3 format for broader device compatibility.',
+    steps:['Upload the OGG','Click Convert','Download the MP3'],
+    uses:['Cross-device compatibility','Music players','Sharing audio files','Ringtone creation'],
+    formats:['OGG → MP3'] },
+
+  { id:'aud-trim', name:'Trim Audio', short:'Cut a specific section from an audio file', cat:'audio', icon:'AUD', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Cuts a specific section from an audio file using precise start and end points.',
+    steps:['Upload the audio','Set start and end time','Trim','Download the trimmed audio'],
+    uses:['Extract a song section','Create ringtones','Remove silence','Get a specific clip'],
+    formats:['MP3, WAV, AAC, OGG'] },
+
+  { id:'aud-merge', name:'Merge Audio', short:'Join multiple audio files into one', cat:'audio', icon:'AUD', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Combines multiple audio files into a single audio file in your desired order.',
+    steps:['Upload audio files','Arrange in desired order','Merge','Download the combined audio'],
+    uses:['Join audio chapters','Create podcast episodes','Merge music tracks','Combine voice recordings'],
+    formats:['MP3, WAV, AAC, OGG'] },
+
+  { id:'aud-speed', name:'Change Audio Speed', short:'Make audio faster or slower', cat:'audio', icon:'AUD', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Changes audio playback speed without changing the pitch. Useful for studying lectures or slowing down music.',
+    steps:['Upload the audio','Set speed (0.5x to 2x)','Apply','Download'],
+    uses:['Speed up long lectures','Slow down music to learn','Audiobook speed','Practice recordings'],
+    formats:['MP3, WAV, AAC'] },
+
+  { id:'aud-pitch', name:'Change Pitch', short:'Adjust audio pitch without changing speed', cat:'audio', icon:'AUD', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Adjusts the pitch of an audio file without changing its speed. Transpose music up or down in semitones.',
+    steps:['Upload the audio','Set pitch change in semitones','Apply','Download'],
+    uses:['Transpose music for singing','Voice effects','Music practice in a different key','Cover songs in different key'],
+    formats:['MP3, WAV, AAC'] },
+
+  { id:'aud-volume', name:'Adjust Volume', short:'Make audio louder or quieter', cat:'audio', icon:'AUD', ic:'#00c853', bg:'rgba(0,200,83,0.15)',
+    what:'Amplifies or reduces the volume of an audio file. Also includes a normalize function to set a consistent volume level.',
+    steps:['Upload the audio','Set volume level or normalize','Apply','Download'],
+    uses:['Fix quiet recordings','Reduce loud audio','Normalize podcast volume','Balance audio levels'],
+    formats:['MP3, WAV, AAC, OGG'] },
+
+  { id:'aud-noise', name:'Remove Noise', short:'Clean up background noise from audio', cat:'audio', icon:'AUD', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)', badge:'new',
+    what:'Removes background noise, hiss, hum, and static from audio recordings. AI-powered noise reduction.',
+    steps:['Upload the audio','Click Remove Noise','Download the clean audio'],
+    uses:['Clean podcast recordings','Improve voice recordings','Remove fan noise','Professional audio cleanup'],
+    formats:['MP3, WAV, AAC'] },
+
+  { id:'aud-record', name:'Voice Recorder', short:'Record audio directly in your browser', cat:'audio', icon:'MIC', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Record audio directly from your microphone in the browser. Download recordings in MP3 or WAV format.',
+    steps:['Allow microphone access','Click Record','Speak or play audio','Stop and download'],
+    uses:['Quick voice notes','Record meetings','Create voiceovers','Capture ideas'],
+    formats:['Microphone → MP3/WAV'] },
+
+  { id:'aud-text-speech', name:'Text to Speech', short:'Convert text to natural-sounding audio', cat:'audio', icon:'TTS', ic:'#00c853', bg:'rgba(0,200,83,0.12)', badge:'new',
+    what:'Converts written text to natural-sounding speech audio. Choose voice, language, speed, and download as MP3.',
+    steps:['Type or paste your text','Choose voice and language','Generate speech','Download the audio'],
+    uses:['Create audiobooks','Voiceover for videos','Accessibility tools','Learning language pronunciation'],
+    formats:['Text → MP3'] },
+
+  { id:'aud-speech-text', name:'Speech to Text', short:'Transcribe audio to written text', cat:'audio', icon:'STT', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)', badge:'new',
+    what:'Transcribes audio recordings to text using AI speech recognition. Supports multiple languages.',
+    steps:['Upload audio or record directly','Choose language','Transcribe','Copy or download text'],
+    uses:['Transcribe meetings','Subtitle generation','Convert voice notes to text','Interview transcription'],
+    formats:['MP3, WAV → Text / SRT'] },
+
+  { id:'aud-waveform', name:'Audio Waveform', short:'Visualize audio as a waveform image', cat:'audio', icon:'AUD', ic:'#00c853', bg:'rgba(0,200,83,0.1)',
+    what:'Generates a visual waveform image from an audio file. Useful for visualizing audio content in presentations or social posts.',
+    steps:['Upload the audio','Choose style and colors','Generate waveform','Download the image'],
+    uses:['Podcast cover art','Social media audio posts','Music visualization','Audio content preview'],
+    formats:['MP3, WAV, AAC → PNG/SVG'] },
+
+  { id:'aud-equalizer', name:'Audio Equalizer', short:'Adjust bass, mids and treble of audio', cat:'audio', icon:'EQ', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Applies equalization to an audio file to adjust frequency bands — bass, mid, and treble — for better sound.',
+    steps:['Upload the audio','Adjust EQ bands','Preview','Download the EQ\'d audio'],
+    uses:['Boost bass in music','Reduce treble harshness','Improve voice clarity','Fix dull recordings'],
+    formats:['MP3, WAV, AAC'] },
+
+  // DOCUMENTS
+  { id:'doc-word-pdf', name:'Word to PDF', short:'Convert Word document to PDF', cat:'docs', icon:'DOC', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Converts Microsoft Word documents to PDF format. Preserves formatting perfectly for professional sharing.',
+    steps:['Upload the Word file','Click Convert','Download the PDF'],
+    uses:['Share without formatting issues','Submit official documents','Print-ready format','Universal compatibility'],
+    formats:['DOC, DOCX → PDF'] },
+
+  { id:'doc-pdf-word', name:'PDF to Word', short:'Convert PDF to editable Word document', cat:'docs', icon:'DOC', ic:'#00e676', bg:'rgba(0,230,118,0.12)', badge:'hot',
+    what:'Converts PDF files to fully editable Word documents. Formatting, images, and tables are preserved.',
+    steps:['Upload the PDF','Convert','Download the DOCX','Edit in Word or Google Docs'],
+    uses:['Edit a received PDF','Update old documents','Extract and reformat content','Rework contracts'],
+    formats:['PDF → DOCX'] },
+
+  { id:'doc-excel-csv', name:'Excel to CSV', short:'Convert Excel spreadsheet to CSV', cat:'docs', icon:'CSV', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Converts Excel spreadsheets to CSV (Comma Separated Values) format for use in databases, scripts, and data pipelines.',
+    steps:['Upload the Excel file','Select the sheet','Convert','Download the CSV'],
+    uses:['Database imports','Data analysis','Python/data scripts','CRM data imports'],
+    formats:['XLS, XLSX → CSV'] },
+
+  { id:'doc-csv-excel', name:'CSV to Excel', short:'Convert CSV data to Excel spreadsheet', cat:'docs', icon:'XLS', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Converts CSV files to formatted Excel spreadsheets with proper column alignment and basic formatting.',
+    steps:['Upload the CSV','Convert','Download the Excel file'],
+    uses:['Make CSV data readable','Work with data in Excel','Share data as spreadsheet','Add formulas to CSV data'],
+    formats:['CSV → XLSX'] },
+
+  { id:'doc-merge-word', name:'Merge Word Docs', short:'Combine multiple Word documents into one', cat:'docs', icon:'DOC', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Combines multiple Word documents into a single .docx file while preserving formatting.',
+    steps:['Upload Word files','Arrange in desired order','Merge','Download the combined document'],
+    uses:['Combine report chapters','Merge templates','Join letters','Consolidate documents'],
+    formats:['DOCX + DOCX → DOCX'] },
+
+  { id:'doc-txt-pdf', name:'TXT to PDF', short:'Convert plain text file to PDF', cat:'docs', icon:'PDF', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Converts a plain text (.txt) file to a properly formatted PDF document.',
+    steps:['Upload the TXT file','Set font and margins','Convert','Download the PDF'],
+    uses:['Share text as PDF','Archive text files','Formal text document','Email text as PDF'],
+    formats:['TXT → PDF'] },
+
+  { id:'doc-html-word', name:'HTML to Word', short:'Convert HTML page to Word document', cat:'docs', icon:'DOC', ic:'#00c853', bg:'rgba(0,200,83,0.1)',
+    what:'Converts an HTML file or web page to a Word document. Preserves headings, lists, and basic formatting.',
+    steps:['Upload HTML or enter URL','Convert','Download the DOCX'],
+    uses:['Convert web content for editing','Save articles as Word docs','Offline editing','Report generation'],
+    formats:['HTML → DOCX'] },
+
+  { id:'doc-compress-word', name:'Compress Word Doc', short:'Reduce Word document file size', cat:'docs', icon:'DOC', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Reduces the file size of a Word document by compressing embedded images and removing unnecessary data.',
+    steps:['Upload the Word file','Click Compress','Download the smaller document'],
+    uses:['Email attachment size limit','Reduce image-heavy docs','Share smaller files','Online form upload limit'],
+    formats:['DOCX → Compressed DOCX'] },
+
+  { id:'doc-ppt-pdf', name:'PowerPoint to PDF', short:'Convert presentation to PDF format', cat:'docs', icon:'PDF', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Converts PowerPoint presentations to PDF. Each slide becomes a page in the PDF.',
+    steps:['Upload the PPTX','Convert','Download the PDF'],
+    uses:['Share slides without PowerPoint','Archive presentations','Print slides','Universal viewing'],
+    formats:['PPTX → PDF'] },
+
+  { id:'doc-epub-pdf', name:'EPUB to PDF', short:'Convert eBook to PDF format', cat:'docs', icon:'PDF', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Converts EPUB eBook files to PDF format for reading on any device or printing.',
+    steps:['Upload the EPUB','Convert','Download the PDF'],
+    uses:['Print an eBook','Read on non-EPUB devices','Archive book content','Share book as PDF'],
+    formats:['EPUB → PDF'] },
+
+  { id:'doc-markdown-pdf', name:'Markdown to PDF', short:'Convert Markdown files to PDF', cat:'docs', icon:'PDF', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)', badge:'new',
+    what:'Converts Markdown (.md) files to nicely formatted PDF documents with proper heading styles and code blocks.',
+    steps:['Upload the Markdown file','Choose theme','Convert','Download the PDF'],
+    uses:['Developer documentation','Technical reports','README to PDF','Blog content archiving'],
+    formats:['MD → PDF'] },
+
+  { id:'doc-rtf-word', name:'RTF to Word', short:'Convert RTF to Word document', cat:'docs', icon:'DOC', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Converts Rich Text Format (RTF) files to Word (.docx) format for easier editing and sharing.',
+    steps:['Upload the RTF file','Convert','Download the DOCX'],
+    uses:['Edit old RTF documents','Universal document editing','Convert legacy files','Share in modern format'],
+    formats:['RTF → DOCX'] },
+
+  // ARCHIVE
+  { id:'arc-zip', name:'Create ZIP', short:'Compress files into a ZIP archive', cat:'archive', icon:'ZIP', ic:'#00c853', bg:'rgba(0,200,83,0.15)', badge:'hot',
+    what:'Creates a ZIP archive from multiple files or folders. Reduces total size and bundles files for easy sharing.',
+    steps:['Upload files','Click Create ZIP','Download the ZIP archive'],
+    uses:['Bundle project files','Send multiple files at once','Reduce total size for email','Backup files'],
+    formats:['Any files → ZIP'] },
+
+  { id:'arc-unzip', name:'Extract ZIP', short:'Extract files from a ZIP archive', cat:'archive', icon:'ZIP', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Extracts files from a ZIP archive. Preview the contents before downloading individual files or all files at once.',
+    steps:['Upload the ZIP file','Preview contents','Select files to extract','Download'],
+    uses:['Open received ZIP files','Extract specific files','Check ZIP contents','Unpack downloads'],
+    formats:['ZIP → Extracted Files'] },
+
+  { id:'arc-rar-unpack', name:'Extract RAR', short:'Unpack RAR archive files', cat:'archive', icon:'RAR', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Extracts files from RAR archives without needing WinRAR software installed on your computer.',
+    steps:['Upload the RAR file','Preview contents','Extract','Download files'],
+    uses:['Open RAR without WinRAR','Extract downloaded RAR files','Access archived content','Unpack multiple files'],
+    formats:['RAR → Extracted Files'] },
+
+  { id:'arc-7z-unpack', name:'Extract 7Z', short:'Unpack 7-Zip archive files', cat:'archive', icon:'7Z', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Extracts files from 7Z archives without needing 7-Zip software installed on your machine.',
+    steps:['Upload the 7Z file','Preview contents','Extract','Download files'],
+    uses:['Open 7Z without software','Unpack downloaded archives','Access compressed content','Quick extraction'],
+    formats:['7Z → Extracted Files'] },
+
+  { id:'arc-tar-unpack', name:'Extract TAR', short:'Unpack TAR archive files', cat:'archive', icon:'TAR', ic:'#00c853', bg:'rgba(0,200,83,0.12)',
+    what:'Extracts files from TAR, TAR.GZ, or TAR.BZ2 archives. Commonly used in Linux and development workflows.',
+    steps:['Upload the TAR file','Preview contents','Extract','Download files'],
+    uses:['Open Linux project archives','Unpack server backups','Developer workflow','Extract source code'],
+    formats:['TAR, TAR.GZ, TAR.BZ2 → Extracted Files'] },
+
+  { id:'arc-zip-7z', name:'ZIP to 7Z', short:'Convert ZIP to better-compressed 7Z', cat:'archive', icon:'7Z', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Converts a ZIP archive to 7Z format. 7Z provides better compression than ZIP — you get a smaller file.',
+    steps:['Upload the ZIP','Convert','Download the 7Z'],
+    uses:['Better compression needed','Save more storage','For 7-Zip users','Create smaller archives'],
+    formats:['ZIP → 7Z'] },
+
+  { id:'arc-7z-zip', name:'7Z to ZIP', short:'Convert 7Z archive to universal ZIP', cat:'archive', icon:'ZIP', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Converts 7Z format to universal ZIP format. Makes sharing easy for users who cannot open 7Z files.',
+    steps:['Upload the 7Z','Convert','Download the ZIP'],
+    uses:['Universal sharing','Windows built-in support','Cross-platform compatibility','Share via email'],
+    formats:['7Z → ZIP'] },
+
+  { id:'arc-rar-zip', name:'RAR to ZIP', short:'Convert RAR archive to ZIP format', cat:'archive', icon:'ZIP', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Converts RAR format to ZIP without needing WinRAR software. For universal access.',
+    steps:['Upload the RAR','Extract and repack','Download the ZIP'],
+    uses:['No RAR software available','Need universal format','Open on mobile','Cross-platform use'],
+    formats:['RAR → ZIP'] },
+
+  { id:'arc-tar', name:'Create TAR', short:'Bundle files into a TAR archive', cat:'archive', icon:'TAR', ic:'#00c853', bg:'rgba(0,200,83,0.12)', badge:'new',
+    what:'Bundles files into TAR (Tape Archive) format. Common format for Linux/Mac systems and developers.',
+    steps:['Upload files','Create TAR','Download'],
+    uses:['Linux deployment','Bundle server files','Developer workflows','Source code archiving'],
+    formats:['Any files → TAR'] },
+
+  { id:'arc-gz', name:'GZip Compress', short:'Compress a file using GZip', cat:'archive', icon:'GZ', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Compresses files using the GZip algorithm. A common format for web servers and Linux systems.',
+    steps:['Upload the file','Compress','Download the GZ file'],
+    uses:['Web server compression','Linux file transfers','Compress log files','Save bandwidth'],
+    formats:['Any file → GZ'] },
+
+  { id:'arc-encrypt', name:'Encrypt ZIP', short:'Password protect a ZIP archive', cat:'archive', icon:'ZIP', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Adds AES encryption and password protection to a ZIP file. For securely sharing sensitive files.',
+    steps:['Upload files','Set a strong password','Create encrypted ZIP','Download'],
+    uses:['Share confidential files securely','Protect personal backups','Secure sensitive documents','Password-protected backup'],
+    formats:['Files → Encrypted ZIP'] },
+
+  // OTHER
+  { id:'oth-qr-gen', name:'QR Code Generator', short:'Generate QR code from URL or text', cat:'other', icon:'QR', ic:'#00c853', bg:'rgba(0,200,83,0.12)', badge:'hot',
+    what:'Generates a QR code from any URL, text, contact info, or WiFi password. Size and color are customizable.',
+    steps:['Enter URL or text','Choose QR style','Generate','Download the QR code (PNG/SVG)'],
+    uses:['Business card QR codes','Restaurant menus','Share WiFi passwords','Product packaging','Event tickets'],
+    formats:['Text/URL → QR (PNG, SVG)'] },
+
+  { id:'oth-url-short', name:'URL Shortener', short:'Shorten a long URL for sharing', cat:'other', icon:'URL', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Converts long URLs into short shareable links. Click tracking is also available.',
+    steps:['Paste the long URL','Shorten','Copy the short link','Share'],
+    uses:['Share on social media','Send URL in SMS','Create bio links','Clean up long links'],
+    formats:['Long URL → Short URL'] },
+
+  { id:'oth-base64', name:'Base64 Encode/Decode', short:'Convert text or files to Base64', cat:'other', icon:'B64', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Encodes or decodes text or binary data to and from Base64 encoding. Used in web development and APIs.',
+    steps:['Input text or file','Choose Encode or Decode','Copy the result'],
+    uses:['API authentication','Embed images in HTML','Email attachments','Web development'],
+    formats:['Text/Binary <-> Base64'] },
+
+  { id:'oth-hash', name:'File Hash Generator', short:'Generate MD5, SHA256 hash of a file', cat:'other', icon:'HSH', ic:'#00c853', bg:'rgba(0,200,83,0.1)',
+    what:'Calculates MD5, SHA1, SHA256, and SHA512 hashes of a file or text. Used to verify file integrity.',
+    steps:['Upload a file or paste text','Choose hash type','Copy the hash','Verify'],
+    uses:['Check file integrity','Verify downloads','Password hashing','Security checks'],
+    formats:['Any file → Hash (MD5/SHA256)'] },
+
+  { id:'oth-password', name:'Password Generator', short:'Generate strong random passwords', cat:'other', icon:'PWD', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)', badge:'new',
+    what:'Generates cryptographically secure random passwords. Customize length, character types, and symbols.',
+    steps:['Set password length','Choose character types','Generate','Copy'],
+    uses:['New account passwords','When you need a strong password','Generate multiple passwords','Improve security'],
+    formats:['→ Secure Password'] },
+
+  { id:'oth-color', name:'Color Picker', short:'Pick colors and convert between formats', cat:'other', icon:'CLR', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'A color picker tool that converts between HEX, RGB, and HSL formats. You can also build color palettes.',
+    steps:['Choose a color or enter HEX value','Select format','Copy the value'],
+    uses:['Web design','Brand colors','CSS code','Build color palettes'],
+    formats:['HEX <-> RGB <-> HSL'] },
+
+  { id:'oth-lorem', name:'Lorem Ipsum Generator', short:'Generate placeholder dummy text', cat:'other', icon:'TXT', ic:'#00c853', bg:'rgba(0,200,83,0.1)',
+    what:'Generates Lorem Ipsum placeholder text for design and development. Choose words, sentences, or paragraphs.',
+    steps:['Choose amount (words/sentences/paragraphs)','Generate','Copy'],
+    uses:['UI design mockups','Website wireframes','Template testing','Placeholder content'],
+    formats:['→ Lorem Ipsum Text'] },
+
+  { id:'oth-regex', name:'Regex Tester', short:'Test and debug regular expressions', cat:'other', icon:'REG', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)', badge:'new',
+    what:'Tests regular expressions (Regex) in real-time. Highlights matches and shows capture groups.',
+    steps:['Write a Regex pattern','Enter a test string','See matches in real-time','Choose flags'],
+    uses:['Form validation','Data extraction','Search patterns','Code debugging'],
+    formats:['Regex + Text → Matches'] },
+
+  { id:'oth-diff', name:'Text Diff Tool', short:'Highlight differences between two texts', cat:'other', icon:'TXT', ic:'#69f0ae', bg:'rgba(105,240,174,0.12)',
+    what:'Compares two text files or strings and highlights the differences between them line by line.',
+    steps:['Paste the first text','Paste the second text','Compare','View the differences'],
+    uses:['Code review','Document version comparison','Plagiarism check','Change tracking'],
+    formats:['Text vs Text → Diff'] },
+
+  { id:'oth-minify', name:'Code Minifier', short:'Minify HTML, CSS, and JS code', cat:'other', icon:'COD', ic:'#00e676', bg:'rgba(0,230,118,0.12)',
+    what:'Removes extra spaces, comments, and newlines from HTML, CSS, and JavaScript code to reduce file size.',
+    steps:['Paste code or upload a file','Choose language','Minify','Copy the minified code'],
+    uses:['Improve website performance','Save bandwidth','Production deployment','CDN optimization'],
+    formats:['HTML/CSS/JS → Minified Code'] },
+
+  { id:'oth-json', name:'JSON Formatter', short:'Beautify and validate JSON data', cat:'other', icon:'{ }', ic:'#1de9b6', bg:'rgba(29,233,182,0.12)',
+    what:'Beautifies ugly JSON into a properly indented, readable format. Also validates JSON for errors.',
+    steps:['Paste your JSON','Click Format','Copy the formatted JSON'],
+    uses:['Read API responses','Debug JSON data','Code review','Inspect data structures'],
+    formats:['Minified JSON → Pretty JSON'] },
+];
+
+const CATS = {
+  pdf:    { label:'PDF Tools',      text:'PDF', count:'30 tools' },
+  image:  { label:'Image Tools',    text:'IMG', count:'28 tools' },
+  video:  { label:'Video Tools',    text:'VID', count:'19 tools' },
+  audio:  { label:'Audio Tools',    text:'AUD', count:'20 tools' },
+  docs:   { label:'Document Tools', text:'DOC', count:'12 tools' },
+  archive:{ label:'Archive Tools',  text:'ARC', count:'9 tools'  },
+  other:  { label:'Other Tools',    text:'OTH', count:'11 tools' },
+};
+
+const CAT_COLORS = {
+  pdf:'rgba(0,200,83,0.15)',
+  image:'rgba(29,233,182,0.15)',
+  video:'rgba(105,240,174,0.15)',
+  audio:'rgba(0,230,118,0.15)',
+  docs:'rgba(0,200,83,0.1)',
+  archive:'rgba(29,233,182,0.1)',
+  other:'rgba(0,200,83,0.12)'
+};
+
+function renderAll(toolList) {
+  const container = document.getElementById('allSections');
+  container.innerHTML = '';
+  const groups = {};
+  toolList.forEach(t => {
+    if (!groups[t.cat]) groups[t.cat] = [];
+    groups[t.cat].push(t);
+  });
+  Object.keys(CATS).forEach(cat => {
+    if (!groups[cat] || groups[cat].length === 0) return;
+    const sec = document.createElement('div');
+    sec.className = 'section';
+    sec.dataset.cat = cat;
+    sec.innerHTML = `
+      <div class="section-head">
+        <div class="section-label" style="background:${CAT_COLORS[cat]};color:var(--accent)">${CATS[cat].text}</div>
+        <span class="section-title">${CATS[cat].label}</span>
+        <span class="section-count">${groups[cat].length} tools</span>
+      </div>
+      <div class="tools-grid">${groups[cat].map(toolCard).join('')}</div>`;
+    container.appendChild(sec);
+  });
+}
+
+function toolCard(t) {
+  const badgeHtml = t.badge ? `<div class="tool-badge-wrap"><span class="tbadge ${t.badge}">${t.badge.toUpperCase()}</span></div>` : '';
+  return `<div class="tool-card" onclick="openModal('${t.id}')">
+    ${badgeHtml}
+    <div class="tool-icon-box" style="background:${t.bg};color:${t.ic}">${t.icon}</div>
+    <div class="tool-name">${t.name}</div>
+    <div class="tool-short">${t.short}</div>
+    <div class="tool-more">View Details</div>
+  </div>`;
+}
+
+function openModal(id) {
+  const t = TOOLS.find(x => x.id === id);
+  if (!t) return;
+
+  document.getElementById('mIcon').style.cssText = `background:${t.bg};color:${t.ic}`;
+  document.getElementById('mIcon').textContent = t.icon;
+  document.getElementById('mTitle').textContent = t.name;
+  document.getElementById('mCat').textContent = CATS[t.cat]?.label || t.cat;
+
+  document.getElementById('mWhat').textContent = t.what;
+
+  document.getElementById('mSteps').innerHTML = t.steps
+    .map((s,i) => `<div class="step"><span class="step-num">${i+1}</span><span>${s}</span></div>`).join('');
+
+  document.getElementById('mUsecases').innerHTML = t.uses
+    .map(u => `<div class="usecase">${u}</div>`).join('');
+
+  document.getElementById('mFormats').innerHTML = t.formats
+    .map(f => `<span class="modal-tag">${f}</span>`).join('');
+
+  document.getElementById('mCta').href = `tools/${t.id}.html`;
+
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function filterCat(cat, tab) {
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById('toolSearch').value = '';
+  const filtered = cat === 'all' ? TOOLS : TOOLS.filter(t => t.cat === cat);
+  renderAll(filtered);
+  document.getElementById('noResults').style.display = filtered.length ? 'none' : 'block';
+}
+
+function searchTools(val) {
+  const q = val.toLowerCase().trim();
+  document.querySelectorAll('.cat-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.cat-tab')[0].classList.add('active');
+  const filtered = !q ? TOOLS : TOOLS.filter(t =>
+    t.name.toLowerCase().includes(q) ||
+    t.short.toLowerCase().includes(q) ||
+    t.what.toLowerCase().includes(q) ||
+    t.formats.join(' ').toLowerCase().includes(q)
+  );
+  renderAll(filtered);
+  document.getElementById('noResults').style.display = filtered.length ? 'none' : 'block';
+}
+
+renderAll(TOOLS);
+</script>
+</body>
+</html>

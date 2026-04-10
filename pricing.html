@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — SuperTools | 100% Free Forever</title>
+<meta name="description" content="SuperTools is completely free. No plans, no subscriptions, no hidden fees. All 120+ tools free forever.">
+<meta name="author" content="gptpayer.online">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#00c853">
+<link rel="canonical" href="https://gptpayer.online/pricing.html">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#050f08;--bg2:#0a1a0e;--bg3:#112018;
+    --accent:#00c853;--accent2:#00e676;--accent3:#69f0ae;
+    --accent4:#b9f6ca;--accent5:#1de9b6;
+    --text:#e8f5e9;--muted:#5a8c6a;
+    --border:rgba(0,200,83,0.1);--card:rgba(0,200,83,0.04);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% -10%,rgba(0,200,83,0.15) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 110%,rgba(0,230,118,0.1) 0%,transparent 60%),radial-gradient(ellipse 40% 30% at 90% 10%,rgba(105,240,174,0.07) 0%,transparent 50%);pointer-events:none;z-index:0}
+  header{position:sticky;top:0;z-index:100;background:rgba(5,15,8,0.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:0 clamp(1rem,4vw,3rem);height:64px;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:-0.03em;display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text)}
+  .logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--accent),var(--accent5));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;color:#050f08}
+  .logo span{color:var(--accent)}
+  nav{display:flex;gap:1.2rem;align-items:center}
+  nav a{color:var(--muted);text-decoration:none;font-size:0.85rem;font-family:'Outfit',sans-serif;transition:color 0.2s}
+  nav a:hover{color:var(--accent)}
+  nav a.active{color:var(--accent)}
+  @media(max-width:600px){nav{gap:0.6rem}nav a{font-size:0.75rem}}
+  .page{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:clamp(2rem,6vw,5rem) clamp(1rem,4vw,2rem)}
+  .hero{text-align:center;margin-bottom:3.5rem}
+  .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,200,83,0.1);border:1px solid rgba(0,200,83,0.25);color:var(--accent);font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.08em;padding:5px 14px;border-radius:100px;margin-bottom:1.5rem;text-transform:uppercase}
+  .hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.2rem,7vw,4rem);font-weight:800;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1rem}
+  .hero h1 .hl{background:linear-gradient(135deg,var(--accent),var(--accent5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .hero p{font-size:clamp(1rem,2.5vw,1.15rem);color:var(--muted);max-width:520px;margin:0 auto;line-height:1.6}
+  .free-card{background:linear-gradient(135deg,rgba(0,200,83,0.1),rgba(0,230,118,0.05));border:1.5px solid rgba(0,200,83,0.35);border-radius:24px;padding:clamp(2rem,5vw,3.5rem);text-align:center;position:relative;overflow:hidden;margin-bottom:3rem}
+  .free-card::before{content:'';position:absolute;top:-60px;left:50%;transform:translateX(-50%);width:300px;height:200px;background:radial-gradient(ellipse,rgba(0,200,83,0.2),transparent 70%);pointer-events:none}
+  .plan-badge{display:inline-block;background:var(--accent);color:#050f08;font-family:'DM Mono',monospace;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 14px;border-radius:100px;margin-bottom:1.5rem}
+  .price-display{font-family:'Syne',sans-serif;font-size:clamp(4rem,15vw,7rem);font-weight:800;line-height:1;background:linear-gradient(135deg,var(--accent),var(--accent5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:0.3rem}
+  .price-sub{font-family:'DM Mono',monospace;font-size:0.82rem;color:var(--muted);letter-spacing:0.05em;margin-bottom:1.5rem}
+  .free-card h2{font-family:'Syne',sans-serif;font-size:clamp(1.4rem,4vw,2rem);font-weight:700;color:var(--text);margin-bottom:0.8rem}
+  .free-card>p{color:var(--muted);font-size:1rem;line-height:1.6;max-width:480px;margin:0 auto 2rem}
+  .cta-btn{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent5));color:#050f08;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;padding:14px 36px;border-radius:100px;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 0 24px rgba(0,200,83,0.3)}
+  .cta-btn:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(0,200,83,0.5)}
+  .section-title{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;text-align:center;margin-bottom:1.5rem;color:var(--text)}
+  .features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin-bottom:3.5rem}
+  .feat-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.4rem 1.2rem;display:flex;align-items:flex-start;gap:12px;transition:border-color 0.2s,background 0.2s}
+  .feat-card:hover{border-color:rgba(0,200,83,0.3);background:rgba(0,200,83,0.07)}
+  .feat-icon{font-size:1.5rem;flex-shrink:0;margin-top:2px}
+  .feat-card h3{font-family:'Syne',sans-serif;font-size:0.93rem;font-weight:700;color:var(--text);margin-bottom:4px}
+  .feat-card p{font-size:0.81rem;color:var(--muted);line-height:1.5}
+  .compare-table{width:100%;border-collapse:collapse;margin-bottom:3.5rem;font-size:0.88rem}
+  .compare-table th{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.07em;text-transform:uppercase;color:var(--muted);padding:0.8rem 1rem;border-bottom:1px solid var(--border);text-align:left}
+  .compare-table th:nth-child(2){text-align:center}
+  .compare-table th:last-child{text-align:center;color:var(--accent)}
+  .compare-table td{padding:0.9rem 1rem;border-bottom:1px solid var(--border);color:var(--text)}
+  .compare-table td:nth-child(2){text-align:center}
+  .compare-table td:last-child{text-align:center}
+  .compare-table tr:hover td{background:rgba(0,200,83,0.04)}
+  .check{color:var(--accent);font-size:1.1rem}
+  .cross{color:#ff5555;font-size:1rem}
+  .bottom-cta{text-align:center;background:rgba(0,200,83,0.05);border:1px solid var(--border);border-radius:20px;padding:2.5rem 2rem;margin-bottom:2rem}
+  .bottom-cta h3{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:0.6rem}
+  .bottom-cta p{color:var(--muted);font-size:0.95rem;margin-bottom:1.5rem}
+  .nav-home{color:var(--muted);text-decoration:none;font-size:0.88rem;font-family:'Outfit',sans-serif;transition:color 0.2s;border:1px solid var(--border);padding:7px 18px;border-radius:100px}
+  .nav-home:hover{color:var(--accent);border-color:rgba(0,200,83,0.35)}
+
+  
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    margin-top: 4rem;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,200,83,0.03) 100%);
+    border-top: 1px solid rgba(0,200,83,0.15);
+  }
+
+  .footer-cta {
+    background: linear-gradient(135deg, rgba(0,200,83,0.08) 0%, rgba(0,230,118,0.04) 100%);
+    border-bottom: 1px solid rgba(0,200,83,0.1);
+    padding: 3rem clamp(1rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-cta-text h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.02em;
+  }
+  .footer-cta-text p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .footer-cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #050f08;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(0,200,83,0.3);
+  }
+  .footer-cta-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,200,83,0.4);
+  }
+  .footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2.5rem 2rem;
+    padding: 3rem clamp(1rem, 5vw, 4rem) 2.5rem;
+  }
+  @media (max-width: 900px) {
+    .footer-main { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 540px) {
+    .footer-main { grid-template-columns: 1fr; }
+    .footer-cta { text-align: center; justify-content: center; }
+  }
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .footer-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .footer-brand-logo-icon {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    color: #050f08;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .footer-brand-logo span { color: var(--accent); }
+  .footer-brand-desc {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 260px;
+  }
+  .footer-brand-trust {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0.25rem;
+    flex-wrap: wrap;
+  }
+  .trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent3);
+    background: rgba(105,240,174,0.07);
+    border: 1px solid rgba(105,240,174,0.18);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+  .trust-pill::before {
+    content: '✦';
+    font-size: 0.5rem;
+    opacity: 0.7;
+  }
+  .footer-social-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 0.5rem;
+  }
+  .footer-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .footer-social-btn:hover {
+    color: var(--accent);
+    border-color: rgba(0,200,83,0.3);
+    background: rgba(0,200,83,0.08);
+    transform: translateY(-2px);
+  }
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 100px;
+  }
+  .footer-col-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(0,200,83,0.08);
+  }
+  .footer-link {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.83rem;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+    line-height: 1.4;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s, gap 0.2s;
+  }
+  .footer-link::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: 0.4;
+    flex-shrink: 0;
+    transition: background 0.2s, opacity 0.2s;
+  }
+  .footer-link:hover {
+    color: var(--accent2);
+    gap: 8px;
+  }
+  .footer-link:hover::before {
+    background: var(--accent);
+    opacity: 1;
+  }
+  .footer-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,200,83,0.12) 30%, rgba(0,200,83,0.12) 70%, transparent);
+    margin: 0 clamp(1rem, 5vw, 4rem);
+  }
+  .footer-bottom {
+    padding: 1.4rem clamp(1rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+  .footer-bottom-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .footer-bottom-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: 0.4;
+  }
+  .footer-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.6;
+  }
+  .footer-bottom-right .green-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+  .footer-sep { color: var(--muted); opacity: 0.5; }
+  .footer-bottom-link { color: var(--muted); cursor: default; user-select: none; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">
+    <div class="logo-icon">S</div>
+    Super<span>Tools</span>
+  </a>
+  <a class="nav-home" href="index.html">🏠 Home</a>
+</header>
+
+<div class="page">
+
+  <div class="hero">
+    <div class="badge">💚 Pricing</div>
+    <h1>Simple, <span class="hl">Honest</span> Pricing</h1>
+    <p>No plans to compare. No credit card needed. No hidden fees. Just free tools for everyone, forever.</p>
+  </div>
+
+  <div class="free-card">
+    <div class="plan-badge">✦ The Only Plan</div>
+    <div class="price-display">$0</div>
+    <div class="price-sub">/ forever &nbsp;·&nbsp; no credit card &nbsp;·&nbsp; no signup</div>
+    <h2>Completely Free. Always.</h2>
+    <p>Every single one of our 120+ tools is free to use. No limits, no watermarks, no expiry. We believe productivity tools should be accessible to everyone.</p>
+    <a class="cta-btn" href="index.html">Start Using Tools →</a>
+  </div>
+
+  <div class="section-title">Everything Included. No Exceptions.</div>
+  <div class="features-grid">
+    <div class="feat-card"><div class="feat-icon">📄</div><div><h3>All PDF Tools</h3><p>Merge, split, compress, convert, sign, protect & more. All 30+ PDF tools free.</p></div></div>
+    <div class="feat-card"><div class="feat-icon">🖼️</div><div><h3>All Image Tools</h3><p>Resize, crop, convert, compress, upscale, remove background. 28+ tools free.</p></div></div>
+    <div class="feat-card"><div class="feat-icon">🎬</div><div><h3>All Video Tools</h3><p>Compress, trim, convert, merge, add subtitles. 19+ video tools free.</p></div></div>
+    <div class="feat-card"><div class="feat-icon">🎵</div><div><h3>All Audio Tools</h3><p>Convert, trim, merge, adjust volume, denoise. 20+ audio tools free.</p></div></div>
+    <div class="feat-card"><div class="feat-icon">🚫</div><div><h3>No Watermarks</h3><p>Your files come out clean. No SuperTools branding ever added to output.</p></div></div>
+    <div class="feat-card"><div class="feat-icon">🔒</div><div><h3>No Account Needed</h3><p>Just open a tool and use it. No registration, no login, no email required.</p></div></div>
+    <div class="feat-card"><div class="feat-icon">♾️</div><div><h3>No File Limits</h3><p>Process as many files as you want. No daily caps, no monthly quotas.</p></div></div>
+    <div class="feat-card"><div class="feat-icon">🌐</div><div><h3>Works Everywhere</h3><p>Use on any device — mobile, tablet, desktop. No app install needed.</p></div></div>
+  </div>
+
+  <div class="section-title">SuperTools vs The Rest</div>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Other Tools</th>
+        <th>SuperTools</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Completely Free</td><td><span class="cross">✗ Free tier only</span></td><td><span class="check">✓ Always free</span></td></tr>
+      <tr><td>No Signup Required</td><td><span class="cross">✗ Account needed</span></td><td><span class="check">✓ No account</span></td></tr>
+      <tr><td>No Watermarks</td><td><span class="cross">✗ Paid plan only</span></td><td><span class="check">✓ Never added</span></td></tr>
+      <tr><td>120+ Tools</td><td><span class="cross">✗ Limited tools</span></td><td><span class="check">✓ All included</span></td></tr>
+      <tr><td>No File Limits</td><td><span class="cross">✗ Daily cap</span></td><td><span class="check">✓ Unlimited</span></td></tr>
+      <tr><td>Works on Mobile</td><td><span class="cross">✗ Desktop only</span></td><td><span class="check">✓ All devices</span></td></tr>
+      <tr><td>No Hidden Fees</td><td><span class="cross">✗ Upsells</span></td><td><span class="check">✓ Zero fees</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="bottom-cta">
+    <h3>Ready to get started?</h3>
+    <p>120+ free tools waiting for you. No signup, no payment, no catch.</p>
+    <a class="cta-btn" href="index.html">Explore All Tools →</a>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<!-- FOOTER -->
+<footer style="display:block; padding:0;">
+
+  <!-- CTA Bar -->
+  <div class="footer-cta">
+    <div class="footer-cta-text">
+      <h3>120+ Free Tools. Zero Limits. Forever.</h3>
+      <p>No signup, no watermarks, no credit card — just powerful tools at your fingertips.</p>
+    </div>
+    <a class="footer-cta-badge" href="tools.html">
+      ⚡ Explore All Tools
+    </a>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="footer-main">
+
+    <!-- Brand col -->
+    <div class="footer-brand">
+      <a class="footer-brand-logo" href="index.html">
+        <div class="footer-brand-logo-icon">S</div>
+        Super<span>Tools</span>
+      </a>
+      <p class="footer-brand-desc">World's most complete free file toolkit. Convert, compress, merge PDF, images, video &amp; audio — all in your browser.</p>
+      <div class="footer-brand-trust">
+        <span class="trust-pill">100% Free</span>
+        <span class="trust-pill">No Signup</span>
+        <span class="trust-pill">Secure</span>
+      </div>
+      <div class="footer-social-row">
+        <a class="footer-social-btn" href="https://t.me/supertool_tools" target="_blank" title="Telegram">TG</a>
+        <a class="footer-social-btn" href="https://x.com/GptPayer1234" target="_blank" title="Twitter / X">𝕏</a>
+        <a class="footer-social-btn" href="https://www.instagram.com/supertool_official?igsh=YzljYTk1ODg3Zg==" target="_blank" title="Instagram">IG</a>
+      </div>
+    </div>
+
+    <!-- Product -->
+    <div class="footer-col">
+      <div class="footer-col-title">Product</div>
+      <a class="footer-link" href="index.html">Home</a>
+      <a class="footer-link" href="features.html">Features</a>
+      <a class="footer-link" href="pricing.html">Pricing</a>
+      <a class="footer-link" href="tools.html">All Tools</a>
+      <a class="footer-link" href="FAQ.html">FAQ</a>
+    </div>
+
+    <!-- Legal -->
+    <div class="footer-col">
+      <div class="footer-col-title">Legal</div>
+      <a class="footer-link" href="terms.html">Terms of Service</a>
+      <a class="footer-link" href="privacy.html">Privacy Policy</a>
+      <a class="footer-link" href="cookies.html">Cookie Policy</a>
+      <a class="footer-link" href="affiliate.html">Affiliate Policy</a>
+    </div>
+
+    <!-- Support -->
+    <div class="footer-col">
+      <div class="footer-col-title">Support</div>
+      <a class="footer-link" href="contact.html">Contact Us</a>
+      <a class="footer-link" href="about.html">About Us</a>
+    </div>
+
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <span>&#169; 2026 gptpayer.online</span>
+      <div class="footer-bottom-dot"></div>
+      <span>All Rights Reserved</span>
+      <div class="footer-bottom-dot"></div>
+      <span>Built with ♥ for the web</span>
+    </div>
+    <div class="footer-bottom-right">
+      <div class="green-dot"></div>
+      <span>All systems operational</span>
+    </div>
+  </div>
+
+</footer>
+
+</body>
+</html>

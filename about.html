@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — SuperTools by gptpayer.online</title>
+<meta name="description" content="Learn about SuperTools — the world's most powerful free file toolkit. 120+ tools, no signup, no watermarks, 100% free forever.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#00c853">
+<link rel="canonical" href="https://gptpayer.online/about.html">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #050f08;
+    --bg2:     #0a1a0e;
+    --bg3:     #112018;
+    --accent:  #00c853;
+    --accent2: #00e676;
+    --accent3: #69f0ae;
+    --accent4: #b9f6ca;
+    --accent5: #1de9b6;
+    --text:    #e8f5e9;
+    --muted:   #5a8c6a;
+    --border:  rgba(0,200,83,0.1);
+    --card:    rgba(0,200,83,0.04);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(0,200,83,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 80% 110%, rgba(0,230,118,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 90% 10%, rgba(105,240,174,0.07) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* HEADER */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(5,15,8,0.88);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 clamp(1rem, 4vw, 3rem);
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: -0.03em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .logo-icon {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    color: #050f08;
+    font-weight: 900;
+  }
+
+  .logo span { color: var(--accent); }
+
+  nav {
+    display: flex;
+    gap: 8px;
+  }
+
+  nav a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: all .2s;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  nav a:hover, nav a.active {
+    color: var(--accent2);
+    border-color: var(--border);
+    background: var(--card);
+  }
+
+  /* PAGE HERO */
+  .page-hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 4vw, 3rem) clamp(2rem, 4vw, 3rem);
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent3);
+    background: rgba(105,240,174,0.08);
+    border: 1px solid rgba(105,240,174,0.2);
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    animation: fadeUp .6s ease both;
+  }
+
+  .page-hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin-bottom: 1rem;
+    animation: fadeUp .6s .1s ease both;
+  }
+
+  .page-hero h1 .hl { color: var(--accent); }
+
+  .page-hero p {
+    font-size: clamp(0.9rem, 2vw, 1.15rem);
+    color: var(--muted);
+    max-width: 580px;
+    margin: 0 auto;
+    line-height: 1.7;
+    animation: fadeUp .6s .2s ease both;
+  }
+
+  /* MAIN CONTENT */
+  .content-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 clamp(1rem, 4vw, 3rem) 5rem;
+  }
+
+  /* MISSION BANNER */
+  .mission-banner {
+    background: linear-gradient(135deg, rgba(0,200,83,0.1), rgba(0,230,118,0.05));
+    border: 1px solid rgba(0,200,83,0.2);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    animation: fadeUp .6s .3s ease both;
+  }
+
+  .mission-banner .mission-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .mission-banner h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+    color: var(--accent2);
+  }
+
+  .mission-banner p {
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* SECTIONS GRID */
+  .sections-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+    margin-bottom: 3rem;
+    animation: fadeUp .6s .4s ease both;
+  }
+
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.8rem 1.5rem;
+    transition: all .25s;
+  }
+
+  .info-card:hover {
+    border-color: rgba(0,200,83,0.25);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  }
+
+  .card-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: rgba(0,200,83,0.12);
+    border: 1px solid rgba(0,200,83,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .info-card p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* WHO WE ARE */
+  .who-section {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+    animation: fadeUp .6s .5s ease both;
+  }
+
+  .who-section h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .who-section h2::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 1.2em;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2));
+    border-radius: 2px;
+  }
+
+  .who-section p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+  }
+
+  .who-section p:last-child { margin-bottom: 0; }
+
+  .who-section strong { color: var(--text); }
+
+  /* STATS ROW */
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    animation: fadeUp .6s .55s ease both;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* WHY LIST */
+  .why-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .why-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.92rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .why-list li::before {
+    content: '✓';
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 2px;
+    background: rgba(0,200,83,0.1);
+    border: 1px solid rgba(0,200,83,0.2);
+    width: 20px; height: 20px;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* CONTACT CTA */
+  .cta-block {
+    background: linear-gradient(135deg, rgba(0,200,83,0.1), rgba(0,230,118,0.05));
+    border: 1px solid rgba(0,200,83,0.2);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    animation: fadeUp .6s .6s ease both;
+  }
+
+  .cta-block h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+  }
+
+  .cta-block p {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+
+  .cta-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #050f08;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all .2s;
+    box-shadow: 0 4px 20px rgba(0,200,83,0.3);
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,200,83,0.4); }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--card);
+    color: var(--accent);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 10px;
+    border: 1px solid rgba(0,200,83,0.2);
+    text-decoration: none;
+    transition: all .2s;
+  }
+
+  .btn-secondary:hover { background: rgba(0,200,83,0.08); transform: translateY(-2px); }
+
+  
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    .sections-grid { grid-template-columns: 1fr; }
+    .who-section { padding: 1.5rem; }
+    .stats-row { gap: 1.5rem; }
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 1;
+    margin-top: 4rem;
+    background: linear-gradient(180deg, transparent 0%, rgba(0,200,83,0.03) 100%);
+    border-top: 1px solid rgba(0,200,83,0.15);
+  }
+
+  .footer-cta {
+    background: linear-gradient(135deg, rgba(0,200,83,0.08) 0%, rgba(0,230,118,0.04) 100%);
+    border-bottom: 1px solid rgba(0,200,83,0.1);
+    padding: 3rem clamp(1rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-cta-text h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.02em;
+  }
+  .footer-cta-text p {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .footer-cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 22px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #050f08;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 10px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(0,200,83,0.3);
+  }
+  .footer-cta-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,200,83,0.4);
+  }
+  .footer-main {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2.5rem 2rem;
+    padding: 3rem clamp(1rem, 5vw, 4rem) 2.5rem;
+  }
+  @media (max-width: 900px) {
+    .footer-main { grid-template-columns: 1fr 1fr; }
+    .footer-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 540px) {
+    .footer-main { grid-template-columns: 1fr; }
+    .footer-cta { text-align: center; justify-content: center; }
+  }
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .footer-brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.25rem;
+    letter-spacing: -0.03em;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .footer-brand-logo-icon {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    color: #050f08;
+    font-weight: 900;
+    flex-shrink: 0;
+  }
+  .footer-brand-logo span { color: var(--accent); }
+  .footer-brand-desc {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 260px;
+  }
+  .footer-brand-trust {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0.25rem;
+    flex-wrap: wrap;
+  }
+  .trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent3);
+    background: rgba(105,240,174,0.07);
+    border: 1px solid rgba(105,240,174,0.18);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+  .trust-pill::before {
+    content: '✦';
+    font-size: 0.5rem;
+    opacity: 0.7;
+  }
+  .footer-social-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 0.5rem;
+  }
+  .footer-social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .footer-social-btn:hover {
+    color: var(--accent);
+    border-color: rgba(0,200,83,0.3);
+    background: rgba(0,200,83,0.08);
+    transform: translateY(-2px);
+  }
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-width: 100px;
+  }
+  .footer-col-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(0,200,83,0.08);
+  }
+  .footer-link {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.83rem;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+    line-height: 1.4;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s, gap 0.2s;
+  }
+  .footer-link::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: 0.4;
+    flex-shrink: 0;
+    transition: background 0.2s, opacity 0.2s;
+  }
+  .footer-link:hover {
+    color: var(--accent2);
+    gap: 8px;
+  }
+  .footer-link:hover::before {
+    background: var(--accent);
+    opacity: 1;
+  }
+  .footer-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0,200,83,0.12) 30%, rgba(0,200,83,0.12) 70%, transparent);
+    margin: 0 clamp(1rem, 5vw, 4rem);
+  }
+  .footer-bottom {
+    padding: 1.4rem clamp(1rem, 5vw, 4rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.03em;
+  }
+  .footer-bottom-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .footer-bottom-dot {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--muted);
+    opacity: 0.4;
+  }
+  .footer-bottom-right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.6;
+  }
+  .footer-bottom-right .green-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+  }
+  .footer-sep { color: var(--muted); opacity: 0.5; }
+  .footer-bottom-link { color: var(--muted); cursor: default; user-select: none; }
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a class="logo" href="index.html">
+    <div class="logo-icon">S</div>
+    Super<span>Tools</span>
+  </a>
+  <nav>
+    <a href="index.html">Home</a>
+  </nav>
+</header>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="hero-badge">&#9670; Who We Are</div>
+  <h1>About <span class="hl">SuperTools</span></h1>
+  <p>Free, fast, and powerful file tools — built for everyone, everywhere. No signup. No watermarks. No limits.</p>
+</section>
+
+<!-- MAIN CONTENT -->
+<div class="content-wrap">
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num" style="color:var(--accent)">120+</div><div class="stat-label">Free Tools</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--accent2)">Free</div><div class="stat-label">Always</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--accent3)">0</div><div class="stat-label">Signup Needed</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--accent4)">256-bit</div><div class="stat-label">Encryption</div></div>
+  </div>
+
+  <!-- MISSION BANNER -->
+  <div class="mission-banner">
+    <div class="mission-icon">&#128640;</div>
+    <h2>Our Mission</h2>
+    <p>To provide the world's most comprehensive file toolkit — 120+ tools covering PDF, Image, Video, Audio, Documents, and Archives — completely free, fast, and secure. We believe powerful tools should be accessible to all, without subscriptions or hidden fees.</p>
+  </div>
+
+  <!-- WHO WE ARE -->
+  <div class="who-section">
+    <h2>Who We Are</h2>
+    <p><strong>SuperTools</strong> by <strong>gptpayer.online</strong> is a free, all-in-one file conversion and editing platform built for everyone. From students and freelancers to developers and businesses — our tools are designed to save you time and eliminate frustration.</p>
+    <p>We started with a simple idea: why should people pay for basic file conversion? Our team built SuperTools to solve exactly that. Today, we offer 120+ browser-based tools that run securely without storing any of your data on our servers.</p>
+    <p>Everything is processed locally in your browser or deleted immediately after conversion — your files remain <strong>100% private</strong>.</p>
+
+    <ul class="why-list">
+      <li>All file processing is done securely — no files stored on our servers</li>
+      <li>Lightning fast, browser-based tools — no downloads required</li>
+      <li>No signup, no watermarks, no limits — ever</li>
+      <li>Available 24/7, from anywhere in the world</li>
+      <li>256-bit encryption for all file transfers</li>
+      <li>Supports PDF, Image, Video, Audio, Documents, Archives & more</li>
+    </ul>
+  </div>
+
+  <!-- FEATURE CARDS -->
+  <div class="sections-grid">
+    <div class="info-card">
+      <div class="card-icon">&#128274;</div>
+      <h3>100% Secure</h3>
+      <p>All conversions happen in your browser or in isolated memory. We never store, share, or view your files. Your privacy is our priority.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">&#9889;</div>
+      <h3>Lightning Fast</h3>
+      <p>No upload queues, no waiting. Our optimized tools process files in seconds using cutting-edge browser technology.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">&#127775;</div>
+      <h3>Always Free</h3>
+      <p>120+ tools, no paywalls, no premium tiers for basics. We believe everyone deserves access to powerful file tools for free.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">&#127760;</div>
+      <h3>Available Everywhere</h3>
+      <p>Works on any device with a browser — desktop, tablet, or mobile. No software installation needed.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">&#128296;</div>
+      <h3>120+ Tools</h3>
+      <p>From PDF to image conversion, video compression, audio editing, and archive management — we've got you covered.</p>
+    </div>
+    <div class="info-card">
+      <div class="card-icon">&#128172;</div>
+      <h3>24/7 Support</h3>
+      <p>Our team is always here to help. Reach us via email or Telegram for quick and friendly assistance.</p>
+    </div>
+  </div>
+
+  <!-- CONTACT CTA -->
+  <div class="cta-block">
+    <h2>Get In Touch</h2>
+    <p>Have questions, suggestions, or want to collaborate? We'd love to hear from you. Our team typically responds within 24–48 hours.</p>
+    <div class="cta-btns">
+      <a href="/cdn-cgi/l/email-protection#7413040004150d1106341319151d185a171b19" class="btn-primary">&#9993; Email Us</a>
+      <a href="contact.html" class="btn-secondary">Contact Page &#8594;</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<!-- FOOTER -->
+<footer style="display:block; padding:0;">
+
+  <!-- CTA Bar -->
+  <div class="footer-cta">
+    <div class="footer-cta-text">
+      <h3>120+ Free Tools. Zero Limits. Forever.</h3>
+      <p>No signup, no watermarks, no credit card — just powerful tools at your fingertips.</p>
+    </div>
+    <a class="footer-cta-badge" href="tools.html">
+      ⚡ Explore All Tools
+    </a>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="footer-main">
+
+    <!-- Brand col -->
+    <div class="footer-brand">
+      <a class="footer-brand-logo" href="index.html">
+        <div class="footer-brand-logo-icon">S</div>
+        Super<span>Tools</span>
+      </a>
+      <p class="footer-brand-desc">World's most complete free file toolkit. Convert, compress, merge PDF, images, video &amp; audio — all in your browser.</p>
+      <div class="footer-brand-trust">
+        <span class="trust-pill">100% Free</span>
+        <span class="trust-pill">No Signup</span>
+        <span class="trust-pill">Secure</span>
+      </div>
+      <div class="footer-social-row">
+        <a class="footer-social-btn" href="https://t.me/supertool_tools" target="_blank" title="Telegram">TG</a>
+        <a class="footer-social-btn" href="https://x.com/GptPayer1234" target="_blank" title="Twitter / X">𝕏</a>
+        <a class="footer-social-btn" href="https://www.instagram.com/supertool_official?igsh=YzljYTk1ODg3Zg==" target="_blank" title="Instagram">IG</a>
+      </div>
+    </div>
+
+    <!-- Product -->
+    <div class="footer-col">
+      <div class="footer-col-title">Product</div>
+      <a class="footer-link" href="index.html">Home</a>
+      <a class="footer-link" href="features.html">Features</a>
+      <a class="footer-link" href="pricing.html">Pricing</a>
+      <a class="footer-link" href="tools.html">All Tools</a>
+      <a class="footer-link" href="FAQ.html">FAQ</a>
+    </div>
+
+    <!-- Legal -->
+    <div class="footer-col">
+      <div class="footer-col-title">Legal</div>
+      <a class="footer-link" href="terms.html">Terms of Service</a>
+      <a class="footer-link" href="privacy.html">Privacy Policy</a>
+      <a class="footer-link" href="cookies.html">Cookie Policy</a>
+      <a class="footer-link" href="affiliate.html">Affiliate Policy</a>
+    </div>
+
+    <!-- Support -->
+    <div class="footer-col">
+      <div class="footer-col-title">Support</div>
+      <a class="footer-link" href="contact.html">Contact Us</a>
+      <a class="footer-link" href="about.html">About Us</a>
+    </div>
+
+  </div>
+
+  <div class="footer-divider"></div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-left">
+      <span>&#169; 2026 gptpayer.online</span>
+      <div class="footer-bottom-dot"></div>
+      <span>All Rights Reserved</span>
+      <div class="footer-bottom-dot"></div>
+      <span>Built with ♥ for the web</span>
+    </div>
+    <div class="footer-bottom-right">
+      <div class="green-dot"></div>
+      <span>All systems operational</span>
+    </div>
+  </div>
+
+</footer>
+
+</body>
+</html>
