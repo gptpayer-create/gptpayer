@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blur Image — SuperTools</title>
+<meta name="description" content="Advanced image blur tool — blur types, color tint, live preview & more.">
+<meta name="theme-color" content="#00c853">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #050f08;
+  --bg2: #0a1a0e;
+  --bg3: #112018;
+  --accent: #00c853;
+  --accent2: #00e676;
+  --accent3: #69f0ae;
+  --text: #e8f5e9;
+  --muted: #5a8c6a;
+  --border: rgba(0,200,83,0.12);
+  --card: rgba(0,200,83,0.04);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:
+  radial-gradient(ellipse 80% 50% at 20% -10%,rgba(0,200,83,.15) 0%,transparent 60%),
+  radial-gradient(ellipse 60% 40% at 80% 110%,rgba(0,230,118,.1) 0%,transparent 60%),
+  radial-gradient(ellipse 40% 30% at 90% 10%,rgba(105,240,174,.07) 0%,transparent 50%);
+  pointer-events:none;z-index:0}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:rgba(5,15,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,200,83,.15);box-shadow:0 4px 24px rgba(0,200,83,.1);padding:0 clamp(1rem,4vw,3rem);height:68px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-.03em;color:#e8f5e9;text-decoration:none;display:flex;align-items:center;gap:10px}
+.logo-icon{width:34px;height:34px;background:linear-gradient(135deg,#00c853,#00e676);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#050f08;font-weight:900}
+.logo span{color:#00c853}
+nav{display:flex;gap:8px;align-items:center}
+nav a{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);text-decoration:none;padding:6px 14px;border-radius:6px;border:1px solid transparent;transition:all .2s;letter-spacing:.05em;text-transform:uppercase}
+nav a:hover{color:var(--accent2);border-color:var(--border);background:var(--card)}
+
+/* HERO */
+.tool-hero{position:relative;z-index:1;padding:2rem clamp(1rem,4vw,3rem) 1.5rem;display:flex;align-items:flex-start;gap:1.5rem}
+.tool-hero-icon{width:72px;height:72px;background:linear-gradient(135deg,var(--accent),var(--accent2));border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;box-shadow:0 8px 30px rgba(0,200,83,.4)}
+.tool-hero-cat{font-family:'DM Mono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-bottom:6px}
+.tool-hero-title{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:8px}
+.tool-hero-desc{color:var(--muted);font-size:.95rem;line-height:1.6}
+.badge{display:inline-flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:.65rem;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-left:10px;vertical-align:middle}
+.badge.new{background:rgba(32,201,151,.15);color:#20c997;border:1px solid rgba(32,201,151,.3)}
+.badge.pro{background:rgba(0,200,83,.15);color:#69f0ae;border:1px solid rgba(0,200,83,.3)}
+
+/* MAIN WRAP */
+.main-wrap{position:relative;z-index:1;padding:0 clamp(1rem,4vw,3rem) 4rem;display:grid;grid-template-columns:1fr 300px;gap:2rem;max-width:1140px;margin:0 auto}
+@media(max-width:900px){.main-wrap{grid-template-columns:1fr}}
+
+/* CARD */
+.tool-card{background:var(--bg2);border:1px solid var(--border);border-radius:20px;padding:2rem}
+
+/* SECTION LABEL */
+.section-label{font-family:'DM Mono',monospace;font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent3);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* DROP ZONE */
+.drop-zone{border:2px dashed rgba(0,200,83,.35);border-radius:16px;padding:2.5rem 2rem;text-align:center;cursor:pointer;transition:all .25s;background:rgba(0,200,83,.03);margin-bottom:1.5rem;position:relative;overflow:hidden}
+.drop-zone::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(0,200,83,.05),transparent);opacity:0;transition:.25s}
+.drop-zone:hover,.drop-zone.drag-over{border-color:var(--accent);background:rgba(0,200,83,.08)}
+.drop-zone:hover::before,.drop-zone.drag-over::before{opacity:1}
+.drop-icon{font-size:2.5rem;margin-bottom:.8rem}
+.drop-title{font-size:1rem;font-weight:600;margin-bottom:4px}
+.drop-sub{font-size:.85rem;color:var(--muted);margin-bottom:8px}
+.drop-accepts{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--accent3);background:rgba(0,200,83,.12);display:inline-block;padding:3px 10px;border-radius:100px}
+
+/* FILE ITEM */
+.file-list{margin-bottom:1rem}
+.file-item{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;animation:fadeUp .2s ease}
+.file-icon{font-size:1.2rem;flex-shrink:0}
+.file-info{flex:1;min-width:0}
+.file-name{font-size:.85rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file-size{font-size:.72rem;color:var(--muted)}
+.remove-btn{background:none;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;padding:4px 6px;border-radius:6px;transition:color .2s}
+.remove-btn:hover{color:#ff4d6d}
+
+/* TABS */
+.tabs{display:flex;gap:6px;margin-bottom:1.2rem;flex-wrap:wrap}
+.tab-btn{font-family:'DM Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.06em;padding:7px 14px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all .2s}
+.tab-btn.active{background:rgba(0,200,83,.15);border-color:rgba(0,200,83,.4);color:var(--accent3)}
+.tab-btn:hover:not(.active){border-color:rgba(0,200,83,.25);color:var(--text)}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+
+/* INPUT GROUP */
+.input-group{display:flex;flex-direction:column;gap:6px;margin-bottom:1rem}
+.input-group label{font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-family:'DM Mono',monospace;display:flex;align-items:center;justify-content:space-between}
+.input-group label span{color:var(--accent3);font-size:.8rem}
+.input-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:600px){.input-row{grid-template-columns:1fr}}
+
+/* RANGE */
+input[type=range]{width:100%;height:6px;appearance:none;background:var(--bg3);border-radius:100px;outline:none;cursor:pointer;accent-color:var(--accent)}
+input[type=range]::-webkit-slider-thumb{appearance:none;width:18px;height:18px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px rgba(0,200,83,.5);cursor:pointer;transition:transform .15s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
+
+/* SELECT */
+.select-input{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:10px 14px;color:var(--text);font-family:'Outfit',sans-serif;font-size:.9rem;outline:none;cursor:pointer;width:100%;transition:border-color .2s}
+.select-input:focus{border-color:var(--accent)}
+
+/* COLOR PICKER ROW */
+.color-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.color-swatch{width:32px;height:32px;border-radius:8px;cursor:pointer;border:2px solid transparent;transition:all .2s;flex-shrink:0}
+.color-swatch.active,.color-swatch:hover{border-color:var(--accent3);transform:scale(1.1)}
+.color-swatch.custom{background:conic-gradient(red,yellow,lime,cyan,blue,magenta,red);position:relative}
+.custom-color-input{width:0;height:0;opacity:0;position:absolute}
+
+/* PREVIEW AREA */
+.preview-wrap{position:relative;margin-bottom:1rem;border-radius:16px;overflow:hidden;background:repeating-conic-gradient(#1a2e1e 0% 25%,#0f1f14 0% 50%) 0 0/20px 20px;min-height:200px;display:flex;align-items:center;justify-content:center}
+#previewCanvas{max-width:100%;max-height:420px;display:block;border-radius:12px}
+.preview-placeholder{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--muted);padding:3rem 2rem;font-size:.9rem}
+.preview-placeholder .big{font-size:2.5rem}
+.preview-actions{display:flex;gap:8px;margin-bottom:1rem}
+.preview-toggle{font-family:'DM Mono',monospace;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;padding:6px 12px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--muted);cursor:pointer;transition:all .2s}
+.preview-toggle:hover{border-color:rgba(0,200,83,.3);color:var(--text)}
+.preview-toggle.active{background:rgba(0,200,83,.12);border-color:rgba(0,200,83,.3);color:var(--accent3)}
+
+/* REGION SELECTOR */
+.region-wrap{position:relative;display:inline-block;width:100%}
+#regionCanvas{position:absolute;top:0;left:0;cursor:crosshair;border-radius:12px}
+.region-hint{font-size:.75rem;color:var(--muted);font-family:'DM Mono',monospace;margin-top:6px}
+
+/* BLUR TYPE GRID */
+.blur-type-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:8px;margin-bottom:1rem}
+.blur-type-card{border:1px solid var(--border);border-radius:10px;padding:10px 8px;text-align:center;cursor:pointer;background:var(--card);transition:all .2s}
+.blur-type-card:hover,.blur-type-card.active{border-color:rgba(0,200,83,.4);background:rgba(0,200,83,.1)}
+.blur-type-card.active{box-shadow:0 0 0 1px rgba(0,200,83,.3) inset}
+.blur-type-icon{font-size:1.4rem;margin-bottom:4px}
+.blur-type-name{font-family:'DM Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.blur-type-card.active .blur-type-name{color:var(--accent3)}
+
+/* PROCESS BTN */
+.process-btn{width:100%;padding:15px;border-radius:14px;border:none;font-family:'Outfit',sans-serif;font-size:1rem;font-weight:700;cursor:pointer;transition:all .2s;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#050f08;box-shadow:0 6px 24px rgba(0,200,83,.35);margin-bottom:1rem}
+.process-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 10px 32px rgba(0,200,83,.5)}
+.process-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.process-btn.secondary{background:var(--bg3);color:var(--text);border:1px solid var(--border);box-shadow:none}
+.process-btn.secondary:hover:not(:disabled){background:var(--bg2);border-color:var(--accent)}
+
+/* PROGRESS */
+.progress-label{display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted);margin-bottom:6px}
+#progressPct{color:var(--accent3);font-family:'DM Mono',monospace}
+.progress-track{background:var(--bg3);border-radius:100px;height:6px;overflow:hidden;margin-bottom:1.5rem}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent3));border-radius:100px;width:0%;transition:width .3s ease}
+
+/* RESULT */
+.result-area{margin-top:1rem}
+.result-title{font-size:.9rem;font-weight:600;color:#20c997;margin-bottom:.8rem}
+.download-btn{display:flex;align-items:center;gap:10px;width:100%;padding:11px 16px;background:rgba(32,201,151,.1);border:1px solid rgba(32,201,151,.3);border-radius:12px;color:#20c997;font-family:'Outfit',sans-serif;font-size:.88rem;font-weight:600;cursor:pointer;text-decoration:none;margin-bottom:8px;transition:all .2s}
+.download-btn:hover{background:rgba(32,201,151,.18);transform:translateY(-1px)}
+
+/* SIDEBAR */
+.sidebar{display:flex;flex-direction:column;gap:1.5rem}
+.info-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.4rem}
+.info-card-title{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.info-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.info-list li{font-size:.82rem;color:var(--muted);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+
+/* STATS ROW */
+.stats-row{display:flex;gap:8px;margin-bottom:1.2rem;flex-wrap:wrap}
+.stat-chip{flex:1;min-width:80px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:8px 10px;text-align:center}
+.stat-chip .val{font-family:'DM Mono',monospace;font-size:.85rem;color:var(--accent3);font-weight:500}
+.stat-chip .lbl{font-family:'DM Mono',monospace;font-size:.62rem;text-transform:uppercase;color:var(--muted);margin-top:2px}
+
+/* FOOTER */
+footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:1.5rem clamp(1rem,4vw,3rem);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-left{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,200,83,.4)}50%{box-shadow:0 0 0 8px rgba(0,200,83,0)}}
+
+/* CHECKBOX */
+.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0}
+.toggle-label{font-size:.83rem;color:var(--text);font-family:'Outfit',sans-serif}
+.toggle-sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.toggle-switch{position:relative;width:40px;height:22px;flex-shrink:0}
+.toggle-switch input{opacity:0;width:0;height:0}
+.slider-sw{position:absolute;cursor:pointer;inset:0;background:var(--bg3);border-radius:100px;border:1px solid var(--border);transition:.2s}
+.slider-sw::before{content:'';position:absolute;height:14px;width:14px;left:3px;bottom:3px;background:var(--muted);border-radius:50%;transition:.2s}
+input:checked+.slider-sw{background:rgba(0,200,83,.3);border-color:var(--accent)}
+input:checked+.slider-sw::before{transform:translateX(18px);background:var(--accent)}
+
+@media(max-width:600px){
+  .tool-hero{flex-direction:column;gap:1rem}
+  .tool-hero-icon{width:56px;height:56px;font-size:1.6rem}
+  .tool-hero-title{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="index.html">
+    <div class="logo-icon">⚡</div>
+    Super<span>Tools</span>
+  </a>
+  <nav>
+    <a href="../index.html">Home</a>
+  </nav>
+</header>
+
+<div class="tool-hero">
+  <div class="tool-hero-icon">🌫️</div>
+  <div class="tool-hero-text">
+    <div class="tool-hero-cat">Image Tools</div>
+    <h1 class="tool-hero-title">Advanced Blur Image <span class="badge pro">PRO</span></h1>
+    <p class="tool-hero-desc">Gaussian, motion, radial & colour blur — live preview, region selection, intensity control. 100% browser-based.</p>
+  </div>
+</div>
+
+<div class="main-wrap">
+  <div class="tool-card">
+    <div class="tool-workspace">
+
+      <!-- DROP ZONE -->
+      <div class="drop-zone" id="dropZone" onclick="document.getElementById('fileInput').click()">
+        <div class="drop-icon">🌫️</div>
+        <div class="drop-title">Drop your image here</div>
+        <div class="drop-sub">or click to browse</div>
+        <div class="drop-accepts">JPG · PNG · WEBP · GIF · BMP</div>
+        <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFiles(this.files)">
+      </div>
+      <div id="fileList" class="file-list"></div>
+
+      <!-- IMAGE STATS -->
+      <div id="statsRow" class="stats-row" style="display:none">
+        <div class="stat-chip"><div class="val" id="statW">—</div><div class="lbl">Width</div></div>
+        <div class="stat-chip"><div class="val" id="statH">—</div><div class="lbl">Height</div></div>
+        <div class="stat-chip"><div class="val" id="statSize">—</div><div class="lbl">Size</div></div>
+        <div class="stat-chip"><div class="val" id="statFormat">—</div><div class="lbl">Format</div></div>
+      </div>
+
+      <!-- TABS -->
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('basic',this)">⚙️ Basic</button>
+        <button class="tab-btn" onclick="switchTab('color',this)">🎨 Colour Blur</button>
+        <button class="tab-btn" onclick="switchTab('region',this)">✂️ Region Blur</button>
+        <button class="tab-btn" onclick="switchTab('effects',this)">✨ Effects</button>
+      </div>
+
+      <!-- TAB: BASIC -->
+      <div class="tab-panel active" id="tab-basic">
+        <div class="section-label">Blur Type</div>
+        <div class="blur-type-grid" id="blurTypeGrid">
+          <div class="blur-type-card active" data-type="gaussian" onclick="selectBlurType(this)">
+            <div class="blur-type-icon">🔵</div>
+            <div class="blur-type-name">Gaussian</div>
+          </div>
+          <div class="blur-type-card" data-type="motion" onclick="selectBlurType(this)">
+            <div class="blur-type-icon">💨</div>
+            <div class="blur-type-name">Motion</div>
+          </div>
+          <div class="blur-type-card" data-type="radial" onclick="selectBlurType(this)">
+            <div class="blur-type-icon">🌀</div>
+            <div class="blur-type-name">Radial</div>
+          </div>
+          <div class="blur-type-card" data-type="box" onclick="selectBlurType(this)">
+            <div class="blur-type-icon">🟫</div>
+            <div class="blur-type-name">Box</div>
+          </div>
+          <div class="blur-type-card" data-type="pixelate" onclick="selectBlurType(this)">
+            <div class="blur-type-icon">🟩</div>
+            <div class="blur-type-name">Pixelate</div>
+          </div>
+          <div class="blur-type-card" data-type="frosted" onclick="selectBlurType(this)">
+            <div class="blur-type-icon">❄️</div>
+            <div class="blur-type-name">Frosted</div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Blur Intensity <span id="blurVal">12</span>px</label>
+          <input type="range" id="blurAmount" min="1" max="50" value="12" oninput="blurVal.textContent=this.value;livePreview()">
+        </div>
+
+        <!-- Motion-specific options -->
+        <div id="motionOpts" style="display:none">
+          <div class="input-row">
+            <div class="input-group">
+              <label>Direction <span id="motionAngleVal">0</span>°</label>
+              <input type="range" id="motionAngle" min="0" max="360" value="0" oninput="motionAngleVal.textContent=this.value;livePreview()">
+            </div>
+            <div class="input-group">
+              <label>Length <span id="motionLenVal">30</span>px</label>
+              <input type="range" id="motionLen" min="5" max="120" value="30" oninput="motionLenVal.textContent=this.value;livePreview()">
+            </div>
+          </div>
+        </div>
+
+        <!-- Radial-specific -->
+        <div id="radialOpts" style="display:none">
+          <div class="input-group">
+            <label>Centre X <span id="radialXVal">50</span>%</label>
+            <input type="range" id="radialX" min="0" max="100" value="50" oninput="radialXVal.textContent=this.value;livePreview()">
+          </div>
+          <div class="input-group">
+            <label>Centre Y <span id="radialYVal">50</span>%</label>
+            <input type="range" id="radialY" min="0" max="100" value="50" oninput="radialYVal.textContent=this.value;livePreview()">
+          </div>
+          <div class="input-group">
+            <label>Strength <span id="radialStrVal">40</span>%</label>
+            <input type="range" id="radialStr" min="5" max="100" value="40" oninput="radialStrVal.textContent=this.value;livePreview()">
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: COLOUR BLUR -->
+      <div class="tab-panel" id="tab-color">
+        <div class="section-label">Colour Tint</div>
+        <div class="color-row" id="colorRow">
+          <div class="color-swatch active" data-color="none" style="background:linear-gradient(135deg,#1a2e1e,#0f1f14);border:2px solid rgba(0,200,83,.4)" onclick="selectColor(this)" title="No tint">✕</div>
+          <div class="color-swatch" data-color="#ff4d6d" style="background:#ff4d6d" onclick="selectColor(this)" title="Red"></div>
+          <div class="color-swatch" data-color="#ff9500" style="background:#ff9500" onclick="selectColor(this)" title="Orange"></div>
+          <div class="color-swatch" data-color="#ffd60a" style="background:#ffd60a" onclick="selectColor(this)" title="Yellow"></div>
+          <div class="color-swatch" data-color="#00c853" style="background:#00c853" onclick="selectColor(this)" title="Green"></div>
+          <div class="color-swatch" data-color="#00b4d8" style="background:#00b4d8" onclick="selectColor(this)" title="Cyan"></div>
+          <div class="color-swatch" data-color="#6c63ff" style="background:#6c63ff" onclick="selectColor(this)" title="Purple"></div>
+          <div class="color-swatch" data-color="#ff61d2" style="background:#ff61d2" onclick="selectColor(this)" title="Pink"></div>
+          <div class="color-swatch" data-color="#ffffff" style="background:#fff;border-color:rgba(255,255,255,.4)" onclick="selectColor(this)" title="White"></div>
+          <div class="color-swatch custom" onclick="document.getElementById('customColor').click()" title="Custom">
+            <input type="color" id="customColor" class="custom-color-input" oninput="onCustomColor(this.value)">
+          </div>
+        </div>
+
+        <div class="input-group" style="margin-top:1rem">
+          <label>Tint Opacity <span id="tintOpacityVal">40</span>%</label>
+          <input type="range" id="tintOpacity" min="5" max="95" value="40" oninput="tintOpacityVal.textContent=this.value;livePreview()">
+        </div>
+
+        <div class="section-label" style="margin-top:1rem">Colour Mode</div>
+        <div class="blur-type-grid">
+          <div class="blur-type-card active" data-cmode="overlay" onclick="selectColorMode(this)">
+            <div class="blur-type-icon">🎭</div>
+            <div class="blur-type-name">Overlay</div>
+          </div>
+          <div class="blur-type-card" data-cmode="multiply" onclick="selectColorMode(this)">
+            <div class="blur-type-icon">✖️</div>
+            <div class="blur-type-name">Multiply</div>
+          </div>
+          <div class="blur-type-card" data-cmode="screen" onclick="selectColorMode(this)">
+            <div class="blur-type-icon">💡</div>
+            <div class="blur-type-name">Screen</div>
+          </div>
+          <div class="blur-type-card" data-cmode="hue" onclick="selectColorMode(this)">
+            <div class="blur-type-icon">🌈</div>
+            <div class="blur-type-name">Hue</div>
+          </div>
+        </div>
+
+        <div class="section-label" style="margin-top:1rem">Gradient Tint</div>
+        <div class="toggle-row">
+          <div><div class="toggle-label">Enable Gradient</div><div class="toggle-sub">Two-colour gradient overlay</div></div>
+          <label class="toggle-switch"><input type="checkbox" id="gradientToggle" onchange="toggleGradientOpts();livePreview()"><span class="slider-sw"></span></label>
+        </div>
+        <div id="gradientOpts" style="display:none;margin-top:.8rem">
+          <div class="input-row">
+            <div class="input-group">
+              <label>Colour A</label>
+              <input type="color" id="gradColorA" value="#6c63ff" style="width:100%;height:40px;border-radius:8px;border:1px solid var(--border);background:none;cursor:pointer" oninput="livePreview()">
+            </div>
+            <div class="input-group">
+              <label>Colour B</label>
+              <input type="color" id="gradColorB" value="#ff4d6d" style="width:100%;height:40px;border-radius:8px;border:1px solid var(--border);background:none;cursor:pointer" oninput="livePreview()">
+            </div>
+          </div>
+          <div class="input-group">
+            <label>Angle <span id="gradAngleVal">135</span>°</label>
+            <input type="range" id="gradAngle" min="0" max="360" value="135" oninput="gradAngleVal.textContent=this.value;livePreview()">
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: REGION BLUR -->
+      <div class="tab-panel" id="tab-region">
+        <div class="section-label">Draw Region to Blur</div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem">Load an image first, then drag to select the area you want to blur.</p>
+
+        <div class="input-group">
+          <label>Region Blur Strength <span id="regionBlurVal">15</span>px</label>
+          <input type="range" id="regionBlur" min="2" max="50" value="15" oninput="regionBlurVal.textContent=this.value">
+        </div>
+
+        <div class="toggle-row">
+          <div><div class="toggle-label">Invert Region</div><div class="toggle-sub">Blur outside selection instead</div></div>
+          <label class="toggle-switch"><input type="checkbox" id="invertRegion"><span class="slider-sw"></span></label>
+        </div>
+
+        <div class="toggle-row">
+          <div><div class="toggle-label">Circular Mask</div><div class="toggle-sub">Ellipse instead of rectangle</div></div>
+          <label class="toggle-switch"><input type="checkbox" id="circularMask"><span class="slider-sw"></span></label>
+        </div>
+
+        <p style="font-size:.75rem;color:var(--accent3);font-family:'DM Mono',monospace;margin-top:.5rem" id="regionHint">← Load image to enable region selector</p>
+      </div>
+
+      <!-- TAB: EFFECTS -->
+      <div class="tab-panel" id="tab-effects">
+        <div class="section-label">Additional Effects</div>
+
+        <div class="toggle-row">
+          <div><div class="toggle-label">Brightness</div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--accent3)" id="brightnessVal">100%</span>
+        </div>
+        <input type="range" id="brightness" min="20" max="200" value="100" oninput="brightnessVal.textContent=this.value+'%';livePreview()" style="margin-bottom:1rem">
+
+        <div class="toggle-row">
+          <div><div class="toggle-label">Contrast</div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--accent3)" id="contrastVal">100%</span>
+        </div>
+        <input type="range" id="contrast" min="20" max="200" value="100" oninput="contrastVal.textContent=this.value+'%';livePreview()" style="margin-bottom:1rem">
+
+        <div class="toggle-row">
+          <div><div class="toggle-label">Saturation</div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--accent3)" id="saturationVal">100%</span>
+        </div>
+        <input type="range" id="saturation" min="0" max="300" value="100" oninput="saturationVal.textContent=this.value+'%';livePreview()" style="margin-bottom:1rem">
+
+        <div class="toggle-row">
+          <div><div class="toggle-label">Vignette</div></div>
+          <span style="font-family:'DM Mono',monospace;font-size:.75rem;color:var(--accent3)" id="vignetteVal">0%</span>
+        </div>
+        <input type="range" id="vignette" min="0" max="100" value="0" oninput="vignetteVal.textContent=this.value+'%';livePreview()" style="margin-bottom:1rem">
+
+        <div class="section-label">Output</div>
+        <div class="input-group">
+          <label>Output Format</label>
+          <select class="select-input" id="outputFormat">
+            <option value="image/jpeg">JPEG (smaller size)</option>
+            <option value="image/png" selected>PNG (best quality)</option>
+            <option value="image/webp">WebP (modern)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Quality <span id="qualityVal">92</span>%</label>
+          <input type="range" id="quality" min="10" max="100" value="92" oninput="qualityVal.textContent=this.value">
+        </div>
+      </div>
+
+      <!-- PREVIEW -->
+      <div class="section-label" style="margin-top:1.5rem">Live Preview</div>
+      <div class="preview-actions">
+        <button class="preview-toggle active" id="btnShowPreview" onclick="togglePreviewMode('preview')">👁 Preview</button>
+        <button class="preview-toggle" id="btnShowOriginal" onclick="togglePreviewMode('original')">🖼 Original</button>
+        <button class="preview-toggle" id="btnSideBySide" onclick="togglePreviewMode('side')">⬛⬛ Side by Side</button>
+      </div>
+      <div class="preview-wrap" id="previewWrap">
+        <div class="preview-placeholder" id="previewPlaceholder"><div class="big">🌫️</div><span>Your blurred preview will appear here</span></div>
+        <canvas id="previewCanvas" style="display:none"></canvas>
+      </div>
+
+      <!-- REGION CANVAS OVERLAY (injected dynamically) -->
+
+      <!-- PROCESS BUTTON -->
+      <button class="process-btn" id="processBtn" onclick="processTool()" disabled>
+        🌫️ Apply Blur &amp; Download
+      </button>
+      <div id="progressWrap" style="display:none">
+        <div class="progress-label">
+          <span id="progressText">Processing...</span>
+          <span id="progressPct">0%</span>
+        </div>
+        <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+      </div>
+      <div id="resultArea" style="display:none" class="result-area">
+        <div class="result-title">✅ Done! Download your file below:</div>
+        <div id="downloadLinks"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="info-card">
+      <div class="info-card-title">🎨 Blur Types</div>
+      <ul class="info-list">
+        <li><span>🔵</span> <b style="color:var(--accent3)">Gaussian</b> — smooth, natural blur</li>
+        <li><span>💨</span> <b style="color:var(--accent3)">Motion</b> — directional speed blur</li>
+        <li><span>🌀</span> <b style="color:var(--accent3)">Radial</b> — zoom/spin from centre</li>
+        <li><span>🟫</span> <b style="color:var(--accent3)">Box</b> — sharp average blur</li>
+        <li><span>🟩</span> <b style="color:var(--accent3)">Pixelate</b> — mosaic / censor effect</li>
+        <li><span>❄️</span> <b style="color:var(--accent3)">Frosted</b> — glass / noise blur</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">🔒 100% Private</div>
+      <ul class="info-list">
+        <li><span>✅</span> Runs entirely in your browser</li>
+        <li><span>✅</span> No server uploads ever</li>
+        <li><span>✅</span> No signup, no watermarks</li>
+        <li><span>✅</span> Works offline</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-title">ℹ️ How to Use</div>
+      <ul class="info-list">
+        <li><span>1️⃣</span> Upload your image</li>
+        <li><span>2️⃣</span> Pick blur type &amp; strength</li>
+        <li><span>3️⃣</span> Optionally add colour tint</li>
+        <li><span>4️⃣</span> Select a region (optional)</li>
+        <li><span>5️⃣</span> Download your result</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-left">© 2026 <a href="https://gptpayer.online" style="color:var(--accent3);text-decoration:none">gptpayer.online</a> · All Rights Reserved</div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════ */
+let selectedFile = null;
+let sourceImg = null;
+let blurType = 'gaussian';
+let tintColor = 'none';
+let colorMode = 'overlay';
+let previewMode = 'preview';
+let regionRect = null;
+let isDrawing = false;
+let startX, startY;
+
+/* ═══════════════════════════════════════════
+   FILE HANDLING
+═══════════════════════════════════════════ */
+const dropZone = document.getElementById('dropZone');
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => { e.preventDefault(); dropZone.classList.remove('drag-over'); handleFiles(e.dataTransfer.files); });
+
+function handleFiles(files) {
+  if (!files.length) return;
+  selectedFile = files[0];
+  renderFileList();
+  loadImageForPreview(selectedFile);
+  document.getElementById('processBtn').disabled = false;
+}
+
+function renderFileList() {
+  const el = document.getElementById('fileList');
+  if (!selectedFile) { el.innerHTML = ''; return; }
+  el.innerHTML = `
+    <div class="file-item">
+      <span class="file-icon">🖼️</span>
+      <div class="file-info">
+        <div class="file-name">${selectedFile.name}</div>
+        <div class="file-size">${(selectedFile.size/1024/1024).toFixed(2)} MB</div>
+      </div>
+      <button class="remove-btn" onclick="removeFile()">✕</button>
+    </div>`;
+}
+
+function removeFile() {
+  selectedFile = null; sourceImg = null; regionRect = null;
+  renderFileList();
+  document.getElementById('processBtn').disabled = true;
+  document.getElementById('previewCanvas').style.display = 'none';
+  document.getElementById('previewPlaceholder').style.display = 'flex';
+  document.getElementById('statsRow').style.display = 'none';
+  document.getElementById('resultArea').style.display = 'none';
+}
+
+function loadImageForPreview(file) {
+  const url = URL.createObjectURL(file);
+  const img = new Image();
+  img.onload = () => {
+    URL.revokeObjectURL(url);
+    sourceImg = img;
+    // Stats
+    document.getElementById('statW').textContent = img.naturalWidth + 'px';
+    document.getElementById('statH').textContent = img.naturalHeight + 'px';
+    document.getElementById('statSize').textContent = (file.size/1024/1024).toFixed(2)+'MB';
+    document.getElementById('statFormat').textContent = file.type.split('/')[1].toUpperCase();
+    document.getElementById('statsRow').style.display = 'flex';
+    document.getElementById('regionHint').textContent = 'Drag on preview to select region';
+    livePreview();
+    setupRegionCanvas();
+  };
+  img.src = url;
+}
+
+/* ═══════════════════════════════════════════
+   TABS
+═══════════════════════════════════════════ */
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+  if (id === 'region') setupRegionCanvas();
+}
+
+/* ═══════════════════════════════════════════
+   BLUR TYPE
+═══════════════════════════════════════════ */
+function selectBlurType(card) {
+  document.querySelectorAll('#blurTypeGrid .blur-type-card').forEach(c => c.classList.remove('active'));
+  card.classList.add('active');
+  blurType = card.dataset.type;
+  document.getElementById('motionOpts').style.display = blurType === 'motion' ? 'block' : 'none';
+  document.getElementById('radialOpts').style.display = blurType === 'radial' ? 'block' : 'none';
+  livePreview();
+}
+
+/* ═══════════════════════════════════════════
+   COLOUR
+═══════════════════════════════════════════ */
+function selectColor(el) {
+  document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  tintColor = el.dataset.color;
+  livePreview();
+}
+function onCustomColor(val) {
+  tintColor = val;
+  document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+  document.querySelector('.color-swatch.custom').classList.add('active');
+  livePreview();
+}
+function selectColorMode(card) {
+  document.querySelectorAll('[data-cmode]').forEach(c => c.classList.remove('active'));
+  card.classList.add('active');
+  colorMode = card.dataset.cmode;
+  livePreview();
+}
+function toggleGradientOpts() {
+  const on = document.getElementById('gradientToggle').checked;
+  document.getElementById('gradientOpts').style.display = on ? 'block' : 'none';
+}
+
+/* ═══════════════════════════════════════════
+   PREVIEW MODE
+═══════════════════════════════════════════ */
+function togglePreviewMode(mode) {
+  previewMode = mode;
+  ['btnShowPreview','btnShowOriginal','btnSideBySide'].forEach(id => document.getElementById(id).classList.remove('active'));
+  if (mode==='preview') document.getElementById('btnShowPreview').classList.add('active');
+  if (mode==='original') document.getElementById('btnShowOriginal').classList.add('active');
+  if (mode==='side') document.getElementById('btnSideBySide').classList.add('active');
+  livePreview();
+}
+
+/* ═══════════════════════════════════════════
+   PROGRESS
+═══════════════════════════════════════════ */
+function setProgress(pct, text) {
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressText').textContent = text;
+}
+
+/* ═══════════════════════════════════════════
+   REGION CANVAS
+═══════════════════════════════════════════ */
+function setupRegionCanvas() {
+  if (!sourceImg) return;
+  const pw = document.getElementById('previewWrap');
+  let rc = document.getElementById('regionCanvas');
+  if (!rc) {
+    rc = document.createElement('canvas');
+    rc.id = 'regionCanvas';
+    rc.style.cssText = 'position:absolute;top:0;left:0;border-radius:12px;cursor:crosshair;';
+    pw.appendChild(rc);
+  }
+  const pc = document.getElementById('previewCanvas');
+  rc.width = pc.width || 600;
+  rc.height = pc.height || 400;
+  rc.style.width = pc.style.width || '100%';
+  rc.style.height = pc.style.height || 'auto';
+  rc.onmousedown = startRegion;
+  rc.onmousemove = drawRegion;
+  rc.onmouseup = endRegion;
+  rc.ontouchstart = e => { e.preventDefault(); const t = e.touches[0]; const r = rc.getBoundingClientRect(); startRegion({offsetX: (t.clientX-r.left)*(rc.width/r.width), offsetY: (t.clientY-r.top)*(rc.height/r.height)}); };
+  rc.ontouchmove = e => { e.preventDefault(); const t = e.touches[0]; const r = rc.getBoundingClientRect(); drawRegion({offsetX: (t.clientX-r.left)*(rc.width/r.width), offsetY: (t.clientY-r.top)*(rc.height/r.height)}); };
+  rc.ontouchend = () => endRegion();
+}
+function startRegion(e) { isDrawing = true; startX = e.offsetX; startY = e.offsetY; }
+function drawRegion(e) {
+  if (!isDrawing) return;
+  const rc = document.getElementById('regionCanvas');
+  const ctx = rc.getContext('2d');
+  ctx.clearRect(0, 0, rc.width, rc.height);
+  const w = e.offsetX - startX, h = e.offsetY - startY;
+  ctx.strokeStyle = 'rgba(0,200,83,.9)';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([6, 3]);
+  ctx.fillStyle = 'rgba(0,200,83,.12)';
+  if (document.getElementById('circularMask') && document.getElementById('circularMask').checked) {
+    ctx.beginPath(); ctx.ellipse(startX+w/2, startY+h/2, Math.abs(w/2), Math.abs(h/2), 0, 0, Math.PI*2);
+    ctx.fill(); ctx.stroke();
+  } else {
+    ctx.fillRect(startX, startY, w, h);
+    ctx.strokeRect(startX, startY, w, h);
+  }
+}
+function endRegion(e) {
+  if (!isDrawing) return;
+  isDrawing = false;
+  if (!e) return;
+  const rc = document.getElementById('regionCanvas');
+  const scaleX = sourceImg.naturalWidth / rc.width;
+  const scaleY = sourceImg.naturalHeight / rc.height;
+  const ex = e.offsetX || startX, ey = e.offsetY || startY;
+  regionRect = {
+    x: Math.min(startX, ex) * scaleX,
+    y: Math.min(startY, ey) * scaleY,
+    w: Math.abs(ex - startX) * scaleX,
+    h: Math.abs(ey - startY) * scaleY
+  };
+}
+
+/* ═══════════════════════════════════════════
+   CORE BLUR ENGINE
+═══════════════════════════════════════════ */
+function buildBlurredCanvas(src, opts) {
+  const { blurAmt, type, motionAngle, motionLen, radialX, radialY, radialStr,
+    tint, tintAlpha, cmode, useGradient, gradA, gradB, gradAngle,
+    brightness, contrast, saturation, vignette,
+    useRegion, region, invertRegion, circularMask } = opts;
+
+  const W = src.naturalWidth, H = src.naturalHeight;
+  const canvas = document.createElement('canvas');
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // Adjust CSS filters first
+  const cssBrightness = (brightness / 100).toFixed(2);
+  const cssContrast = (contrast / 100).toFixed(2);
+  const cssSaturation = (saturation / 100).toFixed(2);
+
+  // --- FULL BLUR (no region) ---
+  if (!useRegion) {
+    if (type === 'gaussian') {
+      ctx.filter = `blur(${blurAmt}px) brightness(${cssBrightness}) contrast(${cssContrast}) saturate(${cssSaturation})`;
+      ctx.drawImage(src, 0, 0);
+    } else if (type === 'motion') {
+      applyMotionBlur(ctx, src, motionAngle, motionLen, W, H, cssBrightness, cssContrast, cssSaturation);
+    } else if (type === 'radial') {
+      applyRadialBlur(ctx, src, radialX/100*W, radialY/100*H, radialStr/100, W, H, cssBrightness, cssContrast, cssSaturation);
+    } else if (type === 'box') {
+      ctx.filter = `blur(${blurAmt*0.7}px) brightness(${cssBrightness}) contrast(${cssContrast}) saturate(${cssSaturation})`;
+      ctx.drawImage(src, 0, 0);
+      ctx.filter = `blur(${blurAmt*0.4}px)`;
+      ctx.drawImage(src, 0, 0);
+    } else if (type === 'pixelate') {
+      applyPixelate(ctx, src, blurAmt, W, H, cssBrightness, cssContrast, cssSaturation);
+    } else if (type === 'frosted') {
+      applyFrosted(ctx, src, blurAmt, W, H, cssBrightness, cssContrast, cssSaturation);
+    }
+  } else {
+    // Draw original first
+    ctx.filter = `brightness(${cssBrightness}) contrast(${cssContrast}) saturate(${cssSaturation})`;
+    ctx.drawImage(src, 0, 0);
+    ctx.filter = 'none';
+    applyRegionBlur(ctx, src, region, blurAmt, invertRegion, circularMask, W, H);
+  }
+
+  ctx.filter = 'none';
+
+  // --- COLOUR TINT ---
+  if (tint && tint !== 'none' && !useGradient) {
+    ctx.globalCompositeOperation = cmode;
+    ctx.fillStyle = tint;
+    ctx.globalAlpha = tintAlpha / 100;
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  // --- GRADIENT ---
+  if (useGradient) {
+    const rad = gradAngle * Math.PI / 180;
+    const x1 = W/2 - Math.cos(rad)*W/2, y1 = H/2 - Math.sin(rad)*H/2;
+    const x2 = W/2 + Math.cos(rad)*W/2, y2 = H/2 + Math.sin(rad)*H/2;
+    const grad = ctx.createLinearGradient(x1, y1, x2, y2);
+    grad.addColorStop(0, gradA);
+    grad.addColorStop(1, gradB);
+    ctx.globalCompositeOperation = cmode;
+    ctx.fillStyle = grad;
+    ctx.globalAlpha = tintAlpha / 100;
+    ctx.fillRect(0, 0, W, H);
+    ctx.globalAlpha = 1;
+    ctx.globalCompositeOperation = 'source-over';
+  }
+
+  // --- VIGNETTE ---
+  if (vignette > 0) {
+    const vig = ctx.createRadialGradient(W/2, H/2, Math.min(W,H)*0.3, W/2, H/2, Math.max(W,H)*0.75);
+    vig.addColorStop(0, 'rgba(0,0,0,0)');
+    vig.addColorStop(1, `rgba(0,0,0,${vignette/100})`);
+    ctx.fillStyle = vig;
+    ctx.fillRect(0, 0, W, H);
+  }
+
+  return canvas;
+}
+
+function applyMotionBlur(ctx, src, angle, len, W, H, br, co, sat) {
+  const steps = Math.max(6, Math.min(len, 40));
+  ctx.globalAlpha = 1 / steps;
+  const rad = angle * Math.PI / 180;
+  for (let i = 0; i < steps; i++) {
+    const dx = Math.cos(rad) * (i - steps/2) * (len / steps);
+    const dy = Math.sin(rad) * (i - steps/2) * (len / steps);
+    ctx.filter = `brightness(${br}) contrast(${co}) saturate(${sat})`;
+    ctx.drawImage(src, dx, dy, W, H);
+  }
+  ctx.globalAlpha = 1; ctx.filter = 'none';
+}
+
+function applyRadialBlur(ctx, src, cx, cy, strength, W, H, br, co, sat) {
+  const steps = 12;
+  ctx.globalAlpha = 1 / steps;
+  for (let i = 0; i < steps; i++) {
+    const scale = 1 + (i / steps) * strength * 0.3;
+    const ox = cx - cx * scale;
+    const oy = cy - cy * scale;
+    ctx.filter = `brightness(${br}) contrast(${co}) saturate(${sat})`;
+    ctx.drawImage(src, ox, oy, W * scale, H * scale);
+  }
+  ctx.globalAlpha = 1; ctx.filter = 'none';
+}
+
+function applyPixelate(ctx, src, amt, W, H, br, co, sat) {
+  const pixelSize = Math.max(2, Math.round(amt * 1.5));
+  ctx.filter = `brightness(${br}) contrast(${co}) saturate(${sat})`;
+  ctx.drawImage(src, 0, 0, W/pixelSize, H/pixelSize);
+  ctx.filter = 'none';
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(ctx.canvas, 0, 0, W/pixelSize, H/pixelSize, 0, 0, W, H);
+  ctx.imageSmoothingEnabled = true;
+}
+
+function applyFrosted(ctx, src, amt, W, H, br, co, sat) {
+  ctx.filter = `blur(${amt}px) brightness(${br}) contrast(${co}) saturate(${sat})`;
+  ctx.drawImage(src, 0, 0);
+  ctx.filter = 'none';
+  // Noise overlay
+  const noise = ctx.createImageData(W, H);
+  for (let i = 0; i < noise.data.length; i += 4) {
+    const v = (Math.random() - 0.5) * 30;
+    noise.data[i] = noise.data[i+1] = noise.data[i+2] = 128 + v;
+    noise.data[i+3] = Math.round(amt * 1.5);
+  }
+  const tmp = document.createElement('canvas'); tmp.width = W; tmp.height = H;
+  tmp.getContext('2d').putImageData(noise, 0, 0);
+  ctx.globalCompositeOperation = 'screen';
+  ctx.globalAlpha = 0.08;
+  ctx.drawImage(tmp, 0, 0);
+  ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+}
+
+function applyRegionBlur(ctx, src, region, blurAmt, invert, circular, W, H) {
+  // Create blurred version
+  const blurCanvas = document.createElement('canvas');
+  blurCanvas.width = W; blurCanvas.height = H;
+  const bCtx = blurCanvas.getContext('2d');
+  bCtx.filter = `blur(${blurAmt}px)`;
+  bCtx.drawImage(src, 0, 0);
+  bCtx.filter = 'none';
+
+  if (!invert) {
+    // Clip to region, draw blurred
+    ctx.save();
+    ctx.beginPath();
+    if (circular) {
+      ctx.ellipse(region.x + region.w/2, region.y + region.h/2, region.w/2, region.h/2, 0, 0, Math.PI*2);
+    } else {
+      ctx.rect(region.x, region.y, region.w, region.h);
+    }
+    ctx.clip();
+    ctx.drawImage(blurCanvas, 0, 0);
+    ctx.restore();
+  } else {
+    // Outside the region: draw blurred, inside: original
+    const maskCanvas = document.createElement('canvas'); maskCanvas.width = W; maskCanvas.height = H;
+    const mCtx = maskCanvas.getContext('2d');
+    mCtx.drawImage(blurCanvas, 0, 0); // start with blurred
+    mCtx.save();
+    mCtx.beginPath();
+    if (circular) {
+      mCtx.ellipse(region.x + region.w/2, region.y + region.h/2, region.w/2, region.h/2, 0, 0, Math.PI*2);
+    } else {
+      mCtx.rect(region.x, region.y, region.w, region.h);
+    }
+    mCtx.clip();
+    mCtx.drawImage(src, 0, 0);
+    mCtx.restore();
+    ctx.drawImage(maskCanvas, 0, 0);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   GATHER OPTIONS
+═══════════════════════════════════════════ */
+function getOptions() {
+  const useRegion = !!(regionRect && regionRect.w > 10 && regionRect.h > 10);
+  return {
+    blurAmt: parseInt(document.getElementById('blurAmount').value),
+    type: blurType,
+    motionAngle: parseInt(document.getElementById('motionAngle').value),
+    motionLen: parseInt(document.getElementById('motionLen').value),
+    radialX: parseInt(document.getElementById('radialX').value),
+    radialY: parseInt(document.getElementById('radialY').value),
+    radialStr: parseInt(document.getElementById('radialStr').value),
+    tint: tintColor,
+    tintAlpha: parseInt(document.getElementById('tintOpacity').value),
+    cmode: colorMode,
+    useGradient: document.getElementById('gradientToggle').checked,
+    gradA: document.getElementById('gradColorA').value,
+    gradB: document.getElementById('gradColorB').value,
+    gradAngle: parseInt(document.getElementById('gradAngle').value),
+    brightness: parseInt(document.getElementById('brightness').value),
+    contrast: parseInt(document.getElementById('contrast').value),
+    saturation: parseInt(document.getElementById('saturation').value),
+    vignette: parseInt(document.getElementById('vignette').value),
+    useRegion,
+    region: regionRect,
+    invertRegion: document.getElementById('invertRegion').checked,
+    circularMask: document.getElementById('circularMask').checked,
+  };
+}
+
+/* ═══════════════════════════════════════════
+   LIVE PREVIEW
+═══════════════════════════════════════════ */
+let previewTimeout = null;
+function livePreview() {
+  if (!sourceImg) return;
+  clearTimeout(previewTimeout);
+  previewTimeout = setTimeout(_doPreview, 80);
+}
+function _doPreview() {
+  const canvas = document.getElementById('previewCanvas');
+  const placeholder = document.getElementById('previewPlaceholder');
+  const opts = getOptions();
+
+  if (previewMode === 'original') {
+    canvas.width = sourceImg.naturalWidth;
+    canvas.height = sourceImg.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(sourceImg, 0, 0);
+  } else if (previewMode === 'side') {
+    const W = sourceImg.naturalWidth, H = sourceImg.naturalHeight;
+    canvas.width = W * 2 + 4;
+    canvas.height = H;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(sourceImg, 0, 0);
+    const blurred = buildBlurredCanvas(sourceImg, opts);
+    ctx.drawImage(blurred, W + 4, 0);
+    // Divider
+    ctx.fillStyle = 'rgba(0,200,83,.6)';
+    ctx.fillRect(W + 1, 0, 2, H);
+    // Labels
+    ctx.fillStyle = 'rgba(0,0,0,.6)';
+    ctx.fillRect(10, H-28, 80, 22);
+    ctx.fillRect(W+14, H-28, 70, 22);
+    ctx.fillStyle = '#fff';
+    ctx.font = '13px DM Mono,monospace';
+    ctx.fillText('Original', 16, H-12);
+    ctx.fillText('Blurred', W+18, H-12);
+  } else {
+    const blurred = buildBlurredCanvas(sourceImg, opts);
+    canvas.width = blurred.width;
+    canvas.height = blurred.height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(blurred, 0, 0);
+  }
+
+  canvas.style.display = 'block';
+  placeholder.style.display = 'none';
+  // Resize region canvas if exists
+  const rc = document.getElementById('regionCanvas');
+  if (rc) { rc.width = canvas.width; rc.height = canvas.height; }
+}
+
+/* ═══════════════════════════════════════════
+   PROCESS + DOWNLOAD
+═══════════════════════════════════════════ */
+async function processTool() {
+  if (!selectedFile || !sourceImg) return;
+  const opts = getOptions();
+  document.getElementById('progressWrap').style.display = 'block';
+  document.getElementById('resultArea').style.display = 'none';
+  document.getElementById('processBtn').disabled = true;
+  setProgress(20, 'Applying blur...');
+  await sleep(20);
+  const blurred = buildBlurredCanvas(sourceImg, opts);
+  setProgress(70, 'Encoding output...');
+  await sleep(20);
+  const fmt = document.getElementById('outputFormat').value;
+  const quality = parseInt(document.getElementById('quality').value) / 100;
+  const ext = fmt === 'image/jpeg' ? 'jpg' : fmt === 'image/webp' ? 'webp' : 'png';
+  const outName = selectedFile.name.replace(/\.[^.]+$/, `_blurred.${ext}`);
+  blurred.toBlob(blob => {
+    setProgress(100, 'Done!');
+    const url = URL.createObjectURL(blob);
+    document.getElementById('resultArea').style.display = 'block';
+    document.getElementById('downloadLinks').innerHTML = `<a class="download-btn" href="${url}" download="${outName}">⬇️ Download ${outName}</a>`;
+    document.getElementById('processBtn').disabled = false;
+  }, fmt, quality);
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+</script>
+</body>
+</html>
